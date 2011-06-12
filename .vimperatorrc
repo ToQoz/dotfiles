@@ -1,0 +1,39 @@
+set complete=sl
+" ブラウザタイトル
+set titlestring="vimperator"
+" ページロードのにテキストボックスフォーカス防ぐ
+set focuscontent
+" Beep音の設定
+set visualbell
+hi Bell display: none;
+" undo一覧から開く
+noremap U :undo<Space>
+" j/k移動量変更
+noremap j 5<C-e>
+noremap k 5<C-y>
+map H gT
+map L gt
+map <Left> gT
+map <Right> gt
+noremap <C-h> <A-Left>
+noremap <C-l> <A-Right>
+map <S-Left> :tabmove! +1<CR>
+map <S-Right> :tabmove! -1<CR>
+" esc key map
+imap <C-g> <esc>
+vmap <C-g> <esc>
+
+
+" 再起動
+map <C-r> :restart<CR>
+" はてブ表示キーバインド
+map b :hbinfo<CR>
+
+
+""
+" Plugin
+
+" feedSomeKeys_2.js
+autocmd LocationChange .* :fmapc
+autocmd LocationChange reader\\.livedoor\\.com/reader :fmap j k s a r p o v c <Space> <S-Space> < > T
+autocmd LocationChange mail\\.google\\.com/mail :fmap -depth 4 c / j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gc

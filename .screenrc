@@ -1,0 +1,12 @@
+startup_message off
+defutf8 on
+defkanji utf-8 utf-8
+encoding utf-8
+defencoding utf-8
+
+escape ^Jj
+
+# shortcut of screen sub-command with title option.
+# bind s colon 'screen -t '
+hardstatus alwayslastline "[%02c] %`%-w%{=b bw}%n %t%{-}%+w"
+termcapinfo xterm* ti@:te@

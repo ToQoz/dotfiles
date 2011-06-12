@@ -1,0 +1,15 @@
+/*
+/.*
+
+!/.bash_profile
+!/.bashrc
+!/.vimrc
+!/.vimperatorrc
+!/.zshrc
+!/.zshenv
+!/.gitignore
+!/.screenrc
+!/.emacs.d
+/.emacs.d/*
+!/.emacs.d/init.el
+!/README
