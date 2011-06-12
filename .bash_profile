@@ -2,10 +2,6 @@
 if [ -f ~/.bashrc ] ; then
     . ~/.bashrc
 fi
-##
-# Your previous /Users/Matsumoto/.bash_profile file was backed up as /Users/Matsumoto/.bash_profile.macports-saved_2010-10-28_at_04:15:58
-##
-
 
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/Cellar/python/2.7.1/bin:$PATH
