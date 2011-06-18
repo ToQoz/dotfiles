@@ -212,7 +212,7 @@ esac
 ## load user .zshrc configuration file
 #
 [ -f ${HOME}/.zshrc.mine ] && source ${HOME}/.zshrc.mine
-source ${HOME}/.zsh/plugin/incr-0.2.zsh
+#source ${HOME}/.zsh/plugin/incr-0.2.zsh
 source ${HOME}/.private
 #virtualenv setting
 if [ -f /usr/local/Cellar/python/2.7.1/bin/virtualenvwrapper.sh ]; then
