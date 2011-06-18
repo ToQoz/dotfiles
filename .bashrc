@@ -37,10 +37,10 @@ export PATH=$GOBIN:$PATH
 
 
 #virtualenv setting
-if [ -f /usr/local/Cellar/python/2.7.1/bin/virtualenvwrapper.sh ]; then
-    export VIRTUALENVWRAPPER_PYTHON=/usr/local/Cellar/python/2.7.1/bin/python
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
     export WORKON_HOME=$HOME/virtualenv
-    source /usr/local/Cellar/python/2.7.1/bin/virtualenvwrapper.sh
+    source /usr/local/bin/virtualenvwrapper.sh
 fi
 
 . ~/.private

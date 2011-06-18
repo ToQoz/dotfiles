@@ -214,9 +214,10 @@ esac
 [ -f ${HOME}/.zshrc.mine ] && source ${HOME}/.zshrc.mine
 #source ${HOME}/.zsh/plugin/incr-0.2.zsh
 source ${HOME}/.private
+
 #virtualenv setting
-if [ -f /usr/local/Cellar/python/2.7.1/bin/virtualenvwrapper.sh ]; then
-    export VIRTUALENVWRAPPER_PYTHON=/usr/local/Cellar/python/2.7.1/bin/python
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
     export WORKON_HOME=$HOME/virtualenv
-    source /usr/local/Cellar/python/2.7.1/bin/virtualenvwrapper.sh
+    source /usr/local/bin/virtualenvwrapper.sh
 fi
