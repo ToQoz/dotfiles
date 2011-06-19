@@ -1,1 +1,2 @@
 colorscheme desert
+set noimdisableactivate
