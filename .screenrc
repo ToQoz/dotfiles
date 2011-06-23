@@ -4,7 +4,7 @@ defkanji utf-8 utf-8
 encoding utf-8
 defencoding utf-8
 
-escape ^Jj
+escape ^Aa
 
 # shortcut of screen sub-command with title option.
 # bind s colon 'screen -t '

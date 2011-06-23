@@ -136,7 +136,7 @@ autocmd BufNewFile,BufRead *.go set filetype=go
 
 " Enable omni completion.
 autocmd FileType eruby,html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType html,javascript setl expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType html,javascript setl expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
 autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
 autocmd FileType css setl expandtab tabstop=2 shiftwidth=2 softtabstop=2
