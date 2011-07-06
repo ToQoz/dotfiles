@@ -22,20 +22,6 @@ alias easytether-status="kextstat |grep EasyTether"
 # Bash Color
 export PS1='\u@\[\033[1;31m\]\H\[\033[0m\][\W]\$ '
 
-# android PATH
-export PATH=$HOME/dev/Android/android-sdk-mac_86/tools:$HOME/dev/Android/android-sdk-mac_86/platform-tools:$PATH
-
-
-ANDROIDNDK_HOME=$HOME/android-ndk-r5b
-export PATH=$PATH:${ANDROIDNDK_HOME}
-
-# Go lang PATH
-export GOROOT=$HOME/dev/go
-export GOOS=darwin
-export GOARCH=amd64
-export PATH=$GOBIN:$PATH
-
-
 #virtualenv setting
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
