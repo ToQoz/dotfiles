@@ -1,18 +1,8 @@
-
-# users generic .zshrc file for zsh(1)
-
-
 ## Environment variable configuration
 #
 # LANG
 #
 export LANG=ja_JP.UTF-8
-case ${UID} in
-0)
-    LANG=C
-    ;;
-esac
-
 
 ## Default shell configuration
 #
@@ -96,9 +86,9 @@ setopt share_history        # share command history data
 
 ## Completion configuration
 #
-fpath=(${HOME}/.zsh/functions/Completion ${fpath})
-autoload -U compinit
-compinit
+#fpath=(${HOME}/.zsh/functions/Completion ${fpath})
+#autoload -U compinit
+#compinit
 
 
 ## zsh editor
@@ -143,16 +133,15 @@ alias su="su -l"
 #alias ls='ls -G -F'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
 #alias cemacs='emacs-23.3'
-export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
 alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 alias scrr='screen -U -D -RR'
 alias s='screen -U'
-alias nave='~/nave/nave.sh'
+# alias nave='~/nave/nave.sh'
 
 # MacFusion alias
-alias miacc='cd /Volumes/test_iacc'
-alias msakura='cd /Volumes/sakura'
+# alias miacc='cd /Volumes/test_iacc'
+# alias msakura='cd /Volumes/sakura'
 
 #EasyEther Setting -TO BE CONFIG ANDRIOD BY ADB
 EASYTETHER_EXT=/System/Library/Extensions/EasyTetherUSBEthernet.kext
@@ -218,6 +207,6 @@ source ${HOME}/.private
 #virtualenv setting
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
-    export WORKON_HOME=$HOME/virtualenv
+    export WORKON_HOME=${HOME}/virtualenv
     source /usr/local/bin/virtualenvwrapper.sh
 fi

@@ -10,6 +10,6 @@
 (setq auto-save-default nil)
 ; optionをmeta keyとして使う
 (setq mac-option-modifier 'meta)
-(set-frame-font "ricty-12")
+(set-frame-font "ricty-15")
 ;;(set-frame-font "ricty-13")
 ;;(set-frame-font "ricty-14")
