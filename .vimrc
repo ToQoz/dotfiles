@@ -110,7 +110,7 @@ set shiftwidth=4
 set softtabstop=4
 set laststatus=2
 " clipboard use in OS
-set clipboard+=unnamed
+" set clipboard+=unnamed
 " esc key map
 imap <C-g> <esc>
 vmap <C-g> <esc>
