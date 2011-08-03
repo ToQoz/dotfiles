@@ -1,5 +1,6 @@
 alias ls="ls -G -w"
 alias la="ls -a"
+alias lla="ls -l -a"
 alias lf="ls -F"
 alias ll="ls -l"
 

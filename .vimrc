@@ -14,6 +14,8 @@ Bundle 'thinca/vim-ref'
 Bundle 'Shougo/vimshell'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'violetyk/cake.vim'
+Bundle 'kana/vim-metarw'
+Bundle 'kana/vim-metarw-git'
 
 " vim-scripts repos
 " Bundle 'rails.vim'
