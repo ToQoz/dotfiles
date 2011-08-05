@@ -248,4 +248,3 @@ function! GitHighlightLastChange()
     redrawstatus
     unsilent echo "highlighting diff of '" . message . "'"
 endfunction
-
