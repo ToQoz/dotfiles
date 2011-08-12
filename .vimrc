@@ -16,6 +16,8 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'violetyk/cake.vim'
 Bundle 'kana/vim-metarw'
 Bundle 'kana/vim-metarw-git'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'ewiplayer/vim-scala'
 
 " vim-scripts repos
 " Bundle 'rails.vim'
