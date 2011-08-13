@@ -8,8 +8,10 @@ SAVEHIST=1000
 setopt nolistbeep
 # auto change directory
 setopt auto_cd
-
+# Load and run compinit
 autoload -U compinit
-compinit
+compinit -i
+
+
 
 bindkey -e
