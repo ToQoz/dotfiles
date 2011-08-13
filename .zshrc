@@ -33,5 +33,5 @@ source $ZSH/oh-my-zsh.sh
 source ${HOME}/.zsh/config.sh
 source ${HOME}/.zsh/aliases.sh
 source ${HOME}/.zsh/colors.sh
-#source ${HOME}/.zsh/plugins/auto-fu.zsh.git/auto-fu.zsh
+source ${HOME}/.zsh/auto-fu.zsh/auto-fu.zsh
 source ${HOME}/.private
