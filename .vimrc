@@ -3,10 +3,11 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/vundle.git/
+set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 " original repos on github
+Bundle 'gmarik/vundle'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
 Bundle 'thinca/vim-quickrun'
@@ -16,8 +17,12 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'violetyk/cake.vim'
 Bundle 'kana/vim-metarw'
 Bundle 'kana/vim-metarw-git'
+Bundle 'Pydiction'
+Bundle 'ruby.vim'
+Bundle 'surround.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'ewiplayer/vim-scala'
+
 
 " vim-scripts repos
 " Bundle 'rails.vim'
@@ -195,15 +200,16 @@ let g:neocomplcache_manual_completion_start_length = 0
  let g:neocomplcache_dictionary_filetype_lists = {
 \'default' : '',
 \ 'java' : $HOME.'/.vim/dict/java.dict',
+\ 'scala' : $HOME.'/.vim/bundle/vim-scala/dict/scala.dict',
 \ 'cpp' : $HOME.'/.vim/dict/cpp.dict',
+\ 'c' : $HOME.'/.vim/dict/c.dict',
+\ 'lua' : $HOME.'/.vim/dict/lua.dict',
 \ 'javascript' : $HOME.'/.vim/dict/javascript.dict',
-\ 'css' : $HOME.'/.vim/dict/css.dict',
 \ 'ocaml' : $HOME.'/.vim/dict/ocaml.dict',
 \ 'perl' : $HOME.'/.vim/dict/perl.dict',
 \ 'php' : $HOME.'/.vim/dict/php.dict',
-\ 'ruby' : $HOME.'/.vim/dict/ruby.dict',
-\ 'python' : $HOME.'/.vim/dict/python.dict',
-\ 'vim' : $HOME.'/.vim/dict/vim.dict'
+\ 'scheme' : $HOME.'/.vim/dict/scheme.dict',
+\ 'vm' : $HOME.'/.vim/dict/vim.dict'
 \ }
 
 " Define keyword.
