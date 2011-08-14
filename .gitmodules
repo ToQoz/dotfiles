@@ -1,6 +1,3 @@
-[submodule ".vim/vundle.git"]
-	path = .vim/vundle.git
-	url = git://github.com/gmarik/vundle.git
 [submodule "/Users/matsumoto/dotfiles/.oh-my-zsh"]
 	path = /Users/matsumoto/dotfiles/.oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh.git
