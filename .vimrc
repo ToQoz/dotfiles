@@ -17,7 +17,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'violetyk/cake.vim'
 Bundle 'kana/vim-metarw'
 Bundle 'kana/vim-metarw-git'
-Bundle 'Pydiction'
+"Bundle 'Pydiction'
 Bundle 'ruby.vim'
 Bundle 'surround.vim'
 Bundle 'kchmck/vim-coffee-script'
@@ -136,23 +136,29 @@ vmap <C-g> <esc>
 "match ZenkakuSpace /　/
 
 " set filetype
-autocmd BufNewFile,BufRead *.wsgi set filetype=python
-autocmd BufNewFile,BufRead *.ctp set filetype=php
-autocmd BufNewFile,BufRead *.vimrc set filetype=vim
-autocmd BufNewFile,BufRead *.vimperatorrc set filetype=vim
-autocmd BufNewFile,BufRead *.vrapperrc set filetype=vim
-autocmd BufNewFile,BufRead *.go set filetype=go
+augroup FileTypeGroup
+    autocmd!
+    autocmd BufNewFile,BufRead *.wsgi set filetype=python
+    autocmd BufNewFile,BufRead *.ctp set filetype=php
+    autocmd BufNewFile,BufRead *.vimrc set filetype=vim
+    autocmd BufNewFile,BufRead *.vimperatorrc set filetype=vim
+    autocmd BufNewFile,BufRead *.vrapperrc set filetype=vim
+    autocmd BufNewFile,BufRead *.go set filetype=go
+augroup END
 
 " Enable omni completion.
-autocmd FileType eruby,html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType html,javascript setl expandtab tabstop=4 shiftwidth=4 softtabstop=4
-autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
-autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
-autocmd FileType css setl expandtab tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-autocmd FileType python setl omnifunc=pythoncomplete#Complete
-autocmd FileType ruby setl expandtab tabstop=2 shiftwidth=2 softtabstop=2
+augroup OmniCompletionGroup
+    autocmd!
+    autocmd FileType eruby,html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType html,javascript setl expandtab tabstop=4 shiftwidth=4 softtabstop=4
+    autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
+    autocmd FileType css setl expandtab tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType javascript setl omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+    autocmd FileType python setl omnifunc=pythoncomplete#Complete
+    autocmd FileType ruby setl expandtab tabstop=2 shiftwidth=2 softtabstop=2
+augroup END
 " URL http://d.hatena.ne.jp/babie/20110130/1296347719
 "augroup MyXML
 "  autocmd!
