@@ -1,4 +1,5 @@
 export LANG=ja_JP.UTF-8
+export LC_CTYPE=ja_JP.UTF-8
 export EDITOR=/usr/bin/emacs
 REPORTTIME=10 # print elapsed time when more than 10 seconds
 HISTFILE=${HOME}/.zsh_history
