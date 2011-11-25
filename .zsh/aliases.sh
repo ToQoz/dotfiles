@@ -1,12 +1,13 @@
-alias ls="ls -G -w"
-alias la="ls -a"
-alias lla="ls -l -a"
-alias lf="ls -F"
-alias ll="ls -l"
-
 # misc command alias
 case "${OSTYPE}" in
 darwin*)
+    # ls
+    alias ls="ls -G -w"
+    alias la="ls -a"
+    alias lla="ls -l -a"
+    alias lf="ls -F"
+    alias ll="ls -l"
+
     # vim
     alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
     alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
@@ -25,7 +26,10 @@ darwin*)
     alias easytether-status="kextstat |grep EasyTether"
     ;;
 linux*)
-    #vim
+    # alias
+    alias ls='ls -G -F'
+
+    # vim
     alias vi='vim'
     export EDITOR=vim
     ;;
