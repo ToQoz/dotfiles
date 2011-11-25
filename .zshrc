@@ -37,4 +37,7 @@ source ${HOME}/.zsh/auto-fu.zsh/auto-fu.zsh
 zstyle ':completion:*' completer _oldlist _complete
 zle-line-init () { auto-fu-init; }
 zle -N zle-line-init
-source ${HOME}/.private
+
+if [ -f ~/.private ]; then
+    source ${HOME}/.private
+fi
