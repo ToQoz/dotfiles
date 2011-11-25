@@ -1,3 +1,3 @@
-[submodule "/Users/matsumoto/dotfiles/.zsh/auto-fu.zsh"]
-	path = /Users/matsumoto/dotfiles/.zsh/auto-fu.zsh
+[submodule ".zsh/auto-fu.zsh"]
+	path = .zsh/auto-fu.zsh
 	url = https://github.com/hchbaw/auto-fu.zsh.git
