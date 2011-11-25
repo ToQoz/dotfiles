@@ -1,6 +1,7 @@
+"set showtabline=0
 set complete=sl
 " ブラウザタイトル
-set titlestring="vimperator"
+set titlestring="ヌッ殺しBuilder2011"
 " ページロードのにテキストボックスフォーカス防ぐ
 set focuscontent
 " Beep音の設定
@@ -17,8 +18,8 @@ map <Left> gT
 map <Right> gt
 noremap <C-h> <A-Left>
 noremap <C-l> <A-Right>
-map <S-Left> :tabmove! +1<CR>
-map <S-Right> :tabmove! -1<CR>
+"map <S-Left> :tabmove! +1<CR>
+"map <S-Right> :tabmove! -1<CR>
 " esc key map
 imap <C-g> <esc>
 vmap <C-g> <esc>
@@ -33,7 +34,9 @@ map b :hbinfo<CR>
 ""
 " Plugin
 
-" feedSomeKeys_2.js
-autocmd LocationChange .* :fmapc
-autocmd LocationChange reader\\.livedoor\\.com/reader :fmap j k s a r p o v c <Space> <S-Space> < > T
-autocmd LocationChange mail\\.google\\.com/mail :fmap -depth 4 c / j k n p o u e x s r a # [ ] z ? gi gs gt gd ga gc
+" feedSomeKeys_3.js
+command! -nargs=+ lazy autocmd VimperatorEnter .* <args>
+lazy fmaps -u='www\.slideshare\.net/.*' j k <Left> <Right>
+lazy fmaps -u='www\.google\.com/calendar/.*' a w m x c e <DEL> / + q s ? A W M X C E
+lazy fmaps -u='mail\.google\.com/mail/.*' c / j,n k,p n,j p,k o u e x s r a # [ ] ? gi gs gt gd ga gc
+lazy fmaps -u='livedoor\.com/reader' j k s a p o v c z b < > Z <Space> <S-Space> i q w G U u

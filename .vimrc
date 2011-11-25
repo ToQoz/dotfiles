@@ -7,21 +7,30 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 " original repos on github
-Bundle 'gmarik/vundle'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/vimfiler'
 Bundle 'thinca/vim-quickrun'
 Bundle 'thinca/vim-ref'
 Bundle 'Shougo/vimshell'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'violetyk/cake.vim'
+"Bundle 'cake.vim'
 Bundle 'kana/vim-metarw'
 Bundle 'kana/vim-metarw-git'
 "Bundle 'Pydiction'
 Bundle 'ruby.vim'
-Bundle 'surround.vim'
+Bundle 'rails.vim'
+Bundle 'matchit.zip'
+"Bundle 'surround.vim'
+Bundle 'vim-scripts/Better-Javascript-Indentation'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'ewiplayer/vim-scala'
+Bundle 'vim-fakeclip'
+Bundle 'python_fold'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'pangloss/vim-javascript'
+Bundle 'altercation/vim-colors-solarized'
+
+Bundle 'gmarik/vundle'
 
 
 " vim-scripts repos
@@ -32,7 +41,10 @@ Bundle 'ewiplayer/vim-scala'
 
 """
 
-colorscheme desert
+" colorscheme desert
+set background=dark
+" set background=light
+colorscheme solarized
 syntax on
 filetype plugin indent on
 
@@ -40,7 +52,6 @@ set encoding=utf-8
 set number
 set ruler
 set title
-set background=dark
 set nobackup
 set noswapfile
 " show invisible character
@@ -137,7 +148,7 @@ vmap <C-g> <esc>
 
 " set filetype
 augroup FileTypeGroup
-    autocmd!
+    autocmd! FileTypeGroup
     autocmd BufNewFile,BufRead *.wsgi set filetype=python
     autocmd BufNewFile,BufRead *.ctp set filetype=php
     autocmd BufNewFile,BufRead *.vimrc set filetype=vim
@@ -148,9 +159,9 @@ augroup END
 
 " Enable omni completion.
 augroup OmniCompletionGroup
-    autocmd!
+    autocmd! OmniCompletionGroup
     autocmd FileType eruby,html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType html,javascript setl expandtab tabstop=4 shiftwidth=4 softtabstop=4
+    autocmd FileType html,javascript setl expandtab tabstop=2 shiftwidth=2 softtabstop=2
     autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
     autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
     autocmd FileType css setl expandtab tabstop=2 shiftwidth=2 softtabstop=2
@@ -166,6 +177,24 @@ augroup END
 "  autocmd Filetype html inoremap <buffer> </ </<C-x><C-o>
 "  autocmd Filetype eruby inoremap <buffer> </ </<C-x><C-o>
 "augroup END
+"
+
+""
+" JavaScript
+"
+" fold
+function! JavaScriptFold()
+    setl foldmethod=syntax
+    setl foldlevelstart=1
+    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+
+    function! FoldText()
+        return substitute(getline(v:foldstart), '{.*', '{...}', '')
+    endfunction
+    setl foldtext=FoldText()
+endfunction
+au FileType javascript call JavaScriptFold()
+au FileType javascript setl fen
 
 ""
 " Ruby
@@ -180,6 +209,7 @@ let php_sql_query=1
 let php_htmlInStrings=1
 " ban short tag
 let php_noShortTags=1
+let php_folding = 1
 
 """
 " plugins
@@ -206,7 +236,7 @@ let g:neocomplcache_manual_completion_start_length = 0
  let g:neocomplcache_dictionary_filetype_lists = {
 \'default' : '',
 \ 'java' : $HOME.'/.vim/dict/java.dict',
-\ 'scala' : $HOME.'/.vim/bundle/vim-scala/dict/scala.dict',
+\ 'scala' : $HOME.'/.vim/dict/scala.dict',
 \ 'cpp' : $HOME.'/.vim/dict/cpp.dict',
 \ 'c' : $HOME.'/.vim/dict/c.dict',
 \ 'lua' : $HOME.'/.vim/dict/lua.dict',
@@ -229,36 +259,25 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 "" 
 " unite.vim
+" http://mugijiru.seesaa.net/article/200968763.html
+" Uniteを開く時、垂直分割で開く
+let g:unite_enable_split_vertically=1
+" 色々乗せたのだけとりあえず設定
+noremap <C-_> :Unite -buffer-name=files buffer file_mru bookmark file<CR>
+" ESCキーを2回押すと終了する
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
-nnoremap    [unite]   <Nop>
-nmap    f [unite]
+
+" ファイルを開く時、ウィンドウを分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+
+nnoremap [unite]   <Nop>
+nmap f [unite]
 
 nnoremap [unite]u  :<C-u>Unite<Space>
 nnoremap <silent> [unite]a  :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru bookmark file<CR>
 nnoremap <silent> [unite]f  :<C-u>Unite -buffer-name=files file<CR>
 nnoremap <silent> [unite]b  :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]m  :<C-u>Unite file_mru<CR>
-
-""
-" Hilight line changed at the end on Git
-" require: metarw-git / metarw
-
-nnoremap <silent> <Leader>gw :silent call GitHighlightLastChange()<CR>
-function! GitHighlightLastChange()
-    if &diff
-        diffoff
-        return
-    endif
-
-    let log = system('git log -1 --pretty=oneline ' . expand('%'))
-    if v:shell_error
-        echoerr log
-        return
-    endif
-    let [ sha1, message ] = matchlist(log, '\v(\x{40}) (.*)\n')[1:2]
-    execute 'vertical diffsplit' 'git:' . sha1 . '^:%'
-    quit
-
-    redrawstatus
-    unsilent echo "highlighting diff of '" . message . "'"
-endfunction

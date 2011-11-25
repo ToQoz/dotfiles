@@ -12,6 +12,7 @@ setopt auto_cd
 autoload -U compinit
 compinit -i
 
-
-
 bindkey -e
+RPROMPT="%T"                                # 右に表示したいプロンプト(24時間制での現在時刻)
+
+setopt transient_rprompt                    # 右プロンプトに入力がきたら消す
