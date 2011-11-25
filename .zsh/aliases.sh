@@ -23,10 +23,12 @@ darwin*)
     alias easytether-on="sudo kextload $EASYTETHER_EXT"
     alias easytether-off="sudo kextunload $EASYTETHER_EXT"
     alias easytether-status="kextstat |grep EasyTether"
+    ;;
 linux*)
     #vim
     alias vi='vim'
     export EDITOR=vim
+    ;;
 esac
 alias scrr='screen -U -D -RR'
 alias s='screen -U'
