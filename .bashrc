@@ -1,30 +1,27 @@
 # misc command alias
 alias ls='ls -G -F'
 
-# emacs
-if [ -f /Applications/Emacs.app ]; then
-    alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
-fi
-
-# vim
-if [ -f /Applications/MacVim.app ]; then
-    alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-    export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-else
-    alias vi='vim'
-    export EDITOR=vim
-fi
-
 # screen
 alias scrr='screen -U -D -RR'
 alias s='screen -U'
 alias nave='~/nave/nave.sh'
 
-# MacFusion alias
-if [ -f /Applications/MacFusion.app ]; then
+case "${OSTYPE}" in
+darwin*)
+    # vim
+    alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+    export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+
+    alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+    # MacFusion alias
     alias miacc='cd /Volumes/test_iacc'
     alias msakura='cd /Volumes/sakura'
-fi
+    ;;
+linux*)
+    alias vi='vim'
+    export EDITOR=vim
+    ;;
+esac
 
 # EasyEther Setting -TO BE CONFIG ANDRIOD BY ADB
 if [ -f /System/Library/Extensions/EasyTetherUSBEthernet.kext ]; then
