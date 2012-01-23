@@ -34,6 +34,8 @@ linux*)
     export EDITOR=vim
     ;;
 esac
+
+svim() { vim sudo:$1; }
 alias scrr='screen -U -D -RR'
 alias s='screen -U'
 # alias nave='~/nave/nave.sh'

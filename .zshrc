@@ -41,3 +41,16 @@ zle -N zle-line-init
 if [ -f ~/.private ]; then
     source ${HOME}/.private
 fi
+
+autoload -U bashcompinit
+bashcompinit
+source /usr/local/git/contrib/completion/git-completion.bash
+GIT_PS1_SHOWDIRTYSTATE=true
+# VCS settings
+autoload -Uz vcs_info
+precmd() {
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+    psvar[1]=$vcs_info_msg_0_
+}
+PROMPT=$'%3F%~%f%1v $ '

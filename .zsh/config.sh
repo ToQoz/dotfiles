@@ -5,6 +5,8 @@ REPORTTIME=10 # print elapsed time when more than 10 seconds
 HISTFILE=${HOME}/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
+RLWRAP_HOME=${HOME}/.rlwrap
+TERM=xterm-256color
 # no beep sound when complete list displayed
 setopt nolistbeep
 # auto change directory
