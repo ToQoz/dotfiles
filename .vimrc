@@ -2,33 +2,41 @@
 " ===Vundle Setting===
 set nocompatible
 filetype off
-
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 " original repos on github
+Bundle 'vim-scripts/sudo.vim'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimfiler'
 Bundle 'thinca/vim-quickrun'
 Bundle 'thinca/vim-ref'
 Bundle 'Shougo/vimshell'
-"Bundle 'cake.vim'
+" Bundle 'cake.vim'
 Bundle 'kana/vim-metarw'
 Bundle 'kana/vim-metarw-git'
-"Bundle 'Pydiction'
+" Bundle 'Pydiction'
 Bundle 'ruby.vim'
-Bundle 'rails.vim'
+Bundle 'tpope/rails.vim'
 Bundle 'matchit.zip'
-"Bundle 'surround.vim'
+Bundle 'surround.vim'
 Bundle 'vim-scripts/Better-Javascript-Indentation'
+Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'ewiplayer/vim-scala'
+Bundle 'derekwyatt/vim-scala'
 Bundle 'vim-fakeclip'
 Bundle 'python_fold'
 Bundle 'digitaltoad/vim-jade'
-Bundle 'pangloss/vim-javascript'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'haruyama/scheme.vim'
+Bundle 'othree/html5.vim'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'digitaltoad/vim-jade'
+" jasmine snipet set
+Bundle 'snipMate'
+Bundle 'Jasmine-snippets-for-snipMate'
+Bundle 'gerardc/vim-padrino'
 
 Bundle 'gmarik/vundle'
 
@@ -41,17 +49,23 @@ Bundle 'gmarik/vundle'
 
 """
 
-" colorscheme desert
-set background=dark
-" set background=light
-colorscheme solarized
+" Window
+set laststatus=2
+set lazyredraw
+set title
+set showcmd
+
 syntax on
+set background=dark
+" let g:solarized_termcolors=16
+" colorscheme solarized
+colorscheme desert
+
 filetype plugin indent on
 
 set encoding=utf-8
 set number
 set ruler
-set title
 set nobackup
 set noswapfile
 " show invisible character
@@ -65,6 +79,20 @@ set formatoptions=lmoq
 set backspace=2
 " not to stop line top and end
 set whichwrap=b,s,h,l,<,>,[,]
+
+set wrap
+set showmatch
+set cursorline
+
+highlight SpecialKey term=underline ctermfg=darkgray guifg=#666666
+
+" Command
+set wildmenu
+set wildmode=list:longest
+set completeopt=menu,preview,menuone
+
+noremap ,s :so<Space>~/.vimrc<CR>
+" noremap n :tabnew<Space>
 
 "" status line
 " show current vim mode
@@ -128,7 +156,6 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set laststatus=2
 " clipboard use in OS
 " set clipboard+=unnamed
 " esc key map
@@ -155,13 +182,14 @@ augroup FileTypeGroup
     autocmd BufNewFile,BufRead *.vimperatorrc set filetype=vim
     autocmd BufNewFile,BufRead *.vrapperrc set filetype=vim
     autocmd BufNewFile,BufRead *.go set filetype=go
+    autocmd FileType scheme :let is_gauche=1
 augroup END
 
 " Enable omni completion.
 augroup OmniCompletionGroup
     autocmd! OmniCompletionGroup
     autocmd FileType eruby,html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType html,javascript setl expandtab tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType html,javascript,coffee setl expandtab tabstop=2 shiftwidth=2 softtabstop=2
     autocmd FileType xml setl omnifunc=xmlcomplete#CompleteTags
     autocmd FileType css setl omnifunc=csscomplete#CompleteCSS
     autocmd FileType css setl expandtab tabstop=2 shiftwidth=2 softtabstop=2
