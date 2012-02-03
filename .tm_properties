@@ -1,0 +1,48 @@
+encoding = "UTF-8"
+include = ".htaccess"
+
+# GIt
+TM_GIT = "/usr/local/bin/git"
+spellChecking = true
+spellingLanguage = 'en'
+
+# Appearance
+fontName = "Menlo"
+fontSize = 13
+wrapColumn = 80
+showInvisibles = true
+
+# Tab
+softWrap = true
+tabSize = 4
+softTabs = true
+
+# Include File
+myExtraIncludes = ".tm_properties, .gitignore"
+fileBrowserGlob  = "{*, $myExtraIncludes}"
+include = "{$include,$myExtraIncludes}"
+
+# Exclude File
+myExtraExcludes = "log,logs, tmp,*sqlite3"
+excludeInFileChooser  = "{$excludeInFileChooser, $myExtraExcludes}"
+excludeInFolderSearch = "{$excludeInFolderSearch, $myExtraExcludes}"
+
+
+# Setting by FileType
+[ *.{jpg, jpeg, png, gif, tif, tiff, pdf, psd, ico} ]
+binary = true
+
+[ source.ruby ]
+softTabs         = true
+tabSize          = 2
+
+[ source.{js|coffee} ]
+softTabs         = true
+tabSize          = 2
+
+[ source.python ]
+softTabs         = true
+tabSize          = 4
+
+["{README, INSTALL, LICENSE, TODO}"]
+fileType = "text.plain"
