@@ -1,5 +1,4 @@
 encoding = "UTF-8"
-include = ".htaccess"
 
 # GIt
 TM_GIT = "/usr/local/bin/git"
