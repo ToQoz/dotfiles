@@ -17,4 +17,4 @@ if has('gui_macvim')
     set transparency=5
 endif
 
-set guifont=Ricty:h18
+set guifont=Ricty:h15
