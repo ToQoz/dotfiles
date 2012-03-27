@@ -16,7 +16,7 @@
 (setq mac-option-modifier 'meta)
 
 ; font setting
-(set-frame-font "ricty-12")
+(set-frame-font "Menlo-14")
 ;;(set-frame-font (if (boundp 'window-system)
 
 ;; window setting
@@ -44,11 +44,18 @@
 ;; (global-linum-mode t)
 ;; (setq linum-format "%5d")
 ;;
-(require 'nyan-mode)
-(nyan-mode)
-(nyan-start-animation)
+;; (require 'nyan-mode)
+;; (nyan-mode)
+;; (nyan-start-animation)
+
+(set-frame-parameter nil 'alpha 90)
 
 (global-set-key (kbd "M-<RET>") 'ns-toggle-fullscreen)
+
+;; C-o.
+(define-prefix-command 'ctl-o-map)
+(global-set-key (kbd "C-o") 'ctl-o-map)
+(define-key ctl-o-map (kbd "C-e") 'eval-current-buffer)
 
 (when (require 'auto-install nil t)
   (setq auto-install-directory "~/.emacs.d/elisp/")
