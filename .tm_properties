@@ -1,20 +1,14 @@
 encoding = "UTF-8"
 
+# Tab
+# softWrap = true
+tabSize = 4
+softTabs = true
+
 # GIt
 TM_GIT = "/usr/local/bin/git"
 spellChecking = true
 spellingLanguage = 'en'
-
-# Appearance
-fontName = "Menlo"
-fontSize = 13
-wrapColumn = 80
-showInvisibles = true
-
-# Tab
-softWrap = true
-tabSize = 4
-softTabs = true
 
 # Include File
 myExtraIncludes = ".tm_properties, .gitignore"
@@ -26,22 +20,39 @@ myExtraExcludes = "log,logs, tmp,*sqlite3"
 excludeInFileChooser  = "{$excludeInFileChooser, $myExtraExcludes}"
 excludeInFolderSearch = "{$excludeInFolderSearch, $myExtraExcludes}"
 
+# Appearance
+fontName = "Menlo"
+fontSize = 13
+wrapColumn = 80
+showInvisibles = true
 
 # Setting by FileType
-[ *.{jpg, jpeg, png, gif, tif, tiff, pdf, psd, ico} ]
+[ *.{jpg,jpeg,png,gif,tif,tiff,pdf,psd,ico} ]
 binary = true
 
-[ source.ruby ]
-softTabs         = true
-tabSize          = 2
+[ *.rb ]
+# softWrap = true
+softTabs = true
+tabSize = 2
 
-[ source.{js|coffee} ]
-softTabs         = true
-tabSize          = 2
+[ *.{js,coffee} ]
+# softWrap = true
+softTabs = true
+tabSize = 2
 
-[ source.python ]
-softTabs         = true
-tabSize          = 4
+[ *.html ]
+# softWrap = true
+softTabs = true
+tabSize = 2
+
+[ *.python ]
+# softWrap = true
+softTabs = true
+tabSize = 4
+
+[ source.plist ]
+softTabs = false
+tabSize = 4
 
 ["{README, INSTALL, LICENSE, TODO}"]
 fileType = "text.plain"
