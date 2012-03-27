@@ -18,7 +18,7 @@ Bundle 'kana/vim-metarw'
 Bundle 'kana/vim-metarw-git'
 " Bundle 'Pydiction'
 Bundle 'ruby.vim'
-Bundle 'tpope/rails.vim'
+Bundle 'rails.vim'
 Bundle 'matchit.zip'
 Bundle 'surround.vim'
 Bundle 'vim-scripts/Better-Javascript-Indentation'
@@ -27,11 +27,11 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'vim-fakeclip'
-Bundle 'python_fold'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'haruyama/scheme.vim'
 Bundle 'othree/html5.vim'
+Bundle 'scrooloose/nerdtree'
 
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'digitaltoad/vim-jade'
@@ -39,6 +39,7 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'snipMate'
 Bundle 'Jasmine-snippets-for-snipMate'
 Bundle 'gerardc/vim-padrino'
+Bundle 'pekepeke/titanium-vim'
 
 Bundle 'nginx.vim'
 Bundle 'sudo.vim'
@@ -47,7 +48,6 @@ Bundle 'gmarik/vundle'
 
 
 " vim-scripts repos
-" Bundle 'rails.vim'
 
 " non github repos
 " Bundle 'git://git.wincent.com/command-t.git'
@@ -65,6 +65,7 @@ set background=dark
 " let g:solarized_termcolors=16
 " colorscheme solarized
 colorscheme desert
+" colorscheme evening
 
 filetype plugin indent on
 
@@ -87,8 +88,6 @@ set whichwrap=b,s,h,l,<,>,[,]
 
 set wrap
 set showmatch
-set cursorline
-highlight CursorLine term=reverse cterm=reverse
 
 highlight SpecialKey term=underline ctermfg=darkgray guifg=#666666
 
@@ -174,6 +173,8 @@ vmap <C-g> <esc>
 " onoremap ( t(
 " vnoremap ) t)
 " vnoremap ( t(
+"
+map <Leader>j !python -m json.tool<CR>
 
 " highlight space
 "highlight ZenkakuSpace cterm=underline ctermbg=red guibg=red
@@ -214,23 +215,6 @@ augroup END
 "
 
 ""
-" JavaScript
-"
-" fold
-function! JavaScriptFold()
-    setl foldmethod=syntax
-    setl foldlevelstart=1
-    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-
-    function! FoldText()
-        return substitute(getline(v:foldstart), '{.*', '{...}', '')
-    endfunction
-    setl foldtext=FoldText()
-endfunction
-au FileType javascript call JavaScriptFold()
-au FileType javascript setl fen
-
-""
 " Ruby
 " extra space
 let ruby_space_errors=1
@@ -243,7 +227,6 @@ let php_sql_query=1
 let php_htmlInStrings=1
 " ban short tag
 let php_noShortTags=1
-let php_folding = 1
 
 """
 " plugins
@@ -315,3 +298,19 @@ nnoremap <silent> [unite]a  :<C-u>UniteWithCurrentDir -buffer-name=files buffer 
 nnoremap <silent> [unite]f  :<C-u>Unite -buffer-name=files file<CR>
 nnoremap <silent> [unite]b  :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]m  :<C-u>Unite file_mru<CR>
+
+""
+" NEARD_tree
+nmap <Leader>n :NERDTreeToggle<CR>
+
+" create directory automatically
+augroup vimrc-auto-mkdir
+    autocmd!
+    autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+    function! s:auto_mkdir(dir, force)
+        if !isdirectory(a:dir) && (a:force ||
+            \ input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
+            call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+        endif
+    endfunction
+augroup END

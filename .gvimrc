@@ -10,11 +10,11 @@ colorscheme desert
 " GUI
 " set guioptions-=T
 set guioptions=aceimgtbpF
-set columns=80
-set lines=60
+set columns=120
+set lines=100
 
 if has('gui_macvim')
     set transparency=5
 endif
 
-set guifont=Ricty:h15
+set guifont=Menlo:h15
