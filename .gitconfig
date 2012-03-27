@@ -1,0 +1,61 @@
+[user]
+  name = Takatoshi Matsumoto
+  email = toqoz403@gmail.com
+[color]
+  status = auto
+  diff = auto
+  branch = auto
+  interactive = auto
+  grep = auto
+[color "diff"]
+  plain = normal
+  meta = bold green
+  frag = bold cyan
+  func = bold magenta
+  old = bold red
+  new = bold blue
+  commit = bold white
+  whitespace = normal magenta
+[push]
+  default = tracking
+[core]
+  excludesfile = ~/.gitignore_global
+  autocrlf = input
+  editor = vim
+  quotepath = false
+[alias]
+  s   = status
+  st  = status
+  ss  = status -s
+  sh  = show
+  ad = add
+  ca = commit -a
+  cam = commit -a --amend
+  co = checkout
+  cob = checkout -b
+  cp = cherry-pick
+  cpn = cherry-pick -n
+  br = branch
+  ba = branch -a
+  bm = branch --merged
+  bn = branch --no-merge
+  wc = whatchanged
+  l = log --stat
+  la = log -p
+  lo = log origin
+  ll = log --graph --all --color --pretty='%x09%h %cn%x09%s %Cred%d%Creset'
+  lg = log --graph --pretty=format:'%Cgreen%h %ad %Cblue%cn %Creset%s %Cred%d'
+  rank = shortlog -s -n --no-merges
+  d = diff
+  dm = diff master
+  dw = diff --color-words
+  dc = diff --cached
+  ds = diff --staged
+  d1 = diff HEAD~
+  d2 = diff HEAD~~
+  d3 = diff HEAD~~~
+  d4 = diff HEAD~~~~
+  d5 = diff HEAD~~~~~
+  d10 = diff HEAD~~~~~~~~~~
+  gr = grep
+  gn = grep -n
