@@ -7,6 +7,7 @@ darwin*)
     alias lla="ls -l -a"
     alias lf="ls -F"
     alias ll="ls -l"
+    alias 'iphone-sim'='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app'
 
     # vim
     alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
