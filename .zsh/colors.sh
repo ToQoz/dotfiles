@@ -10,8 +10,7 @@ case ${UID} in
     PROMPT="%{${fg[red]}%}%/%%%{${reset_color}%} "
     PROMPT2="%{${fg[red]}%}%_%%%{${reset_color}%} "
     SPROMPT="%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
-    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
         PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
     ;;
 esac
-

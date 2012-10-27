@@ -105,7 +105,10 @@
   d3   = diff HEAD~~~          # HEADから3つ前とdiff
   d4   = diff HEAD~~~~         # HEADから4つ前とdiff
   d5   = diff HEAD~~~~~        # HEADから5つ前とdiff
-  d10  = diff HEAD~~~~~~~~~~  # HEADから10前とdiff
+  d10  = diff HEAD~~~~~~~~~~   # HEADから10前とdiff
   # grep
   gr   = grep
   gn   = grep -n
+
+[include]
+  path = ~/private/.gitconfig
