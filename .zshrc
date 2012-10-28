@@ -1,7 +1,8 @@
 ZSH_D=$HOME/.zsh
 
 # basic
-source $ZSH_D/auto-fu.zsh/auto-fu.zsh
+source $ZSH_D/antigen.zsh
+#source $ZSH_D/auto-fu.zsh/auto-fu.zsh
 source $ZSH_D/config.sh
 source $ZSH_D/aliases.sh
 source $ZSH_D/prompt.sh
