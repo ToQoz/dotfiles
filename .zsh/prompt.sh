@@ -4,6 +4,9 @@
 # Blog: http://d.hatena.ne.jp/uasi/20091025/1256458798
 # Git Only
 # {{{
+autoload colors
+colors
+
 autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git 2> /dev/null
 zstyle ':vcs_info:*' formats '(%s)-[%b]'
 zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
