@@ -1,3 +1,8 @@
+# auto-fu setting
+zstyle ':completion:*' completer _oldlist _complete
+zle-line-init () { auto-fu-init; }
+zle -N zle-line-init
+
 # export
 export LANG=ja_JP.UTF-8
 export LC_CTYPE=ja_JP.UTF-8
@@ -40,33 +45,48 @@ path=(
     /usr/local/(s|)bin
     ~/opt/*/(s|)bin(N-/)
     /opt/*/(s|)bin(N-/)
-    ~/brew/(s|)bin
     ~/.cabal/bin
     ~/local/bin
     ~/bin
-    ~/brew/share/npm/bin
+    ~/.rbenv/bin
     $path
 )
 
+case "${OSTYPE}" in
+darwin*)
+    path=(
+        ~/brew/(s|)bin
+        ~/brew/share/npm/bin
+        $path
+    )
+    ;;
+linux*)
+    ;;
+esac
+
 # rbenv
-eval "$(rbenv init -)"
-# rbenv completion
-test -f "$(brew --prefix rbenv)/completions/rbenv.zsh" && . "$(brew --prefix rbenv)/completions/rbenv.zsh"
-# rsense setting
-test -d "$(brew --prefix rbsense)/libexec" && export RSENSE_HOME="$(brew --prefix rbsense)/libexec"
+eval "$(rbenv init - zsh)"
+
 # tmuxinator setting
 test -s $HOME/.tmuxinator/scripts/tmuxinator && source $HOME/.tmuxinator/scripts/tmuxinator
-
-# auto-fu setting
-zstyle ':completion:*' completer _oldlist _complete
-zle-line-init () { auto-fu-init; }
-zle -N zle-line-init
 
 # completion
 autoload -U bashcompinit
 bashcompinit
-COMP_DIR=$HOME/brew/etc/bash_completion.d
-test -f $COMP_DIR/git-completion.bash && . $COMP_DIR/git-completion.bash
-test -f $COMP_DIR/hub.bash_completion.sh && . $COMP_DIR/hub.bash_completion.sh
-test -f $COMP_DIR/tig-completion.bash && . $COMP_DIR/tig-completion.bash
-test -f $COMP_DIR/tmux && . $COMP_DIR/tmux
+
+case "${OSTYPE}" in
+darwin*)
+    # rbenv completion
+    [ -f "$(brew --prefix rbenv)/completions/rbenv.zsh" ] && . "$(brew --prefix rbenv)/completions/rbenv.zsh"
+    # rsense setting
+    [ -d "$(brew --prefix rbsense)/libexec" ] && export RSENSE_HOME="$(brew --prefix rbsense)/libexec"
+
+    COMP_DIR=$HOME/brew/etc/bash_completion.d
+    test -f $COMP_DIR/git-completion.bash && . $COMP_DIR/git-completion.bash
+    test -f $COMP_DIR/hub.bash_completion.sh && . $COMP_DIR/hub.bash_completion.sh
+    test -f $COMP_DIR/tig-completion.bash && . $COMP_DIR/tig-completion.bash
+    test -f $COMP_DIR/tmux && . $COMP_DIR/tmux
+    ;;
+linux*)
+    ;;
+esac
