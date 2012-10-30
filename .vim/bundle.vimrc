@@ -24,7 +24,7 @@
   "==========================
   Bundle 'Shougo/unite.vim'
   Bundle 'tsukkee/unite-tag'
-  " outline source for unite.vim 
+  " outline source for unite.vim
   Bundle 'h1mesuke/unite-outline'
   " Perl/Ruby style regexp notation for Vim
   Bundle 'othree/eregex.vim'
@@ -93,7 +93,7 @@
   " Text Plugin
   "==========================
   " Vim plugin: Operators to edit surrounding text
-  Bundle 'tpope/surround.vim'
+  Bundle 'tpope/vim-surround'
   Bundle 'Align'
   " text filtering and alignment
   Bundle 'godlygeek/tabular'
@@ -117,7 +117,7 @@
   " Vastly improved javascript indentation
   " Bundle 'vim-scripts/Better-Javascript-Indentation'
   " Bundle 'pangloss/vim-javascript'
-  " vim omnifunc for JavaScript 
+  " vim omnifunc for JavaScript
   Bundle 'teramako/jscomplete-vim'
   " CoffeeScript support for vim
   " Vim plugin for Titanium Desktop/Mobile
@@ -134,7 +134,7 @@
   "==========================
   " HTML Plugin
   "==========================
-  " Vim Jade template engine syntax highlighting and indention 
+  " Vim Jade template engine syntax highlighting and indention
   Bundle 'digitaltoad/vim-jade'
   " Vim runtime files for Haml, Sass, and SCSS
   Bundle 'tpope/vim-haml'
