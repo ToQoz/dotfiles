@@ -70,8 +70,6 @@ esac
 # rbenv
 eval "$(rbenv init - zsh)"
 
-test -d "$(brew --prefix rsense)/libexec" && export RSENSE_HOME="$(brew --prefix rsense)/libexec"
-
 # completion
 autoload -U bashcompinit
 bashcompinit
