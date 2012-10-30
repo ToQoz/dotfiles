@@ -5,7 +5,7 @@ noremap ,s :source<Space>~/.vimrc<CR>:source<Space>~/.gvimrc<CR>
 highlight SpecialKey term=underline ctermfg=darkgray guifg=#666666
 
 " Color
-colorscheme monokai
+colorscheme Monokai
 " solarized {{{{
 "  let g:solarized_termcolors=256
 "  colorscheme solarized

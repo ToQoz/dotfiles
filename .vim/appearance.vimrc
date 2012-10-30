@@ -4,7 +4,7 @@
 set bg=dark
 if &term =~ '256color'
   set t_Co=256
-  colorscheme monokai
+  colorscheme Monokai
   set t_Sf=[3%dm
   set t_Sb=[4%dm
 else
