@@ -1,5 +1,15 @@
 #!/bin/bash
 
+
+while getopts ":f" GETOPTS
+do
+  case $GETOPTS in
+  f)    FORCE=yes
+        ;;
+  esac
+done
+
+
 DOT_FILES=(
     .zsh .zshenv .zshrc
     .bashrc .bash_profile
@@ -14,5 +24,10 @@ DOT_FILES=(
 
 for file in ${DOT_FILES[@]}
 do
-    ln -s $HOME/dotfiles/$file $HOME/$file
+    if [ "$FORCE" = "yes" ]; then
+        [ -h $HOME/$file ] && unlink $HOME/$file
+        [ -f $HOME/$file ] && rm $HOME/$file
+        [ -d $HOME/$file ] && rm -rf $HOME/$file
+        ln -s $HOME/dotfiles/$file $HOME/$file
+    fi
 done
