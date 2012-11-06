@@ -60,7 +60,7 @@ au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split
 au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 
 nnoremap [unite] <Nop>
-nmap f   [unite]
+nmap <C-u>  [unite]
 
 nnoremap [unite]u  :<C-u>Unite<Space>
 nnoremap <silent> [unite]a  :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru bookmark file<CR>
@@ -120,7 +120,7 @@ autocmd FileType javascript
 " vim-rsense
 "------------------------------------
 let g:rsenseUseOmniFunc = 1
-let g:rsenseHome = expand('/usr/local/Cellar/rsense/0.3/libexec')
+let g:rsenseHome = expand('/Users/toqoz/brew/opt/rsense/libexec')
 
 function! SetUpRubySetting()
   setlocal completefunc=RSenseCompleteFunction
@@ -140,12 +140,12 @@ let g:neocomplcache_omni_functions.ruby = 'RSenseCompleteFunction'
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_omni_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.ruby       = '[^. *\t]\.\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
 "------------------------------------
 " CtrlP
 "------------------------------------
-let g:ctrlp_map = '<c-f>'
+let g:ctrlp_map = '<leader>f'
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
@@ -210,24 +210,25 @@ let g:Powerline_symbols = 'fancy'
 "------------------------------------
 command! Vf :VimFiler
 let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_safe_mode_by_default = 0
 let g:vimfiler_pedit_command = 'vnew'
 
 "------------------------------------
 " Smartchr
 "------------------------------------
-inoremap <buffer><expr> += smartchr#one_of(' += ', '+=')
-inoremap <buffer><expr> -= smartchr#one_of(' -= ', '-=')
-inoremap <buffer><expr> != smartchr#one_of(' != ', '!=')
-inoremap <buffer><expr> /= smartchr#one_of(' /= ', '/=')
-inoremap <buffer><expr> = smartchr#one_of(' = ', '==', '=')
-inoremap <buffer><expr> + smartchr#one_of(' + ', '++', '+')
-inoremap <buffer><expr> - smartchr#one_of(' - ', '--', '-')
-inoremap <buffer><expr> -> smartchr#one_of('->', ' -> ')
-inoremap <buffer><expr> * smartchr#one_of(' * ', '*')
-inoremap <buffer><expr> { smartchr#one_of('{', '{ ')
-inoremap <buffer><expr> } smartchr#one_of('}', ' }')
-inoremap <buffer><expr> [ smartchr#one_of('[', '[ ')
-inoremap <buffer><expr> ] smartchr#one_of(']', ' ] ')
+" inoremap <buffer><expr> += smartchr#one_of(' += ', '+=')
+" inoremap <buffer><expr> -= smartchr#one_of(' -= ', '-=')
+" inoremap <buffer><expr> != smartchr#one_of(' != ', '!=')
+" inoremap <buffer><expr> /= smartchr#one_of(' /= ', '/=')
+" inoremap <buffer><expr> = smartchr#one_of(' = ', '==', '=')
+" inoremap <buffer><expr> + smartchr#one_of(' + ', '++', '+')
+" inoremap <buffer><expr> - smartchr#one_of(' - ', '--', '-')
+" inoremap <buffer><expr> -> smartchr#one_of('->', ' -> ')
+" inoremap <buffer><expr> * smartchr#one_of(' * ', '*')
+" inoremap <buffer><expr> { smartchr#one_of('{', '{ ')
+" inoremap <buffer><expr> } smartchr#one_of('}', ' }')
+" inoremap <buffer><expr> [ smartchr#one_of('[', '[ ')
+" inoremap <buffer><expr> ] smartchr#one_of(']', ' ] ')
 
 "------------------------------------
 " QuickRun
@@ -236,7 +237,7 @@ inoremap <buffer><expr> ] smartchr#one_of(']', ' ] ')
 augroup QrunRSpec
   autocmd!
   autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
-augroup END 
+augroup END
 
 let g:quickrun_config = {}
 
@@ -261,3 +262,15 @@ let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
 let g:syntastic_ruby_exec = '~/.rbenv/versions/1.9.3-p286/bin/ruby'
 nnoremap <leader>sc :<C-u>SyntasticCheck<CR>
+
+"------------------------------------
+" columnjump
+"------------------------------------
+map <c-k> <Plug>(columnjump-backward)
+map <c-j> <Plug>(columnjump-forward)
+
+"------------------------------------
+" clam.vim
+"------------------------------------
+nnoremap ! :Clam<space>
+vnoremap ! :ClamVisual<space>

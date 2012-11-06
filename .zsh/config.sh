@@ -38,6 +38,9 @@ bindkey -e
 # delete right prompt when input reach to there
 setopt transient_rprompt
 
+export LDFLAGS="-L$HOME/brew/lib $CFLAGS"
+export CPPFLAGS="-isystem $HOME/brew/include $CPPFLAGS"
+
 # path
 path=(
     ~/.phpenv/bin
@@ -67,8 +70,7 @@ esac
 # rbenv
 eval "$(rbenv init - zsh)"
 
-# tmuxinator setting
-test -s $HOME/.tmuxinator/scripts/tmuxinator && source $HOME/.tmuxinator/scripts/tmuxinator
+test -d "$(brew --prefix rsense)/libexec" && export RSENSE_HOME="$(brew --prefix rsense)/libexec"
 
 # completion
 autoload -U bashcompinit

@@ -1,36 +1,4 @@
 # Misc Command Alias
-case "${OSTYPE}" in
-# TODO 別ファイルにしよう
-darwin*)
-    # ls {{{
-      alias ls="ls -G -w"
-      alias lf="ls -F"
-    # }}}
-    # iOS Simulator
-    alias 'iphone-sim'='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app'
-    # Vim {{{
-      alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-      alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-      alias gvim='env LANG=ja_JP.UTF-8 open -a /Applications/MacVim.app "$@"'
-    # }}}
-    # Emacs
-  alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
-    # Easytether {{{
-      # Easytether Setting -TO BE CONFIG ANDRIOD BY ADB
-      EASYTETHER_EXT=/System/Library/Extensions/EasyTetherUSBEthernet.kext
-      alias easytether-on="sudo kextload $EASYTETHER_EXT"
-      alias easytether-off="sudo kextunload $EASYTETHER_EXT"
-      alias easytether-status="kextstat |grep EasyTether"
-    # }}}
-    # Repl Wrap {{{
-      alias inode="env NODE_NO_READLINE=1 rlwrap node"
-      alias icoffee="env NODE_NO_READLINE=1 rlwrap coffee"
-    # }}}
-    ;;
-linux*)
-    ;;
-esac
-
 # Vim {{{
   svim() { vim sudo:$1; }
   alias vi='vim'
@@ -113,3 +81,39 @@ function pcolor() {
   alias -g A='| awk'
   alias -g W='| wc'
 # }}}
+#
+
+case "${OSTYPE}" in
+# TODO 別ファイルにしよう
+darwin*)
+    # ls {{{
+      alias ls="ls -G -w"
+      alias lf="ls -F"
+    # }}}
+    # iOS Simulator
+    alias 'iphone-sim'='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app'
+    # Vim {{{
+      alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+      alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+      alias gvim='env LANG=ja_JP.UTF-8 open -a /Applications/MacVim.app "$@"'
+      alias cvim=$(brew --prefix vim)/bin/vim
+    # }}}
+    # Emacs
+  alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+    # Easytether {{{
+      # Easytether Setting -TO BE CONFIG ANDRIOD BY ADB
+      EASYTETHER_EXT=/System/Library/Extensions/EasyTetherUSBEthernet.kext
+      alias easytether-on="sudo kextload $EASYTETHER_EXT"
+      alias easytether-off="sudo kextunload $EASYTETHER_EXT"
+      alias easytether-status="kextstat |grep EasyTether"
+    # }}}
+    # Repl Wrap {{{
+      alias inode="env NODE_NO_READLINE=1 rlwrap node"
+      alias icoffee="env NODE_NO_READLINE=1 rlwrap coffee"
+    # }}}
+    ;;
+linux*)
+    ;;
+esac
+
+

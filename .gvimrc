@@ -1,6 +1,6 @@
 set scrolloff=5
 " Key Binding
-noremap ,s :source<Space>~/.vimrc<CR>:source<Space>~/.gvimrc<CR>
+noremap <leader>s :source<Space>~/.vimrc<CR>:source<Space>~/.gvimrc<CR>
 
 highlight SpecialKey term=underline ctermfg=darkgray guifg=#666666
 
@@ -13,7 +13,7 @@ colorscheme Monokai
 
 " GUI
 " set guioptions-=T
-set guioptions=aceimgtbpF
+set guioptions=acimgtbpF
 " set columns=120
 " set lines=100
 

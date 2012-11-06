@@ -25,7 +25,7 @@
   editor = vim
   quotepath = false
 [alias]
-  s    = status
+  s    = status -sb
   st   = status
   ss   = status -s
   sh   = show

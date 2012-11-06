@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 while getopts ":f" GETOPTS
 do
   case $GETOPTS in
@@ -8,7 +7,6 @@ do
         ;;
   esac
 done
-
 
 DOT_FILES=(
     .zsh .zshenv .zshrc
@@ -31,3 +29,18 @@ do
         ln -s $HOME/dotfiles/$file $HOME/$file
     fi
 done
+
+case "${OSTYPE}" in
+darwin*)
+    if [ -d $HOME/Library/Application\ Support/KeyRemap4MacBook ]; then
+        [ -L $HOME/Library/Application\ Support/KeyRemap4MacBook/private.xml ] && unlink $HOME/Library/Application\ Support/KeyRemap4MacBook/private.xml
+        if [ -f $HOME/Library/Application\ Support/KeyRemap4MacBook/private.xml ]; then
+            echo "remove $HOME/Library/Application\ Support/KeyRemap4MacBook/private.xml. and backup in $BACKUP_DIR/keyremap4macbook_private.xml"
+            mv $HOME/Library/Application\ Support/KeyRemap4MacBook/private.xml $BACKUP_DIR/keyremap4macbook_private.xml
+        fi
+        ln -s $HOME/dotfiles/osx/keyremap4macbook/private.xml $HOME/Library/Application\ Support/KeyRemap4MacBook/private.xml
+    fi
+    ;;
+linux*)
+    ;;
+esac

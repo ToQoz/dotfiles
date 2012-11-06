@@ -10,15 +10,16 @@ set completeopt=menu,preview,menuone
 "==========================
 let mapleader=","
 " Reload vimrc
-noremap ,s :source ~/.vimrc<CR>
+noremap <leader>s :source ~/.vimrc<CR>
 autocmd bufwritepost .vimrc call Pl#Load()
-autocmd BufDelete  *  call Pl#Load()
 " noremap n :tabnew<Space>
 " clipboard use in OS
 " set clipboard+=unnamed
 " Esc key map
 imap <C-g> <esc>
 vmap <C-g> <esc>
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)
 " Select last pasted
 nnoremap <expr> gp  '`[' . strpart(getregtype(), 0, 1) . '`]'
 " short hand for yank/paste into clipboard

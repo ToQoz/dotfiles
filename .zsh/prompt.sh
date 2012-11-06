@@ -57,13 +57,17 @@ precmd () {
     if [ "`rprompt-git-current-branch`" = "" ]; then
         VCS_PROMPT="%f%1v "
     else
-        VCS_PROMPT=`rprompt-git-current-branch`
+        VCS_PROMPT="`rprompt-git-current-branch`"
     fi
 
     # Left prompt. -> Output
-    PROMPT="%{$reset_color%}"$'\n'"%{$fg[magenta]%}✘╹◡╹✘ %{$reset_color%}%(!.#.$) %{$reset_color%}"
-    PROMPT="%{$fg[yellow]%}%~ $VCS_PROMPT%{$reset_color%}%{$reset_color%} $PROMPT"
+    PROMPT="%{$fg[green]%}$USER%{$reset_color%}"
+    PROMPT="$PROMPT at %{$fg[blue]%}$HOST%{$reset_color%}"
+    PROMPT="$PROMPT in %{$fg[yellow]%}%~%{$reset_color%}"
+    PROMPT="$PROMPT on $VCS_PROMPT%{$reset_color%}"
+    PROMPT="$PROMPT "$'\n'"%{$fg[magenta]%}✘╹◡╹✘ %{$reset_color%}"
+    PROMPT="$PROMPT %(!.#.$) %{$reset_color%}"
 
     # Right prompt. -> Output.
-    RPROMPT="%{$reset_color%}%{$fg[red]%}(`rbenv version | sed -e 's/ .*//'`) %{$fg[blue]%}($PERLBREW_PERL)%{$reset_color%}"
+    RPROMPT="%{$fg[red]%}(rbenv:`rbenv version | sed -e 's/ .*//'`) %{$fg[blue]%}(perlbrew:$PERLBREW_PERL)%{$reset_color%}"
 }

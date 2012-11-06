@@ -26,6 +26,7 @@
   Bundle 'tsukkee/unite-tag'
   " outline source for unite.vim
   Bundle 'h1mesuke/unite-outline'
+  Bundle 'Shougo/unite-ssh'
   " Perl/Ruby style regexp notation for Vim
   Bundle 'othree/eregex.vim'
 
@@ -36,7 +37,9 @@
   Bundle 'scrooloose/nerdtree'
   Bundle 'thinca/vim-quickrun'
   Bundle 'Shougo/vimshell'
+  Bundle 'ujihisa/vimshell-ssh'
   Bundle 'Shougo/vimproc'
+  Bundle 'sjl/clam.vim'
   "Bundle 'rson/vim-conque'
 
   "==========================
@@ -50,6 +53,7 @@
   Bundle 'kien/ctrlp.vim'
   " A front for the Perl module App::Ack.
   Bundle 'mileszs/ack.vim'
+  Bundle 'thinca/vim-qfreplace'
 
   "==========================
   " Diff
@@ -66,7 +70,7 @@
   " Git Plugin
   "==========================
   " Bundle 'kana/vim-metarw'
-  "Bundle 'kana/vim-metarw-git'
+  " Bundle 'kana/vim-metarw-git'
   Bundle 'tpope/vim-fugitive'
 
   "==========================
@@ -100,7 +104,7 @@
   Bundle 'h1mesuke/vim-alignta'
   " Vim plugin: Provide pseudo clipboard register for non-GUI version of Vim
   Bundle 'matchit.zip'
-  Bundle 'kana/vim-smartchr'
+  " Bundle 'kana/vim-smartchr'
   Bundle 'tomtom/tcomment_vim'
 
   "==========================
@@ -125,7 +129,7 @@
   Bundle 'kchmck/vim-coffee-script'
   " Vim Jade template engine syntax highlighting and indention
   " Enhanced javascript syntax file for Vim
-  Bundle 'jelera/vim-javascript-syntax'
+  Bundle 'ToQoz/vim-javascript-syntax'
   " jasmine snipet set
   Bundle 'snipMate'
   Bundle 'Jasmine-snippets-for-snipMate'
@@ -184,5 +188,20 @@
   Bundle 'vim-scripts/sudo.vim'
   Bundle 'gmarik/vundle'
   Bundle 'vim-scripts/AnsiEsc.vim'
+  Bundle 'rhysd/accelerated-jk'
+  " move column like w command.
+  Bundle 'deris/columnjump'
+  " Bundle 'Smooth-Scroll'
+  Bundle 'smartword'
+  " move by Camel/snake case ward
+  " set script_31337_path_and_name_without_extension_11=%~dpn0
+  " ,w moves to ([x] is cursor position): [s]et, [s]cript, [3]1337, [p]ath, [a]nd, [n]ame, [w]ithout, [e]xtension, [1]1, [d]pn0, dpn[0], [s]et
+  " ,b moves to: [d]pn0, [1]1, [e]xtension, [w]ithout, ...
+  " ,e moves to: se[t], scrip[t], 3133[7], pat[h], an[d], nam[e], withou[t], extensio[n], 1[1], dpn[0]
+  Bundle 'camelcasemotion'
+  " <leader> w/f (interface like selecting link on vimp)
+  Bundle 'EasyMotion'
+  Bundle 'git@github.com:ToQoz/Smooth-Scroll.git'
+  Bundle 'vim-jp/vimdoc-ja'
 
   filetype plugin indent on
