@@ -15,9 +15,12 @@ DOT_FILES=(
     .vimperatorrc .vimperator
     .emacs.d
     .gitconfig .gitignore_global .gitmodules
+    .tigrc
     .screenrc
     .tmux.conf
     .tm_properties
+    .railsrc
+    .pryrc
 )
 
 for file in ${DOT_FILES[@]}
