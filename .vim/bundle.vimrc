@@ -201,7 +201,8 @@
   Bundle 'camelcasemotion'
   " <leader> w/f (interface like selecting link on vimp)
   Bundle 'EasyMotion'
-  Bundle 'git@github.com:ToQoz/Smooth-Scroll.git'
+  Bundle 'TwitVim'
+  " Bundle 'git@github.com:ToQoz/Smooth-Scroll.git'
   Bundle 'vim-jp/vimdoc-ja'
 
   filetype plugin indent on

@@ -16,7 +16,7 @@
 (setq mac-option-modifier 'meta)
 
 ; font setting
-(set-frame-font "Menlo-14")
+; (set-frame-font "Menlo for Powerline:h11")
 ;;(set-frame-font (if (boundp 'window-system)
 
 ;; window setting

@@ -91,7 +91,7 @@ darwin*)
       alias lf="ls -F"
     # }}}
     # iOS Simulator
-    alias 'iphone-sim'='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app'
+      alias 'iphone-sim'='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app'
     # Vim {{{
       alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
       alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
@@ -99,7 +99,7 @@ darwin*)
       alias cvim=$(brew --prefix vim)/bin/vim
     # }}}
     # Emacs
-  alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+      alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
     # Easytether {{{
       # Easytether Setting -TO BE CONFIG ANDRIOD BY ADB
       EASYTETHER_EXT=/System/Library/Extensions/EasyTetherUSBEthernet.kext

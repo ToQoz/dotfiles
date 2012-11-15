@@ -60,7 +60,7 @@ au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split
 au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 
 nnoremap [unite] <Nop>
-nmap <C-u>  [unite]
+nmap <leader>u [unite]
 
 nnoremap [unite]u  :<C-u>Unite<Space>
 nnoremap <silent> [unite]a  :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru bookmark file<CR>

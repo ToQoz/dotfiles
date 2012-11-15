@@ -21,4 +21,4 @@ if has('gui_macvim')
     " set transparency=5
 endif
 
-set guifont=Menlo\ for\ Powerline:h11
+set guifont="Menlo for Powerline:h11"

@@ -25,6 +25,8 @@ export HISTFILE=$HOME/.zsh_history
 export HISTSIZE=1000
 export SAVEHIST=1000
 export RLWRAP_HOME=$HOME/.rlwrap
+# completion of `cd -`
+setopt auto_pushd
 # no beep sound when complete list displayed
 setopt nolistbeep
 # auto change directory
@@ -51,6 +53,7 @@ path=(
     ~/.cabal/bin
     ~/local/bin
     ~/bin
+    ~/scripts
     ~/.rbenv/bin
     $path
 )
@@ -88,5 +91,6 @@ darwin*)
     test -f $COMP_DIR/tmux && . $COMP_DIR/tmux
     ;;
 linux*)
+    [ -d "$HOME/opt/rsense-0.3" ] && export RSENSE_HOME="$HOME/opt/rsense-0.3"
     ;;
 esac

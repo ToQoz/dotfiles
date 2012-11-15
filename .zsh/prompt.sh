@@ -71,3 +71,6 @@ precmd () {
     # Right prompt. -> Output.
     RPROMPT="%{$fg[red]%}(rbenv:`rbenv version | sed -e 's/ .*//'`) %{$fg[blue]%}(perlbrew:$PERLBREW_PERL)%{$reset_color%}"
 }
+
+setopt correct
+SPROMPT="ねえ、「%r」って誰かな……？ 私そんな名前、聞いたことないな……。 ねえ、いつまでも、そうやって笑って誤魔化せると思ってる……？ 私だってそんなに馬鹿じゃないんだよ…… [nyae]?"
