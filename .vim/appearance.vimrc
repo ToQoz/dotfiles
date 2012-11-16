@@ -104,7 +104,7 @@ else
   colorscheme desert
 endif
 
-set number
+set relativenumber
 " beep
 set visualbell
 " add multibyte in text option

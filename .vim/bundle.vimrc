@@ -203,6 +203,7 @@
   Bundle 'EasyMotion'
   Bundle 'TwitVim'
   " Bundle 'git@github.com:ToQoz/Smooth-Scroll.git'
+  Bundle 'restart.vim'
   Bundle 'vim-jp/vimdoc-ja'
 
   filetype plugin indent on
