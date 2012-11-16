@@ -1,49 +1,68 @@
 #!/bin/bash
 
-while getopts ":f" GETOPTS
-do
-  case $GETOPTS in
-  f)    FORCE=yes
+operation() {
+    while getopts ":f" GETOPTS
+    do
+      case "${GETOPTS}" in
+      f)    export FORCE=yes
+            ;;
+      esac
+    done
+
+    case "${OSTYPE}" in
+    darwin*)
+        setup_keyremap4macbook
         ;;
-  esac
-done
+    linux*)
+        ;;
+    esac
 
-DOT_FILES=(
-    .zsh .zshenv .zshrc
-    .bashrc .bash_profile
-    .vim .vimrc .gvimrc
-    .vimperatorrc .vimperator
-    .emacs.d
-    .gitconfig .gitignore_global .gitmodules
-    .tigrc
-    .screenrc
-    .tmux.conf
-    .tm_properties
-    .railsrc
-    .pryrc
-)
+    echo "You should run $ vim -c \"BundleInstall\""
+}
 
-for file in ${DOT_FILES[@]}
-do
-    if [ "$FORCE" = "yes" ]; then
-        [ -h $HOME/$file ] && unlink $HOME/$file
-        [ -f $HOME/$file ] && rm $HOME/$file
-        [ -d $HOME/$file ] && rm -rf $HOME/$file
-        ln -s $HOME/dotfiles/$file $HOME/$file
-    fi
-done
+setup_basic() {
+    DOT_FILES=(
+        .zsh .zshenv .zshrc
+        .bashrc .bash_profile
+        .vim .vimrc .gvimrc
+        .vimperatorrc .vimperator
+        .emacs.d
+        .gitconfig .gitignore_global
+        .tigrc
+        .screenrc
+        .tmux.conf
+        .tm_properties
+        .railsrc
+        .pryrc
+    )
 
-case "${OSTYPE}" in
-darwin*)
-    if [ -d $HOME/Library/Application\ Support/KeyRemap4MacBook ]; then
-        [ -L $HOME/Library/Application\ Support/KeyRemap4MacBook/private.xml ] && unlink $HOME/Library/Application\ Support/KeyRemap4MacBook/private.xml
-        if [ -f $HOME/Library/Application\ Support/KeyRemap4MacBook/private.xml ]; then
-            echo "remove $HOME/Library/Application\ Support/KeyRemap4MacBook/private.xml. and backup in $BACKUP_DIR/keyremap4macbook_private.xml"
-            mv $HOME/Library/Application\ Support/KeyRemap4MacBook/private.xml $BACKUP_DIR/keyremap4macbook_private.xml
+    for file in ${DOT_FILES[@]}
+    do
+        if [ "$FORCE" = "yes" ]; then
+            [ -h ~/$file ] && unlink ~/$file
+            [ -f ~/$file ] && rm ~/$file
+            [ -d ~/$file ] && rm -rf ~/$file
         fi
-        ln -s $HOME/dotfiles/osx/keyremap4macbook/private.xml $HOME/Library/Application\ Support/KeyRemap4MacBook/private.xml
+        ln -s ~/dotfiles/$file ~/$file
+    done
+}
+
+# for osx
+setup_keyremap4macbook() {
+    K4M_DIR=~/Library/Application\ Support/KeyRemap4MacBook
+    if [ "$FORCE" = "yes" ]; then
+        [ !-d $K4M_DIR ] return
+        [ -L $K4M_DIR/private.xml ] && unlink $K4M_DIR/private.xml
+        [ -f $K4M_DIR/private.xml ] && rm $K4M_DIR/private.xml
     fi
-    ;;
-linux*)
-    ;;
-esac
+    ln -s ~/dotfiles/osx/keyremap4macbook/private.xml $K4M_DIR/private.xml
+}
+
+# for osx
+install_brew() {
+    [ -d ~/brew ] && return
+    cd ~
+    mkdir brew && curl -L https://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C brew
+}
+
+operation $@
