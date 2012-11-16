@@ -39,5 +39,13 @@ vnoremap <leader>y "*y
   cnoremap <C-N> <Down>
   cnoremap <C-k> <C-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<CR>
 
+" nnoremap <sid>(command-line-enter) q:
+" xnoremap <sid>(command-line-enter) q:
+" nnoremap <sid>(command-line-norange) q:<C-u>
+"
+" nmap :  <sid>(command-line-enter)
+" xmap :  <sid>(command-line-enter)
+
+noremap <leader><leader>r :Ref refe<Space>
 " strip space at eof before save
 autocmd BufWritePre * :%s/\s\+$//ge

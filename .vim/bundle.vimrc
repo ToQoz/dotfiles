@@ -28,8 +28,8 @@
   " outline source for unite.vim
   Bundle 'h1mesuke/unite-outline'
   Bundle 'Shougo/unite-ssh'
-  " Perl/Ruby style regexp notation for Vim
-  Bundle 'othree/eregex.vim'
+  " Bundle 'ujihisa/unite-font'
+  Bundle 'ujihisa/unite-colorscheme'
 
   "==========================
   " Shell
@@ -193,6 +193,7 @@
   "==========================
   " Others
   "==========================
+  " Bundle 'tyru/vim-altercmd'
   Bundle 'thinca/vim-scouter'
   Bundle 'vim-scripts/sudo.vim'
   Bundle 'gmarik/vundle'
@@ -210,8 +211,10 @@
   Bundle 'camelcasemotion'
   " <leader> w/f (interface like selecting link on vimp)
   Bundle 'EasyMotion'
-  Bundle 'TwitVim'
   " Bundle 'git@github.com:ToQoz/Smooth-Scroll.git'
+  " Perl/Ruby style regexp notation for Vim
+  Bundle 'othree/eregex.vim'
+  Bundle 'TwitVim'
   Bundle 'restart.vim'
   Bundle 'vim-jp/vimdoc-ja'
 
