@@ -63,6 +63,7 @@ darwin*)
     path=(
         ~/brew/(s|)bin
         ~/brew/share/npm/bin
+        $(brew --prefix coreutils)/libexec/gnubin/
         $path
     )
     ;;

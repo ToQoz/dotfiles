@@ -12,7 +12,7 @@
   alias mv="mv -vi"
 # }}}
 # ls {{{
-  alias ls='ls -G -F'
+  alias ls="ls --color"
   alias la="ls -a"
   alias ll="ls -l"
   alias lla="ls -la"
@@ -86,10 +86,6 @@ function pcolor() {
 case "${OSTYPE}" in
 # TODO 別ファイルにしよう
 darwin*)
-    # ls {{{
-      alias ls="ls -G -w"
-      alias lf="ls -F"
-    # }}}
     # iOS Simulator
       alias 'iphone-sim'='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app'
     # Vim {{{
