@@ -30,6 +30,7 @@
   Bundle 'Shougo/unite-ssh'
   " Bundle 'ujihisa/unite-font'
   Bundle 'ujihisa/unite-colorscheme'
+  Bundle 'Shougo/unite-session'
 
   "==========================
   " Shell
@@ -44,7 +45,7 @@
   "Bundle 'rson/vim-conque'
 
   "==========================
-  " Buffer/File
+  " Buffer/File/Tab
   "==========================
   " Visualize your Vim undo tree.
   Bundle 'sjl/gundo.vim'
@@ -55,6 +56,7 @@
   " A front for the Perl module App::Ack.
   Bundle 'mileszs/ack.vim'
   Bundle 'thinca/vim-qfreplace'
+  Bundle 'kana/vim-tabpagecd'
 
   "==========================
   " Diff
@@ -194,6 +196,7 @@
   " Others
   "==========================
   " Bundle 'tyru/vim-altercmd'
+  Bundle 'grep.vim'
   Bundle 'thinca/vim-scouter'
   Bundle 'vim-scripts/sudo.vim'
   Bundle 'gmarik/vundle'

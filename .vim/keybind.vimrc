@@ -46,6 +46,7 @@ vnoremap <leader>y "*y
 " nmap :  <sid>(command-line-enter)
 " xmap :  <sid>(command-line-enter)
 
-noremap <leader><leader>r :Ref refe<Space>
+nnoremap <Tab> gt
+nnoremap <S-Tab> gT
 " strip space at eof before save
 autocmd BufWritePre * :%s/\s\+$//ge

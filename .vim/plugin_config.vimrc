@@ -285,3 +285,6 @@ let g:EasyMotion_grouping=1
 " vim-textobj-rubyblock
 "------------------------------------
 runtime macros/matchit.vim
+" Refe
+"------------------------------------
+noremap <leader><leader>r :Ref refe<Space>
