@@ -41,8 +41,24 @@ if !exists('g:neocomplcache_keyword_patterns')
   let g:neocomplcache_keyword_patterns = {}
 endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-"let g:neocomplcache_snippets_dir = $HOME.'/snippets'
 
+""------------------------------------
+" neosnippet
+"------------------------------------
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+let g:neosnippet#snippets_directory='~/.vim/snippets'
 
 "==========================
 " Unite.vim
@@ -119,29 +135,29 @@ autocmd FileType javascript
 "------------------------------------
 " vim-rsense
 "------------------------------------
-let g:rsenseUseOmniFunc = 1
-let g:rsenseHome = expand('/Users/toqoz/brew/opt/rsense/libexec')
+" let g:rsenseUseOmniFunc = 1
+" let g:rsenseHome = expand("$RSENSE_HOME")
+"
+" function! SetUpRubySetting()
+"   setlocal completefunc=RSenseCompleteFunction
+"   nmap <buffer>tj :RSenseJumpToDefinition<CR>
+"   nmap <buffer>tk :RSenseWhereIs<CR>
+"   nmap <buffer>td :RSenseTypeHelp<CR>
+" endfunction
+"
+" autocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
 
-function! SetUpRubySetting()
-  setlocal completefunc=RSenseCompleteFunction
-  nmap <buffer>tj :RSenseJumpToDefinition<CR>
-  nmap <buffer>tk :RSenseWhereIs<CR>
-  nmap <buffer>td :RSenseTypeHelp<CR>
-endfunction
-
-autocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
-
-if !exists('g:neocomplcache_omni_functions')
-  let g:neocomplcache_omni_functions = {}
-endif
-let g:neocomplcache_omni_functions.ruby = 'RSenseCompleteFunction'
-
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-
+" if !exists('g:neocomplcache_omni_functions')
+"   let g:neocomplcache_omni_functions = {}
+" endif
+" let g:neocomplcache_omni_functions.ruby = 'RSenseCompleteFunction'
+"
+" " Enable heavy omni completion.
+" if !exists('g:neocomplcache_omni_patterns')
+"   let g:neocomplcache_omni_patterns = {}
+" endif
+" let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+"
 "------------------------------------
 " CtrlP
 "------------------------------------
@@ -260,7 +276,7 @@ au BufReadPost *_spec.rb call RSpecQuickrun()
 " show error line by sign
 let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
-let g:syntastic_ruby_exec = '~/.rbenv/versions/1.9.3-p286/bin/ruby'
+let g:syntastic_ruby_exec = expand('~/.rbenv/shims/ruby')
 nnoremap <leader>sc :<C-u>SyntasticCheck<CR>
 
 "------------------------------------
@@ -281,3 +297,8 @@ vnoremap ! :ClamVisual<space>
 let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
 let g:EasyMotion_leader_key="'"
 let g:EasyMotion_grouping=1
+
+"------------------------------------
+" vim-textobj-rubyblock
+"------------------------------------
+runtime macros/matchit.vim

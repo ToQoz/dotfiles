@@ -11,6 +11,7 @@
   " Completion
   "==========================
   Bundle 'Shougo/neocomplcache'
+  Bundle 'Shougo/neosnippet'
   " Perform all your vim insert mode completions with Tab
   Bundle 'ervandew/supertab'
 
@@ -81,8 +82,6 @@
   Bundle 'ruby-matchit'
   " Expand if<CR> to if [condition] end
   Bundle 'tpope/vim-endwise'
-  " Wise completion
-  Bundle 'git://gist.github.com/3903798.git'
   " Syntax highlight for rspec
   Bundle 'taq/vim-rspec'
   Bundle 'tpope/vim-rails'
@@ -90,6 +89,11 @@
   " Bundle 'spllr/vim-padrino'
   Bundle 'ujihisa/neco-ruby'
   Bundle 'tyru/open-browser.vim'
+  " Wise completion
+  Bundle 'Shougo/neocomplcache-rsense'
+  " Bundle 'taichouchou2/vim-rsense'
+  " Bundle 'git://gist.github.com/3903798.git'
+
   " display ruby, rake, and rspec output colorized in ConqueTerm
   "Bundle 'skwp/vim-ruby-conque'
 
@@ -98,6 +102,11 @@
   "==========================
   " Vim plugin: Operators to edit surrounding text
   Bundle 'tpope/vim-surround'
+  " Vim plugin: Support for user-defined text objects
+  Bundle 'kana/vim-textobj-user'
+  " A custom text object for selecting ruby blocks.
+  Bundle 'nelstrom/vim-textobj-rubyblock'
+  Bundle 'rorymckinley/vim-symbols-strings'
   Bundle 'Align'
   " text filtering and alignment
   Bundle 'godlygeek/tabular'

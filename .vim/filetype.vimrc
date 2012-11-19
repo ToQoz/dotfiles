@@ -26,6 +26,7 @@ augroup OmniCompletionGroup
   autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
   autocmd FileType python setl omnifunc=pythoncomplete#Complete
   autocmd FileType ruby setl expandtab tabstop=2 shiftwidth=2 softtabstop=2
+  autocmd FileType snippet setl noexpandtab
 augroup END
 
 "==========================
