@@ -91,6 +91,11 @@ nnoremap <silent> [unite]y :Unite -buffer-name=register register<CR>
   "==========================
   nnoremap <silent> [unite]o :Unite outline<CR>
 
+  "==========================
+  " UniteSession
+  "==========================
+  nnoremap [unite]s :UniteSessionSave<Space>
+
 "==========================
 " NEARD_tree
 "==========================
@@ -175,7 +180,7 @@ let g:ctrlp_custom_ignore = {
 "------------------------------------
 " BufferExplorer
 "------------------------------------
-nnoremap <leader>l :BufExplorer<CR>
+nnoremap <leader>b :BufExplorer<CR>
 
 "------------------------------------
 " eregex.vim

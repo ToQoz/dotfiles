@@ -150,8 +150,8 @@
   " Enhanced javascript syntax file for Vim
   NeoBundle 'ToQoz/vim-javascript-syntax'
   " jasmine snipet set
-  NeoBundle 'snipMate'
-  NeoBundle 'Jasmine-snippets-for-snipMate'
+  " NeoBundle 'snipMate'
+  " NeoBundle 'Jasmine-snippets-for-snipMate'
   NeoBundle 'jQuery'
 
   "==========================
