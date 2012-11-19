@@ -90,8 +90,8 @@
   Bundle 'ujihisa/neco-ruby'
   Bundle 'tyru/open-browser.vim'
   " Wise completion
-  Bundle 'Shougo/neocomplcache-rsense'
-  " Bundle 'taichouchou2/vim-rsense'
+  " Bundle 'Shougo/neocomplcache-rsense'
+  Bundle 'taichouchou2/vim-rsense'
   " Bundle 'git://gist.github.com/3903798.git'
 
   " display ruby, rake, and rspec output colorized in ConqueTerm
