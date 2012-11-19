@@ -180,7 +180,7 @@ let g:ctrlp_custom_ignore = {
 "------------------------------------
 " BufferExplorer
 "------------------------------------
-nnoremap <leader>b :BufExplorer<CR>
+nnoremap <leader><leader>l :BufExplorer<CR>
 
 "------------------------------------
 " eregex.vim
@@ -193,16 +193,33 @@ nnoremap ,? ?
 "------------------------------------
 " VimShell
 "------------------------------------
+hi vimshellPrompt ctermfg=yellow guifg=#FF00FF
+
+" https://github.com/yuroyoro/dotfiles/blob/master/.vimrc.plugins_setting
+" let g:vimshell_right_prompt = 'vimshell#vcs#info("(%s)-[%b]", "(%s)-[%b|%a]")'
+let g:vimshell_enable_smart_case = 1
+
+let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+if has('win32') || has('win64')
+  " Display user name on Windows.
+  let g:vimshell_prompt = "✘╹◡╹✘ ". $USERNAME. ' % '
+else
+  " Display user name on Linux.
+  let g:vimshell_prompt = "✘╹◡╹✘ ". $USER . ' % '
+
+  call vimshell#set_execute_file('bmp,jpg,png,gif', 'gexe eog')
+  call vimshell#set_execute_file('mp3,m4a,ogg', 'gexe amarok')
+  let g:vimshell_execute_file_list['zip'] = 'zipinfo'
+  call vimshell#set_execute_file('tgz,gz', 'gzcat')
+  call vimshell#set_execute_file('tbz,bz2', 'bzcat')
+endif
+
+autocmd FileType vimshell
+\ call vimshell#altercmd#define('g', 'git')
+\| call vimshell#altercmd#define('i', 'iexe')
+\| call vimshell#altercmd#define('l', 'll')
+\| call vimshell#altercmd#define('ll', 'ls -l')
 command! Vs :VimShell
-
-hi vimshellPrompt ctermfg=yellow guifg=#f9d59d
-let g:vimshell_prompt = "✘╹◡╹✘ " . $PWD . " % "
-
-call vimshell#set_execute_file('bmp,jpg,png,gif', 'gexe eog')
-call vimshell#set_execute_file('mp3,m4a,ogg', 'gexe amarok')
-let g:vimshell_execute_file_list['zip'] = 'zipinfo'
-call vimshell#set_execute_file('tgz,gz', 'gzcat')
-call vimshell#set_execute_file('tbz,bz2', 'bzcat')
 
 "------------------------------------
 " Gundo
