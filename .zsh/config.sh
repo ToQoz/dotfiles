@@ -50,6 +50,7 @@ path=(
     ~/.cabal/bin
     ~/local/bin
     ~/bin
+    ~/bin/private
     ~/scripts
     ~/.rbenv/bin
     $path
