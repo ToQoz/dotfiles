@@ -4,221 +4,229 @@
   syntax on
   set nocompatible
   filetype off
-  set rtp+=~/.vim/bundle/vundle
-  call vundle#rc()
+  if has('vim_starting')
+    set runtimepath+=~/.vim/bundle/neobundle.vim
+    call neobundle#rc(expand('~/.vim/bundle/'))
+  endif
 
   "==========================
   " Completion
   "==========================
-  Bundle 'Shougo/neocomplcache'
-  Bundle 'Shougo/neosnippet'
+  NeoBundle 'Shougo/neocomplcache'
+  NeoBundle 'Shougo/neosnippet'
   " Perform all your vim insert mode completions with Tab
-  Bundle 'ervandew/supertab'
+  NeoBundle 'ervandew/supertab'
 
   "==========================
   " Ref
   "==========================
-  Bundle 'thinca/vim-ref'
+  NeoBundle 'thinca/vim-ref'
 
   "==========================
   " Unite
   "==========================
-  Bundle 'Shougo/unite.vim'
-  Bundle 'tsukkee/unite-tag'
+  NeoBundle 'Shougo/unite.vim'
+  NeoBundle 'tsukkee/unite-tag'
   " outline source for unite.vim
-  Bundle 'h1mesuke/unite-outline'
-  Bundle 'Shougo/unite-ssh'
-  " Bundle 'ujihisa/unite-font'
-  Bundle 'ujihisa/unite-colorscheme'
-  Bundle 'Shougo/unite-session'
+  NeoBundle 'h1mesuke/unite-outline'
+  NeoBundle 'Shougo/unite-ssh'
+  " NeoBundle 'ujihisa/unite-font'
+  NeoBundle 'ujihisa/unite-colorscheme'
+  NeoBundle 'Shougo/unite-session'
 
   "==========================
   " Shell
   "==========================
   " A tree explorer plugin for vim
-  Bundle 'scrooloose/nerdtree'
-  Bundle 'thinca/vim-quickrun'
-  Bundle 'Shougo/vimshell'
-  Bundle 'ujihisa/vimshell-ssh'
-  Bundle 'Shougo/vimproc'
-  Bundle 'sjl/clam.vim'
-  "Bundle 'rson/vim-conque'
+  NeoBundle 'scrooloose/nerdtree'
+  NeoBundle 'thinca/vim-quickrun'
+  NeoBundle 'Shougo/vimshell'
+  NeoBundle 'ujihisa/vimshell-ssh'
+  NeoBundle 'Shougo/vimproc'
+  NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix': 'make -f make_unix.mak'
+      \    },
+      \ }
+  NeoBundle 'sjl/clam.vim'
+  "NeoBundle 'rson/vim-conque'
 
   "==========================
   " Buffer/File/Tab
   "==========================
   " Visualize your Vim undo tree.
-  Bundle 'sjl/gundo.vim'
+  NeoBundle 'sjl/gundo.vim'
   " With bufexplorer, you can quickly and easily switch between buffers.
-  Bundle 'c9s/bufexplorer'
-  Bundle 'Shougo/vimfiler'
-  Bundle 'kien/ctrlp.vim'
+  NeoBundle 'c9s/bufexplorer'
+  NeoBundle 'Shougo/vimfiler'
+  NeoBundle 'kien/ctrlp.vim'
   " A front for the Perl module App::Ack.
-  Bundle 'mileszs/ack.vim'
-  Bundle 'thinca/vim-qfreplace'
-  Bundle 'kana/vim-tabpagecd'
+  NeoBundle 'mileszs/ack.vim'
+  NeoBundle 'thinca/vim-qfreplace'
+  NeoBundle 'kana/vim-tabpagecd'
 
   "==========================
   " Diff
   "==========================
-  Bundle 'adie/BlockDiff'
+  NeoBundle 'adie/BlockDiff'
 
   "==========================
   " Search
   "==========================
-  Bundle 'thinca/vim-visualstar'
-  Bundle 'smartword'
+  NeoBundle 'thinca/vim-visualstar'
+  NeoBundle 'smartword'
 
   "==========================
   " Git Plugin
   "==========================
-  " Bundle 'kana/vim-metarw'
-  " Bundle 'kana/vim-metarw-git'
-  Bundle 'tpope/vim-fugitive'
+  " NeoBundle 'kana/vim-metarw'
+  " NeoBundle 'kana/vim-metarw-git'
+  NeoBundle 'tpope/vim-fugitive'
 
   "==========================
   " Ruby Plugin
   "==========================
-  Bundle 'ruby.vim'
+  NeoBundle 'ruby.vim'
   " Move {if .. end} {def .. end} by pressing % in ruby
-  Bundle 'ruby-matchit'
+  NeoBundle 'ruby-matchit'
   " Expand if<CR> to if [condition] end
-  Bundle 'tpope/vim-endwise'
+  NeoBundle 'tpope/vim-endwise'
   " Syntax highlight for rspec
-  Bundle 'taq/vim-rspec'
-  Bundle 'tpope/vim-rails'
+  NeoBundle 'taq/vim-rspec'
+  NeoBundle 'tpope/vim-rails'
   " tpope's rails.vim modified to work with padrino projects
-  " Bundle 'spllr/vim-padrino'
-  Bundle 'ujihisa/neco-ruby'
-  Bundle 'tyru/open-browser.vim'
+  " NeoBundle 'spllr/vim-padrino'
+  NeoBundle 'ujihisa/neco-ruby'
+  NeoBundle 'tyru/open-browser.vim'
   " Wise completion
-  " Bundle 'Shougo/neocomplcache-rsense'
-  Bundle 'taichouchou2/vim-rsense'
-  " Bundle 'git://gist.github.com/3903798.git'
+  " NeoBundle 'Shougo/neocomplcache-rsense'
+  NeoBundle 'taichouchou2/vim-rsense'
+  " NeoBundle 'git://gist.github.com/3903798.git'
 
   " display ruby, rake, and rspec output colorized in ConqueTerm
-  "Bundle 'skwp/vim-ruby-conque'
+  "NeoBundle 'skwp/vim-ruby-conque'
 
   "==========================
   " Text Plugin
   "==========================
   " Vim plugin: Operators to edit surrounding text
-  Bundle 'tpope/vim-surround'
+  NeoBundle 'tpope/vim-surround'
   " Vim plugin: Support for user-defined text objects
-  Bundle 'kana/vim-textobj-user'
+  NeoBundle 'kana/vim-textobj-user'
   " A custom text object for selecting ruby blocks.
-  Bundle 'nelstrom/vim-textobj-rubyblock'
-  Bundle 'rorymckinley/vim-symbols-strings'
-  Bundle 'Align'
+  NeoBundle 'nelstrom/vim-textobj-rubyblock'
+  NeoBundle 'rorymckinley/vim-symbols-strings'
+  NeoBundle 'Align'
   " text filtering and alignment
-  Bundle 'godlygeek/tabular'
-  Bundle 'h1mesuke/vim-alignta'
+  NeoBundle 'godlygeek/tabular'
+  NeoBundle 'h1mesuke/vim-alignta'
   " Vim plugin: Provide pseudo clipboard register for non-GUI version of Vim
-  Bundle 'matchit.zip'
-  " Bundle 'kana/vim-smartchr'
-  Bundle 'tomtom/tcomment_vim'
+  NeoBundle 'matchit.zip'
+  " NeoBundle 'kana/vim-smartchr'
+  NeoBundle 'tomtom/tcomment_vim'
 
   "==========================
   " Appearance Plugin
   "==========================
   " A Vim plugin for visually displaying indent levels in code
-  Bundle 'nathanaelkane/vim-indent-guides'
-  Bundle 'kien/rainbow_parentheses.vim'
-  Bundle 'Lokaltog/vim-powerline'
+  NeoBundle 'nathanaelkane/vim-indent-guides'
+  NeoBundle 'kien/rainbow_parentheses.vim'
+  NeoBundle 'Lokaltog/vim-powerline'
 
   "==========================
   " JavaScript Plugin
   "==========================
   " Vastly improved javascript indentation
-  " Bundle 'vim-scripts/Better-Javascript-Indentation'
-  " Bundle 'pangloss/vim-javascript'
+  " NeoBundle 'vim-scripts/Better-Javascript-Indentation'
+  " NeoBundle 'pangloss/vim-javascript'
   " vim omnifunc for JavaScript
-  Bundle 'teramako/jscomplete-vim'
+  NeoBundle 'teramako/jscomplete-vim'
   " CoffeeScript support for vim
   " Vim plugin for Titanium Desktop/Mobile
-  " Bundle 'pekepeke/titanium-vim'
-  Bundle 'kchmck/vim-coffee-script'
+  " NeoBundle 'pekepeke/titanium-vim'
+  NeoBundle 'kchmck/vim-coffee-script'
   " Vim Jade template engine syntax highlighting and indention
   " Enhanced javascript syntax file for Vim
-  Bundle 'ToQoz/vim-javascript-syntax'
+  NeoBundle 'ToQoz/vim-javascript-syntax'
   " jasmine snipet set
-  Bundle 'snipMate'
-  Bundle 'Jasmine-snippets-for-snipMate'
-  Bundle 'jQuery'
+  NeoBundle 'snipMate'
+  NeoBundle 'Jasmine-snippets-for-snipMate'
+  NeoBundle 'jQuery'
 
   "==========================
   " HTML Plugin
   "==========================
   " Vim Jade template engine syntax highlighting and indention
-  Bundle 'digitaltoad/vim-jade'
+  NeoBundle 'digitaltoad/vim-jade'
   " Vim runtime files for Haml, Sass, and SCSS
-  Bundle 'tpope/vim-haml'
+  NeoBundle 'tpope/vim-haml'
   " HTML5 omnicomplete and syntax
-  Bundle 'othree/html5.vim'
-  Bundle 'tpope/vim-markdown'
+  NeoBundle 'othree/html5.vim'
+  NeoBundle 'tpope/vim-markdown'
 
   "==========================
   " CSS Plugin
   "==========================
   " Add CSS3 syntax support to vim's built-in `syntax/css.vim`
-  Bundle 'hail2u/vim-css3-syntax'
+  NeoBundle 'hail2u/vim-css3-syntax'
 
   "==========================
   " Scheme Plugin
   "==========================
   " guache syntax
-  Bundle 'haruyama/scheme.vim'
+  NeoBundle 'haruyama/scheme.vim'
 
   "==========================
   " Other lang Plugin
   "==========================
   " nginx.vim highlights configuration files for nginx
-  Bundle 'nginx.vim'
-  Bundle 'xmledit'
-  Bundle 'jnwhiteh/vim-golang'
-  Bundle 'scrooloose/syntastic'
+  NeoBundle 'nginx.vim'
+  NeoBundle 'xmledit'
+  NeoBundle 'jnwhiteh/vim-golang'
+  NeoBundle 'scrooloose/syntastic'
 
   "==========================
   " ColorScheme Plugin
   "==========================
-  Bundle 'desert256.vim'
-  Bundle 'mrkn256.vim'
-  Bundle 'altercation/vim-colors-solarized'
-  Bundle 'yuroyoro/yuroyoro256.vim'
-  Bundle 'jelera/vim-nazca-colorscheme'
-  Bundle 'aereal/vim-magica-colors'
-  Bundle 'tpope/vim-vividchalk'
-  Bundle 'nanotech/jellybeans.vim'
-  Bundle 'sickill/vim-monokai'
-  Bundle 'molokai'
+  NeoBundle 'desert256.vim'
+  NeoBundle 'mrkn256.vim'
+  NeoBundle 'altercation/vim-colors-solarized'
+  NeoBundle 'yuroyoro/yuroyoro256.vim'
+  NeoBundle 'jelera/vim-nazca-colorscheme'
+  NeoBundle 'aereal/vim-magica-colors'
+  NeoBundle 'tpope/vim-vividchalk'
+  NeoBundle 'nanotech/jellybeans.vim'
+  NeoBundle 'sickill/vim-monokai'
+  NeoBundle 'molokai'
 
   "==========================
   " Others
   "==========================
-  " Bundle 'tyru/vim-altercmd'
-  Bundle 'grep.vim'
-  Bundle 'thinca/vim-scouter'
-  Bundle 'vim-scripts/sudo.vim'
-  Bundle 'gmarik/vundle'
-  Bundle 'vim-scripts/AnsiEsc.vim'
-  Bundle 'rhysd/accelerated-jk'
+  " NeoBundle 'tyru/vim-altercmd'
+  NeoBundle 'grep.vim'
+  NeoBundle 'thinca/vim-scouter'
+  NeoBundle 'vim-scripts/sudo.vim'
+  NeoBundle 'gmarik/vundle'
+  NeoBundle 'vim-scripts/AnsiEsc.vim'
+  NeoBundle 'rhysd/accelerated-jk'
   " move column like w command.
-  Bundle 'deris/columnjump'
-  " Bundle 'Smooth-Scroll'
-  Bundle 'smartword'
+  NeoBundle 'deris/columnjump'
+  " NeoBundle 'Smooth-Scroll'
+  NeoBundle 'smartword'
   " move by Camel/snake case ward
   " set script_31337_path_and_name_without_extension_11=%~dpn0
   " ,w moves to ([x] is cursor position): [s]et, [s]cript, [3]1337, [p]ath, [a]nd, [n]ame, [w]ithout, [e]xtension, [1]1, [d]pn0, dpn[0], [s]et
   " ,b moves to: [d]pn0, [1]1, [e]xtension, [w]ithout, ...
   " ,e moves to: se[t], scrip[t], 3133[7], pat[h], an[d], nam[e], withou[t], extensio[n], 1[1], dpn[0]
-  Bundle 'camelcasemotion'
+  NeoBundle 'camelcasemotion'
   " <leader> w/f (interface like selecting link on vimp)
-  Bundle 'EasyMotion'
-  " Bundle 'git@github.com:ToQoz/Smooth-Scroll.git'
+  NeoBundle 'EasyMotion'
+  " NeoBundle 'git@github.com:ToQoz/Smooth-Scroll.git'
   " Perl/Ruby style regexp notation for Vim
-  Bundle 'othree/eregex.vim'
-  Bundle 'TwitVim'
-  Bundle 'restart.vim'
-  Bundle 'vim-jp/vimdoc-ja'
+  NeoBundle 'othree/eregex.vim'
+  NeoBundle 'TwitVim'
+  NeoBundle 'restart.vim'
+  NeoBundle 'vim-jp/vimdoc-ja'
 
   filetype plugin indent on

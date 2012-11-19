@@ -17,7 +17,7 @@ operation() {
         ;;
     esac
 
-    echo "You should run $ vim -c \"BundleInstall\""
+    echo "You should run $ vim -c \"NeoBundleInstall\""
 }
 
 setup_basic() {
@@ -45,6 +45,11 @@ setup_basic() {
         fi
         ln -s ~/dotfiles/$file ~/$file
     done
+}
+
+setup_neobundle() {
+    cd ~/.vim/bundle
+    git clone git://github.com/Shougo/neobundle.vim.git
 }
 
 # for osx
