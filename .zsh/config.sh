@@ -40,9 +40,6 @@ bindkey -e
 # delete right prompt when input reach to there
 setopt transient_rprompt
 
-export LDFLAGS="-L$HOME/brew/lib $CFLAGS"
-export CPPFLAGS="-isystem $HOME/brew/include $CPPFLAGS"
-
 # path
 path=(
     ~/.phpenv/bin
@@ -60,6 +57,8 @@ path=(
 
 case "${OSTYPE}" in
 darwin*)
+    export LDFLAGS="-L$HOME/brew/lib $CFLAGS"
+    export CPPFLAGS="-isystem $HOME/brew/include $CPPFLAGS"
     path=(
         ~/brew/(s|)bin
         ~/brew/share/npm/bin
