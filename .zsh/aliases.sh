@@ -109,6 +109,7 @@ darwin*)
     # }}}
     ;;
 linux*)
+    [ -f "`which ack-grep `" ] && alias ack="ack-grep"
     ;;
 esac
 
