@@ -102,6 +102,8 @@
   " Wise completion
   " NeoBundle 'Shougo/neocomplcache-rsense'
   NeoBundle 'taichouchou2/vim-rsense'
+  NeoBundle 'ujihisa/neco-ruby'
+  NeoBundle 'rhysd/neco-ruby-keyword-args'
   " NeoBundle 'git://gist.github.com/3903798.git'
 
   " display ruby, rake, and rspec output colorized in ConqueTerm
