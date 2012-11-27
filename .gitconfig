@@ -63,6 +63,7 @@
   bm   = branch --merged
   bn   = branch --no-merge
   # log
+  yesterday = "!f() { git log $1@{yesterday}..$1; }; f"
   wc   = whatchanged
   l    = log --stat
   la   = log -p
