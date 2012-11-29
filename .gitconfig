@@ -64,6 +64,7 @@
   bn   = branch --no-merge
   # log
   yesterday = "!f() { git log $1@{yesterday}..$1; }; f"
+  d-remote-branches = "!branches=$* sh -c 'for br in $branches; do git push origin :$br; done'"
   wc   = whatchanged
   l    = log --stat
   la   = log -p
