@@ -1,3 +1,5 @@
+setopt complete_aliases
+
 # Misc Command Alias
 # Vim {{{
   svim() { vim sudo:$1; }
@@ -64,12 +66,20 @@ function pcolor() {
 }
 # }}}
 # Screen {{{
-  alias scrr='screen -U -D -RR'
-  alias s='screen -U'
+  # alias scrr='screen -U -D -RR'
+  # alias s='screen -U'
 # }}}
 # Ruby {{{
-  alias be="bundle exec"
-  alias r="rails"
+  alias b='bundle'
+  alias be='bundle exec'
+  alias bi='bundle install'
+  alias bu='bundle update'
+  alias bp='bundle package'
+  alias s='be rspec'
+  alias rs='be rails'
+  alias r='be rake'
+  alias mig='r db:migrate'
+  alias gmig='rs g migration'
 # }}}
 
 # Global {{{
