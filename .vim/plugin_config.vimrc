@@ -140,28 +140,28 @@ autocmd FileType javascript
 "------------------------------------
 " vim-rsense
 "------------------------------------
-let g:rsenseUseOmniFunc = 1
-let g:rsenseHome = expand("$RSENSE_HOME")
+" let g:rsenseUseOmniFunc = 1
+" let g:rsenseHome = expand("$RSENSE_HOME")
 
-function! SetUpRubySetting()
-  setlocal completefunc=RSenseCompleteFunction
-  nmap <buffer>tj :RSenseJumpToDefinition<CR>
-  nmap <buffer>tk :RSenseWhereIs<CR>
-  nmap <buffer>td :RSenseTypeHelp<CR>
-endfunction
-
-autocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
-
-if !exists('g:neocomplcache_omni_functions')
-  let g:neocomplcache_omni_functions = {}
-endif
-let g:neocomplcache_omni_functions.ruby = 'RSenseCompleteFunction'
-
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+" function! SetUpRubySetting()
+"   setlocal completefunc=RSenseCompleteFunction
+"   nmap <buffer>tj :RSenseJumpToDefinition<CR>
+"   nmap <buffer>tk :RSenseWhereIs<CR>
+"   nmap <buffer>td :RSenseTypeHelp<CR>
+" endfunction
+"
+" autocmd FileType ruby,eruby,ruby.rspec call SetUpRubySetting()
+"
+" if !exists('g:neocomplcache_omni_functions')
+"   let g:neocomplcache_omni_functions = {}
+" endif
+" let g:neocomplcache_omni_functions.ruby = 'RSenseCompleteFunction'
+"
+" " Enable heavy omni completion.
+" if !exists('g:neocomplcache_omni_patterns')
+"   let g:neocomplcache_omni_patterns = {}
+" endif
+" let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 
 "------------------------------------
 " CtrlP

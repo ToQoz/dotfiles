@@ -101,7 +101,8 @@
   NeoBundle 'tyru/open-browser.vim'
   " Wise completion
   " NeoBundle 'Shougo/neocomplcache-rsense'
-  NeoBundle 'taichouchou2/vim-rsense'
+  " NeoBundle 'taichouchou2/vim-rsense'
+  NeoBundle 'Shougo/neocomplcache-rsense'
   NeoBundle 'ujihisa/neco-ruby'
   NeoBundle 'rhysd/neco-ruby-keyword-args'
   " NeoBundle 'git://gist.github.com/3903798.git'
