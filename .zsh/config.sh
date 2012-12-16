@@ -92,6 +92,7 @@ darwin*)
         # autojump
         [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
         # autojump completion
+        [[ -s `brew --prefix`/share/zsh/functions ]] && . `brew --prefix`/share/zsh/functions
         [[ -s `brew --prefix`/share/zsh/site-functions ]] && . `brew --prefix`/share/zsh/site-functions
         COMP_DIR=$HOME/brew/etc/bash_completion.d
         test -f $COMP_DIR/git-completion.bash && . $COMP_DIR/git-completion.bash
@@ -104,3 +105,16 @@ linux*)
     [ -d "$HOME/opt/rsense-0.3" ] && export RSENSE_HOME="$HOME/opt/rsense-0.3"
     ;;
 esac
+
+bindkey "^[u" undo
+bindkey "^[r" redo
+autoload smart-insert-last-word
+zle -N insert-last-word smart-insert-last-word
+bindkey '^]' insert-last-word
+
+zmodload -i zsh/parameter
+insert-last-command-output() {
+    LBUFFER+="$(eval $history[$((HISTCMD-1))])"
+}
+zle -N insert-last-command-output
+bindkey "^[l" insert-last-command-output
