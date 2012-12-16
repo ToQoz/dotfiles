@@ -65,6 +65,7 @@ let g:neosnippet#snippets_directory='~/.vim/snippets'
 "==========================
 " http://mugijiru.seesaa.net/article/200968763.html
 let g:unite_enable_split_vertically=1
+let g:unite_enable_start_insert = 1
 noremap <C-_> :Unite -buffer-name=files buffer file_mru bookmark file<CR>
 " quit when press esc twice
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>

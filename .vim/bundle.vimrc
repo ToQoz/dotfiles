@@ -105,6 +105,7 @@
   NeoBundle 'Shougo/neocomplcache-rsense'
   NeoBundle 'ujihisa/neco-ruby'
   NeoBundle 'rhysd/neco-ruby-keyword-args'
+  NeoBundle 'tpope/vim-cucumber'
   " NeoBundle 'git://gist.github.com/3903798.git'
 
   " display ruby, rake, and rspec output colorized in ConqueTerm

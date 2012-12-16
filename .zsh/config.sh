@@ -33,7 +33,8 @@ setopt nolistbeep
 setopt auto_cd
 # Load and run compinit
 autoload -U compinit
-compinit -i
+# compinit -i
+compinit
 
 # emacs like keybind
 bindkey -e
@@ -83,16 +84,21 @@ bashcompinit
 
 case "${OSTYPE}" in
 darwin*)
-    # rbenv completion
-    [ -f "$(brew --prefix rbenv)/completions/rbenv.zsh" ] && . "$(brew --prefix rbenv)/completions/rbenv.zsh"
-    # rsense setting
-    [ -d "$(brew --prefix rbsense)/libexec" ] && export RSENSE_HOME="$(brew --prefix rbsense)/libexec"
-
-    COMP_DIR=$HOME/brew/etc/bash_completion.d
-    test -f $COMP_DIR/git-completion.bash && . $COMP_DIR/git-completion.bash
-    test -f $COMP_DIR/hub.bash_completion.sh && . $COMP_DIR/hub.bash_completion.sh
-    test -f $COMP_DIR/tig-completion.bash && . $COMP_DIR/tig-completion.bash
-    test -f $COMP_DIR/tmux && . $COMP_DIR/tmux
+    if [ `which brew` != "" ]; then
+        # rbenv completion
+        [ -f "$(brew --prefix rbenv)/completions/rbenv.zsh" ] && . "$(brew --prefix rbenv)/completions/rbenv.zsh"
+        # rsense setting
+        [ -d "$(brew --prefix rbsense)/libexec" ] && export RSENSE_HOME="$(brew --prefix rbsense)/libexec"
+        # autojump
+        [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+        # autojump completion
+        [[ -s `brew --prefix`/share/zsh/site-functions ]] && . `brew --prefix`/share/zsh/site-functions
+        COMP_DIR=$HOME/brew/etc/bash_completion.d
+        test -f $COMP_DIR/git-completion.bash && . $COMP_DIR/git-completion.bash
+        test -f $COMP_DIR/hub.bash_completion.sh && . $COMP_DIR/hub.bash_completion.sh
+        test -f $COMP_DIR/tig-completion.bash && . $COMP_DIR/tig-completion.bash
+        test -f $COMP_DIR/tmux && . $COMP_DIR/tmux
+    fi
     ;;
 linux*)
     [ -d "$HOME/opt/rsense-0.3" ] && export RSENSE_HOME="$HOME/opt/rsense-0.3"

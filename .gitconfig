@@ -111,6 +111,13 @@
   # grep
   gr   = grep
   gn   = grep -n
+  # http://blog.udzura.jp/2012/07/20/git-alias-for-review-benri/
+  run-features-spec = "!head=${1:-HEAD~} sh -c ' \
+    echo spec diff between ${head}..HEAD; \
+    git diff --name-only ${head}..HEAD ./spec | \
+    grep -v javascripts | \
+    ruby -pne \"STDERR.puts \\$_\" | \
+    xargs rspec'"
 
 [include]
   path = ~/private/.gitconfig

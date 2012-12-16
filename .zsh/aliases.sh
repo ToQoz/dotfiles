@@ -14,7 +14,7 @@ setopt complete_aliases
   alias mv="mv -vi"
 # }}}
 # ls {{{
-  alias ls="ls --color"
+  alias ls="ls --color=auto -F"
   alias la="ls -a"
   alias ll="ls -l"
   alias lla="ls -la"
@@ -90,6 +90,7 @@ function pcolor() {
   alias -g S='| sed'
   alias -g A='| awk'
   alias -g W='| wc'
+  alias -g P='| percol'
 # }}}
 #
 
@@ -103,6 +104,7 @@ darwin*)
       alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
       alias gvim='env LANG=ja_JP.UTF-8 open -a /Applications/MacVim.app "$@"'
       alias cvim=$(brew --prefix vim)/bin/vim
+      alias percol=$(brew --prefix)/share/python/percol
     # }}}
     # Emacs
       alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'

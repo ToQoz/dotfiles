@@ -50,3 +50,5 @@ nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 " strip space at eof before save
 autocmd BufWritePre * :%s/\s\+$//ge
+
+command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
