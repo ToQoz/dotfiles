@@ -1,7 +1,33 @@
+# Swap/Backup
 *~
 .*~
 #*#
-.DS_Store
 *.sw[po]
+
+# Diff
 *.orig
 *.rej
+
+# OSX
+.DS_Store
+
+# Intellij
+.idea
+*.iml
+
+# Xcode
+.xcodeproj/ !*.xcodeproj/project.pbxproj
+
+# Ruby
+/vendor/bundles
+/.bundle
+.rake_tasks
+
+# GNU global
+GPATH
+GRTAGS
+GSYMS
+GTAGS
+
+# Ctags
+tags

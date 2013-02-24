@@ -12,30 +12,30 @@ zstyle ':vcs_info:*' formats '(%s)-[%b]'
 zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
 
 function rprompt-git-current-branch {
-    local name st color gitdir action
-    if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
-        return
-    fi
+  local name st color gitdir action
+  if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
+      return
+  fi
 
-    name=`git rev-parse --abbrev-ref=loose HEAD 2> /dev/null`
-    if [[ -z $name ]]; then
-        return
-    fi
+  name=`git rev-parse --abbrev-ref=loose HEAD 2> /dev/null`
+  if [[ -z $name ]]; then
+      return
+  fi
 
-    gitdir=`git rev-parse --git-dir 2> /dev/null`
-    action=`VCS_INFO_git_getaction "$gitdir"` && action="($action)"
+  gitdir=`git rev-parse --git-dir 2> /dev/null`
+  action=`VCS_INFO_git_getaction "$gitdir"` && action="($action)"
 
-    st=`git status 2> /dev/null`
-    if [[ "$st" =~ "(?m)^nothing to" ]]; then
-        color=%F{green}
-    elif [[ "$st" =~ "(?m)^nothing added" ]]; then
-        color=%F{yellow}
-    elif [[ "$st" =~ "(?m)^# Untracked" ]]; then
-        color=%B%F{red}
-    else
-        color=%F{red}
-    fi
-    echo "$color$name$action%f%b "
+  st=`git status 2> /dev/null`
+  if [[ "$st" =~ "(?m)^nothing to" ]]; then
+      color=%F{green}
+  elif [[ "$st" =~ "(?m)^nothing added" ]]; then
+      color=%F{yellow}
+  elif [[ "$st" =~ "(?m)^# Untracked" ]]; then
+      color=%B%F{red}
+  else
+      color=%F{red}
+  fi
+  echo "$color$name$action%f%b "
 }
 # }}}
 
@@ -49,28 +49,28 @@ setopt transient_rprompt
 autoload -Uz vcs_info
 
 precmd () {
-    # VCS info
-    psvar=()
-    LANG=en_US.UTF-8 vcs_info
-    psvar[1]=$vcs_info_msg_0_
+  # VCS info
+  psvar=()
+  LANG=en_US.UTF-8 vcs_info
+  psvar[1]=$vcs_info_msg_0_
 
-    if [ "`rprompt-git-current-branch`" = "" ]; then
-        VCS_PROMPT="%f%1v "
-    else
-        VCS_PROMPT="`rprompt-git-current-branch`"
-    fi
+  if [ "`rprompt-git-current-branch`" = "" ]; then
+      VCS_PROMPT="%f%1v "
+  else
+      VCS_PROMPT="`rprompt-git-current-branch`"
+  fi
 
-    # Left prompt. -> Output
-    PROMPT="%{$fg[green]%}$USER%{$reset_color%}"
-    PROMPT="$PROMPT at %{$fg[blue]%}$HOST%{$reset_color%}"
-    PROMPT="$PROMPT in %{$fg[yellow]%}%~%{$reset_color%}"
-    PROMPT="$PROMPT on $VCS_PROMPT%{$reset_color%}"
-    PROMPT="$PROMPT "$'\n'"%{$fg[magenta]%}✘╹◡╹✘ %{$reset_color%}"
-    PROMPT="$PROMPT %(!.#.$) %{$reset_color%}"
+  # Left prompt. -> Output
+  PROMPT="%{$fg[green]%}$USER%{$reset_color%}"
+  PROMPT="$PROMPT at %{$fg[blue]%}$HOST%{$reset_color%}"
+  PROMPT="$PROMPT in %{$fg[yellow]%}%~%{$reset_color%}"
+  PROMPT="$PROMPT on $VCS_PROMPT%{$reset_color%}"
+  PROMPT="$PROMPT "$'\n'"%{$fg[magenta]%}✘╹◡╹✘ %{$reset_color%}"
+  PROMPT="$PROMPT %(!.#.$) %{$reset_color%}"
 
-    # Right prompt. -> Output.
-    RPROMPT="%{$fg[red]%}(rbenv:`rbenv version | sed -e 's/ .*//'`) %{$fg[blue]%}(perlbrew:$PERLBREW_PERL)%{$reset_color%}"
+  # Right prompt. -> Output.
+  RPROMPT="%{$fg[red]%}(rbenv:`rbenv version | sed -e 's/ .*//'`)%{$reset_color%}"
 }
 
 setopt correct
-SPROMPT="ねえ、「%r」って誰かな……？ 私そんな名前、聞いたことないな……。 ねえ、いつまでも、そうやって笑って誤魔化せると思ってる……？ 私だってそんなに馬鹿じゃないんだよ…… [nyae]?"
+SPROMPT="%r ??? [nyae]?"

@@ -95,6 +95,11 @@ set tabline=%!MakeTabLine()
 "     set term=xterm
 "endif
 set bg=dark
+
+if &t_Co == 8 && $TERM !~# '^linux'
+  set t_Co=16
+endif
+
 if &term =~ '256color'
   set t_Co=256
   colorscheme Monokai
@@ -104,7 +109,8 @@ else
   colorscheme desert
 endif
 
-set relativenumber
+" set relativenumber
+set number
 " beep
 set visualbell
 " add multibyte in text option
@@ -117,8 +123,6 @@ augroup cch
   autocmd WinLeave * set nocursorline
   autocmd WinEnter,BufRead * set cursorline
 augroup END
-set lazyredraw
-set ttyfast
 " highlight { }
 set showmatch
 
@@ -127,11 +131,17 @@ set showmatch
 "==========================
 " show invisible character
 highlight SpecialKey term=underline ctermfg=darkgray guifg=#666666
+set ambiwidth=double
 set list
-set listchars=eol:$,tab:>\ ,extends:<
+set listchars=tab:>.,precedes:<,extends:>,eol:↵
 " highlight space at eof before save
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
 " highlight space
 highlight ZenkakuSpace cterm=underline ctermbg=red guibg=red
 match ZenkakuSpace /　/
+
+set wildmenu
+set wildmode=list:longest
+set completeopt=menu,preview,menuone
+set complete-=i

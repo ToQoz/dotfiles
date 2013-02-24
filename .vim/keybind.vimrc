@@ -1,54 +1,58 @@
-"==========================
-" Command
-"==========================
-set wildmenu
-set wildmode=list:longest
-set completeopt=menu,preview,menuone
-
-"==========================
-" Key binding
-"==========================
 let mapleader=","
+imap <C-G> <Esc>
+vmap <C-G> <Esc>
 " Reload vimrc
 noremap <leader>s :source ~/.vimrc<CR>
 autocmd bufwritepost .vimrc call Pl#Load()
-" noremap n :tabnew<Space>
-" clipboard use in OS
-" set clipboard+=unnamed
-" Esc key map
-imap <C-g> <esc>
-vmap <C-g> <esc>
-nmap j <Plug>(accelerated_jk_gj)
-nmap k <Plug>(accelerated_jk_gk)
+
+" Yank to $
+nmap Y y$
 " Select last pasted
 nnoremap <expr> gp  '`[' . strpart(getregtype(), 0, 1) . '`]'
-" short hand for yank/paste into clipboard
+" Yank/Paste into clipboard {{{
 nnoremap <leader>p "*p
 vnoremap <leader>p "*p
 noremap <leader>y "*y
 vnoremap <leader>y "*y
+" }}}
 
-  "==========================
-  " Use emacs keybind in comand line mode
-  "==========================
-  cnoremap <C-A> <Home>
-  cnoremap <C-E> <End>
-  cnoremap <C-F> <Right>
-  cnoremap <C-B> <Left>
-  cnoremap <C-P> <UP>
-  cnoremap <C-N> <Down>
-  cnoremap <C-k> <C-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<CR>
+" Use emacs keybind in comand line mode {{{
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap <C-F> <Right>
+cnoremap <C-B> <Left>
+cnoremap <C-P> <UP>
+cnoremap <C-N> <Down>
+cnoremap <C-k> <C-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<CR>
+" }}}
 
-" nnoremap <sid>(command-line-enter) q:
-" xnoremap <sid>(command-line-enter) q:
-" nnoremap <sid>(command-line-norange) q:<C-u>
-"
-" nmap :  <sid>(command-line-enter)
-" xmap :  <sid>(command-line-enter)
-
+" Moving tab {{{
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
-" strip space at eof before save
+" }}}
+
+" Strip space at eof before save
 autocmd BufWritePre * :%s/\s\+$//ge
 
+" Rename file
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
+
+" Adjust splitted-window {{{
+" width http://vim-users.jp/2009/07/hack42/
+nnoremap <C-w>h <C-w>h:call <SID>good_width_and_height()<CR>
+nnoremap <C-w>j <C-w>j:call <SID>good_width_and_height()<CR>
+nnoremap <C-w>k <C-w>k:call <SID>good_width_and_height()<CR>
+nnoremap <C-w>l <C-w>l:call <SID>good_width_and_height()<CR>
+
+function! s:good_width_and_height()
+  if winwidth(0) < 80
+    vertical resize 80
+  endif
+endfunction
+" }}}
+
+" Put out search highlight {{{
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+endif
+" }}}

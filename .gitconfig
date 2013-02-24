@@ -1,6 +1,6 @@
 [user]
-  name = Takatoshi Matsumoto
-  email = toqoz403@gmail.com
+	name = Takatoshi Matsumoto
+	email = toqoz403@gmail.com
 [color]
   ui = auto
   status = auto
@@ -20,10 +20,11 @@
 [push]
   default = tracking
 [core]
-  excludesfile = ~/.gitignore_global
+	excludesfile = /Users/toqoz/.gitignore_global
   autocrlf = input
   editor = vim
   quotepath = false
+	precomposeunicode = true
 [alias]
   s    = status -sb
   st   = status
@@ -121,3 +122,9 @@
 
 [include]
   path = ~/private/.gitconfig
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
