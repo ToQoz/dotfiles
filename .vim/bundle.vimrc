@@ -1,10 +1,13 @@
-syntax on
 set nocompatible
 filetype off
+
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim
-  call neobundle#rc(expand('~/.vim/bundle/'))
+  execute 'set runtimepath+=' . expand('~/.vim/bundle/neobundle.vim')
+  syntax enable
 endif
+
+call neobundle#rc(expand('~/.vim/bundle'))
+
 
 NeoBundle 'ruby.vim'
 NeoBundle 'haruyama/scheme.vim'
@@ -21,7 +24,6 @@ NeoBundle 'xmledit'
 
 NeoBundle 'Shougo/neocomplcache'
 NeoBundleLazy 'Shougo/neocomplcache-rsense', {
-      \ 'depends': 'Shougo/neocomplcache',
       \ 'autoload': { 'filetypes': [ 'ruby' ] }
       \ }
 let s:bundle = neobundle#get('neocomplcache-rsense')
@@ -47,7 +49,6 @@ function! s:bundle.hooks.on_source(bundle)
   let g:neocomplcache_source_completion_length['rsense'] = 0
 endfunction
 NeoBundleLazy 'ujihisa/neco-ruby', {
-      \ 'depends': 'Shougo/neocomplcache',
       \ 'autoload': { 'filetypes': [ 'ruby' ] }
       \ }
 NeoBundle 'Shougo/neosnippet'
@@ -55,7 +56,7 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'ervandew/supertab'
 
 NeoBundleLazy 'Shougo/unite.vim' , {
-      \   'autoload' : { 'commands' : [ 'Unite' ] }
+      \ 'autoload': { 'commands' : [ 'Unite' ] }
       \ }
 let s:bundle = neobundle#get('unite.vim')
 function! s:bundle.hooks.on_source(bundle)
@@ -66,7 +67,6 @@ endfunction
 
 NeoBundle 'tsukkee/unite-tag'
 NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'Shougo/unite-ssh'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'Shougo/unite-session'
 NeoBundleLazy 'basyura/unite-rails', {
@@ -74,7 +74,7 @@ NeoBundleLazy 'basyura/unite-rails', {
       \ 'autoload' : { 'filetypes': [ 'ruby', 'eruby', 'haml', 'slim' ] }
       \ }
 
-NeoBundle 'rhysd/unite-ruby-require.vim', {
+NeoBundleLazy 'rhysd/unite-ruby-require.vim', {
       \ 'depends': 'Shougo/unite.vim',
       \ 'autoload': { 'filetypes': [ 'ruby' ] }
       \ }
@@ -113,6 +113,7 @@ function! s:bundle.hooks.on_source(bundle)
   \| call vimshell#altercmd#define('ll', 'ls -l')
   command! Vs :VimShell
 endfunction
+NeoBundle 'vim-scripts/taglist.vim'
 
 NeoBundle 'ujihisa/vimshell-ssh'
 NeoBundle 'Shougo/vimproc', {
@@ -198,8 +199,7 @@ NeoBundle 'aereal/vim-magica-colors'
 NeoBundle 'sickill/vim-monokai'
 NeoBundle 'molokai'
 
-NeoBundle 'grep.vim'
-NeoBundle 'mileszs/ack.vim'
+NeoBundle 'rking/ag.vim'
 NeoBundle 'thinca/vim-qfreplace'
 " Perl/Ruby style regexp notation for Vim
 NeoBundle 'othree/eregex.vim'
@@ -224,7 +224,6 @@ NeoBundle 'tpope/vim-fugitive'
 
 " Visualize your Vim undo tree.
 NeoBundle 'sjl/gundo.vim'
-NeoBundle 'adie/BlockDiff'
 
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'vim-jp/vimdoc-ja'

@@ -31,3 +31,5 @@ GTAGS
 
 # Ctags
 tags
+Doxyfile
+/ignore_memo

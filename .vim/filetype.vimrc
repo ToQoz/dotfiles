@@ -5,9 +5,10 @@
 augroup MyInit
   autocmd!
   " Nginx {{{
-    autocmd BufEnter */nginx/*.conf set ft=nginx
-    autocmd BufEnter */*.nginx.conf set ft=nginx
+  autocmd BufEnter */nginx/*.conf set ft=nginx
+  autocmd BufEnter */*.nginx.conf set ft=nginx
   " }}}
+  autocmd FileType c set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 augroup END
 
 " Ruby

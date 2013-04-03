@@ -1,25 +1,26 @@
-export TERM=xterm-256color
+([ -z $TMUX ] && export TERM=xterm-256color) || export TERM=screen-256color
 export ZSH_D=$HOME/.zsh
 export PRIVATE_D=$HOME/private
 export BREW_HOME=$HOME/brew
 export RBENV_HOME=$HOME/.rbenv
+export GUI_APP=/Applications
 
 # Editor {{{
 if [[ -e "$BREW_HOME/opt/macvim/MacVim.app" ]]; then
   export VIM="$BREW_HOME/opt/macvim/MacVim.app/Contents/MacOS/Vim"
-elif [ -e /Applications/MacVim.app ]; then
-  export VIM='/Applications/MacVim.app/Contents/MacOS/Vim'
+elif [ -e $GUI_APP/MacVim.app ]; then
+  export VIM=$GUI_APP/MacVim.app/Contents/MacOS/Vim
 elif /usr/bin/which -s vim; then
   export VIM=vim
 elif /usr/bin/which -s vi; then
   export VIM=vi
 fi
-if [ -e /Applications/Emacs.app ]; then
-  export EMACS='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+if [ -e $GUI_APP/Emacs.app ]; then
+  export EMACS="$GUI_APP/Emacs.app/Contents/MacOS/Emacs -nw"
 elif /usr/bin/which -s emacs; then
   export EMACS='emacs -nw'
 fi
-export EDITOR=VIM
+export EDITOR=$VIM
 # }}}
 
 # Lang {{{
@@ -33,14 +34,15 @@ export RUBY_HEAP_SLOTS_INCREMENT=1000000
 export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=100000000
 export RUBY_HEAP_FREE_MIN=500000
+
 # Python
 export PYTHONSTARTUP=$HOME/.pythonrc.py
+# REPL
 export RLWRAP_HOME=$HOME/.rlwrap
 
 typeset -Ua fpath
 fpath=(
   $ZSH_D/site-functions(N-/)
-  $ZSH_D/completions(N-/)
   $BREW_HOME/share/zsh-completions(N-/)
   $BREW_HOME/share/zsh/site-functions(N-/)
   $BREW_HOME/share/zsh/functions(N-/)
@@ -97,10 +99,15 @@ path=(
 typeset -U manpath
 manpath=(
   $HOME/local/share/man(N-/)
-  $HOMEBREW_HOME/opt/coreutils/libexec/gnuman(N-/)
-  $HOMEBREW_HOME/share/man(N-/)
+  $BREW_HOME/opt/coreutils/libexec/gnuman(N-/)
+  $BREW_HOME/share/man(N-/)
   /usr/local/share/man(N-/)
   /usr/share/man(N-/)
+)
+
+typeset -Ua perl5lib
+perl5lib=(
+  $BREW_HOME/opt/irssi/lib/perl5/site_perl/darwin-thread-multi-2level(N-/)
 )
 
 if /usr/bin/which -s brew; then
@@ -110,8 +117,15 @@ fi
 
 if [ -d $BREW_HOME/opt/rsense ]; then
   export RSENSE_HOME=$BREW_HOME/opt/rsense/libexec/
-elif [ -d "$HOME/opt/rsense-0.3" ]; then
-  export RSENSE_HOME="$HOME/opt/rsense-0.3"
+elif [ -d $HOME/opt/rsense ]; then
+  export RSENSE_HOME=$HOME/opt/rsense
+elif [ -d /opt/rsense ]; then
+  export RSENSE_HOME=/opt/rsense
+fi
+
+# Normalize commmand name
+if /usr/bin/which -s ack-grep; then
+  alias ack="ack-grep"
 fi
 
 # vim:set ft=zsh:

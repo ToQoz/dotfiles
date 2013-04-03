@@ -1,0 +1,15 @@
+gem() {
+  # call original
+  __gem=`which =gem`
+  $__gem $*
+
+  # rehash
+  if [ "$1" = "install" ] || [ "$1" = "i" ] || [ "$1" = "uninstall" ] || [ "$1" = "uni" ]; then
+    echo '$ rbenv rehash'
+    rbenv rehash
+    echo '$ rehash'
+    rehash
+  fi
+}
+
+# vim:set ft=zsh:

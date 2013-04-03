@@ -1,0 +1,9 @@
+ssh() {
+  if [ $(ssh-add -l | awk '{print $3}' | grep id_rsa | wc -l) -eq 0 ]; then
+    echo 'ssh-add'
+    ssh-add
+  fi
+  $BREW_HOME/bin/ssh $*
+}
+
+# vim:set ft=zsh:

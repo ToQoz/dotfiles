@@ -1,0 +1,12 @@
+brew() {
+  if [ "$1" = "smart_upgrade" ]; then
+    =brew update && =brew upgrade --outdated
+  elif [ "$1" = "install" ] || [ "$1" = "uninstall" ]; then
+    =brew $*
+    rehash
+  else
+    =brew $*
+  fi
+}
+
+# vim:set ft=zsh:

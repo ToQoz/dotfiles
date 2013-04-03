@@ -1,0 +1,7 @@
+rezeus() {
+  rm .zeus.sock || true
+  ps -ef | grep zeus | awk ' { print $2 } ' | xargs kill || true
+  =zeus start
+}
+
+# vim:set ft=zsh:

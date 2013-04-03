@@ -1,11 +1,5 @@
 " Unite {{{
 noremap <C-_> :Unite -buffer-name=files buffer file_mru bookmark file<CR>
-" quit when press esc twice
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-" open with split when open file
-au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
 
 nnoremap [unite] <Nop>
 nmap <C-x> [unite]
@@ -25,6 +19,27 @@ nnoremap <silent> [unite]m  :<C-u>Unite file_mru<CR>
 " show register list
 nnoremap <silent> [unite]y :Unite -buffer-name=register register<CR>
 " }}}
+
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()
+  " 入力モードのときjjでノーマルモードに移動
+  " 入力モードのときctrl+wでバックスラッシュも削除
+  imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
+  " ctrl+jで縦に分割して開く
+  nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+  inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+  " ctrl+jで横に分割して開く
+  nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+  inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+  " ctrl+oでその場所に開く
+  nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
+  inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
+  " quit when press esc twice
+  nmap <buffer> q i_<Plug>(unite_exit)
+  nmap <buffer> <C-g> <Plug>(unite_insert_leave)
+  imap <buffer> <C-g> <Plug>(unite_insert_leave)
+endfunction
+
 
 " Unite session {{{
 nnoremap [unite]s :UniteSessionSave<Space>
@@ -128,6 +143,7 @@ let g:ctrlp_map = '<leader>f'
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+set wildignore+=*/vendor/bundles/*
 
 let g:ctrlp_custom_ignore = {
       \ 'dir':  '\v[\/]\.(git|hg|svn)$',
@@ -217,3 +233,9 @@ noremap <leader>rq :Unite ruby/require <CR>
 
 " vim-surround
 let g:surround_no_insert_mappings = 1
+
+let Tlist_Ctags_Cmd = "/Users/toqoz/brew/bin/ctags"
+let Tlist_Show_One_File = 1
+let Tlist_Use_Right_Window = 1
+let Tlist_Inc_Winwidth = 10
+map <silent> <leader>tl :TlistToggle<CR>

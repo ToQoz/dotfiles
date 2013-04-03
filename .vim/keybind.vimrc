@@ -5,6 +5,9 @@ vmap <C-G> <Esc>
 noremap <leader>s :source ~/.vimrc<CR>
 autocmd bufwritepost .vimrc call Pl#Load()
 
+" Back tag stack
+nmap <C-b> :po<CR>
+
 " Yank to $
 nmap Y y$
 " Select last pasted
@@ -32,7 +35,7 @@ nnoremap <S-Tab> gT
 " }}}
 
 " Strip space at eof before save
-autocmd BufWritePre * :%s/\s\+$//ge
+autocmd BufWritePre * :%s/\s\+$//gce
 
 " Rename file
 command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
@@ -45,8 +48,11 @@ nnoremap <C-w>k <C-w>k:call <SID>good_width_and_height()<CR>
 nnoremap <C-w>l <C-w>l:call <SID>good_width_and_height()<CR>
 
 function! s:good_width_and_height()
-  if winwidth(0) < 80
-    vertical resize 80
+  let current_buf_ft = &filetype
+  if  current_buf_ft != 'taglist' && current_buf_ft != 'unite'
+    if winwidth(0) < 80
+      vertical resize 80
+    endif
   endif
 endfunction
 " }}}

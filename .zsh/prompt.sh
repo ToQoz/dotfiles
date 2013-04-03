@@ -49,28 +49,30 @@ setopt transient_rprompt
 autoload -Uz vcs_info
 
 precmd () {
+  local ruby_version \
+        current_working_directory \
+        current_branch \
+        vcs_prompt \
+        psvar
+
+  ruby_version=`rbenv version | sed -e 's/ .*//'`
+  current_working_directory="%~"
+  current_branch=$(rprompt-git-current-branch)
   # VCS info
   psvar=()
   LANG=en_US.UTF-8 vcs_info
   psvar[1]=$vcs_info_msg_0_
-
-  if [ "`rprompt-git-current-branch`" = "" ]; then
-      VCS_PROMPT="%f%1v "
+  if [ "$current_branch" = "" ]; then
+    vcs_prompt="%f%1v "
   else
-      VCS_PROMPT="`rprompt-git-current-branch`"
+    vcs_prompt="$current_branch"
   fi
 
   # Left prompt. -> Output
-  PROMPT="%{$fg[green]%}$USER%{$reset_color%}"
-  PROMPT="$PROMPT at %{$fg[blue]%}$HOST%{$reset_color%}"
-  PROMPT="$PROMPT in %{$fg[yellow]%}%~%{$reset_color%}"
-  PROMPT="$PROMPT on $VCS_PROMPT%{$reset_color%}"
-  PROMPT="$PROMPT "$'\n'"%{$fg[magenta]%}✘╹◡╹✘ %{$reset_color%}"
-  PROMPT="$PROMPT %(!.#.$) %{$reset_color%}"
+  PROMPT="%{$fg[red]%}(rbenv:$ruby_version)%{$reset_color%}"
+  PROMPT="$PROMPT $vcs_prompt%{$reset_color%}"
+  PROMPT="$PROMPT "$'\n'"$USER> %(!.#.$) %{$reset_color%}"
 
   # Right prompt. -> Output.
-  RPROMPT="%{$fg[red]%}(rbenv:`rbenv version | sed -e 's/ .*//'`)%{$reset_color%}"
+  RPROMPT="[${current_working_directory}]"
 }
-
-setopt correct
-SPROMPT="%r ??? [nyae]?"

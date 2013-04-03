@@ -1,0 +1,7 @@
+mosh() {
+  =mosh --server="LANG=$LANG mosh-server" $@
+}
+
+compdef mosh=ssh
+
+# vim:set ft=zsh:

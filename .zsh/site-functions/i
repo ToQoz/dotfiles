@@ -1,0 +1,3 @@
+i() {
+  env NODE_NO_READLINE=1 relwrap $1
+}

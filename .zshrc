@@ -1,29 +1,40 @@
+# Use git completion in zsh not git's own one.
+# http://qiita.com/items/5be55843ee615f56ebf6
+test -e $BREW_HOME/share/zsh/site-functions/_git && rm $BREW_HOME/share/zsh/site-functions/_git
+
 # Z.sh {{{
 _Z_CMD=j
 source $BREW_HOME/etc/profile.d/z.sh
-function precmd () {
+precmd () {
   _z --add "$(pwd -P)"
 }
-# }}}
-# Antigen {{{
-source ~/.zsh/antigen/antigen.zsh
-antigen-bundle hchbaw/auto-fu.zsh
-antigen-bundle bundler
-antigen-apply
 # }}}
 
 bindkey -e
 export GIT_PS1_SHOWDIRTYSTATE=true
 
+autoload -Uz zmv
+autoload -Uz ssh
+autoload -Uz gem
+autoload -Uz pcolor
+autoload -Uz rezeus
+autoload -Uz brew
+autoload -Uz easytether
+autoload -Uz launchctl
+autoload -Uz i
+
 # History {{{
 # print elapsed time when more than 10 seconds
 export REPORTTIME=10
 export HISTFILE=$HOME/.zsh_history
-export HISTSIZE=1000
-export SAVEHIST=1000
+export HISTSIZE=10000
+export SAVEHIST=10000
+setopt append_history
+setopt inc_append_history
+setopt share_history
 # }}}
 
-#setopt extended_glob
+setopt extended_glob
 setopt transient_rprompt
 # completion of `cd -`
 setopt auto_pushd
@@ -36,11 +47,23 @@ autoload -U compinit; compinit
 
 ## Menu
 zstyle ':completion:*:default' menu select=2
+## Grouping
+zstyle ':completion:*' format '%F{magenta}-- %d --%f'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:options' description yes
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:corrections' format ' %F{yellow}-- %d (errors: %e) --%f'
+zstyle ':completion:*:descriptions' format ' %F{magenta}-- %d --%f'
+zstyle ':completion:*:messages' format ' %F{blue}-- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
 ## Colorize
 zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
 ## Cache
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path "${ZDOTDIR:-$HOME}/.zcompcache"
+## Verbose
+zstyle ':completion:*' verbose yes
 ## Fuzzy completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} r:|[._-]=*'
 zstyle ':completion:*' completer _oldlist _complete _match _ignored _approximate _prefix
@@ -51,10 +74,12 @@ zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
 zstyle ':completion:*:cd:*' tag-order local-directories path-directories
 ## Ignore current directory
 zstyle ':completion:*' ignore-parents parent pwd
-
-## Init auto-fu
-zle-line-init () { auto-fu-init; }
-zle -N zle-line-init
+## Process
+zstyle ':completion:*:*:*:*:processes' command 'ps -u $USER -o pid,user,comm -w'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;36=0=01'
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:*:kill:*' force-list always
+zstyle ':completion:*:*:kill:*' insert-ids single
 
 ## Undo/Redo
 bindkey "^[u" undo
@@ -72,48 +97,38 @@ insert-last-command-output() {
 zle -N insert-last-command-output
 bindkey "^[l" insert-last-command-output
 
+# I am chicken
 alias del='rm'
-alias rm="rm -i"
+rm() { mv $1 ~/.Trash }
 alias move='mv'
 alias mv="mv -vi"
+
+# Useful ls
 alias ls="ls --color=auto -F"
 alias la="ls -a"
 alias ll="ls -l"
 alias lla="ls -la"
 alias dir='ls -ltr'
-# attach to an existing tmux session, or create one if none exist
-# also set up access to the system clipboard from within tmux when possible
-tmuxx() {
-  if [[ ( $OSTYPE == darwin* ) && ( -x $(which reattach-to-user-namespace 2>/dev/null) ) ]]; then
-    # on OS X force tmux's default command to spawn a shell in the user's namespace
-    # https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard
-    tweaked_config=$(cat $HOME/.tmux.conf <(echo 'set-option -g default-command "reattach-to-user-namespace -l $SHELL"'))
 
-    TMUX_USE_CLIPBOARD=on tmux -f <(echo "$tweaked_config") new-session
-  else
-    tmux new-session
-  fi
-}
-
-if [ -d /Applications/Xcode.app ]; then
-  alias 'isim'='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app'
+# Ios Simulator
+if [ -d $GUI_APP/Xcode.app ]; then
+  alias isim="open $GUI_APP/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app"
 fi
-alias vi=$VIM
-alias vim=$VIM
-svim() { vim sudo:$1; }
+
 # Emacs
 alias emacs=$EMACS
-# Repl Wrap {{{
-  alias inode="env NODE_NO_READLINE=1 rlwrap node"
-  alias icoffee="env NODE_NO_READLINE=1 rlwrap coffee"
-  alias iocaml="env NODE_NO_READLINE=1 rlwrap ocaml"
-# }}}
-if /usr/bin/which -s ack-grep; then
-  alias ack="ack-grep"
-fi
+# Vim
+vi() {
+  if [ -n "$TMUX" ] && /usr/bin/which -s reattach-to-user-namespace; then
+    reattach-to-user-namespace -l "$VIM" "$@"
+  else
+    "$VIM" "$@"
+  fi
+}
+vim() { vi }
+svim() { vi sudo:$1; }
 
-[[ "$TMUX" != "" ]] && alias launchctl="ssh 127.0.0.1 launchctl"
-
+# Global alias {{{
 alias -g L='| less'
 alias -g H='| head'
 alias -g T='| tail'
@@ -122,40 +137,35 @@ alias -g S='| sed'
 alias -g A='| awk'
 alias -g W='| wc'
 alias -g P='| percol'
+# }}}
 
-function 256colortest() {
-    local code
-    for code in {0..255}; do
-        echo -e "\e[38;05;${code}m $code: Test"
-    done
+# Filetype based alias {{{
+function extract() {
+  case $1 in
+    *.tar.gz|*.tgz) tar xzvf $1;;
+    *.tar.xz) tar Jxvf $1;;
+    *.zip) unzip $1;;
+    *.lzh) lha e $1;;
+    *.tar.bz2|*.tbz) tar xjvf $1;;
+    *.tar.Z) tar zxvf $1;;
+    *.gz) gzip -dc $1;;
+    *.bz2) bzip2 -dc $1;;
+    *.Z) uncompress $1;;
+    *.tar) tar xvf $1;;
+    *.arj) unarj $1;;
+  esac
 }
-
-function pcolor() {
-    for ((f = 0; f < 255; f++)); do
-        printf "\e[38;5;%dm %3d#\e[m" $f $f
-        if [[ $f%8 -eq 7 ]] then
-            printf "\n"
-        fi
-    done
-    echo
-}
-
-function rezeus() {
-    rm .zeus.sock || true
-    ps -ef | grep zeus | awk ' { print $2 } ' | xargs kill || true
-    =zeus start
-}
-source $ZSH_D/prompt.sh
-# optional
-test -f $ZSH_D/easytether.sh && source ~/.zsh/easytether.sh
-# private
-test -f $PRIVATE_D/.zshrc && source$$PRIVATE_D/.zshrc
+alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
+# }}}
 
 if /usr/bin/which -s rbenv; then
-  eval "$(rbenv init - zsh)"
+  eval "$(rbenv init - --no-rehash)"
 fi
 
-if [ "$(ssh-add -l | awk '{print $3}' | grep id_rsa | wc -l)" = 0 ]; then
-  echo 'ssh-add'
-  ssh-add
-fi
+source $ZSH_D/prompt.sh
+
+# private
+test -f $PRIVATE_D/.zshrc && source $PRIVATE_D/.zshrc
+
+# delete keybind for ctrl + j(for aquaskk)
+bindkey -r "^J"
