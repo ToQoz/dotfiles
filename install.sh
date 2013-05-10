@@ -11,7 +11,9 @@ operation() {
 
     case "${OSTYPE}" in
     darwin*)
-        setup_keyremap4macbook
+        # setup_keyremap4macbook
+        setup_basic
+        setup_neobundle
         ;;
     linux*)
         ;;
@@ -48,8 +50,8 @@ setup_basic() {
 }
 
 setup_neobundle() {
-    cd ~/.vim/bundle
-    git clone git://github.com/Shougo/neobundle.vim.git
+  [ -d ~/.vim/bundle ] || mkdir -p ~/.vim/bundle
+  git clone git://github.com/Shougo/neobundle.vim.git ~/.vim/bundle/neobundle.vim
 }
 
 # for osx
