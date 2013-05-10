@@ -61,3 +61,5 @@ augroup VimrcAutoMkdir
   endfunction
 augroup END
 " }}}
+
+set nowrap

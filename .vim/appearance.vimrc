@@ -102,7 +102,8 @@ endif
 
 if &term =~ '256color'
   set t_Co=256
-  colorscheme Monokai
+  colorscheme solarized
+  set bg=dark
   set t_Sf=[3%dm
   set t_Sb=[4%dm
 else
@@ -123,6 +124,7 @@ augroup cch
   autocmd WinLeave * set nocursorline
   autocmd WinEnter,BufRead * set cursorline
 augroup END
+
 " highlight { }
 set showmatch
 

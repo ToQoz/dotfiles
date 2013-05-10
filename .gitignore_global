@@ -20,6 +20,7 @@
 
 # Ruby
 /vendor/bundles
+/vendor/gems
 /.bundle
 .rake_tasks
 

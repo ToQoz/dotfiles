@@ -1,0 +1,9 @@
+isim() {
+  if [ -d $GUI_APP/Xcode.app ]; then
+    open "$GUI_APP/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone Simulator.app"
+  else
+    echo 'You have not installed Xcode'
+  fi
+}
+
+# vim:set ft=zsh:

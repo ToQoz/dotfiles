@@ -1,11 +1,30 @@
+# Skip global compinit on ubuntu systems.
+skip_global_compinit=true
+
+# Term
 ([ -z $TMUX ] && export TERM=xterm-256color) || export TERM=screen-256color
+# Dir {{{
 export ZSH_D=$HOME/.zsh
 export PRIVATE_D=$HOME/private
 export BREW_HOME=$HOME/brew
 export RBENV_HOME=$HOME/.rbenv
 export GUI_APP=/Applications
+if [ -d $BREW_HOME/opt/rsense ]; then
+  export RSENSE_HOME=$BREW_HOME/opt/rsense/libexec/
+elif [ -d $HOME/opt/rsense ]; then
+  export RSENSE_HOME=$HOME/opt/rsense
+elif [ -d /opt/rsense ]; then
+  export RSENSE_HOME=/opt/rsense
+fi
+# }}}
+
+if /usr/bin/which -s brew; then
+  export LDFLAGS="-L$BREW_HOME/lib $CFLAGS"
+  export CPPFLAGS="-isystem $BREW_HOME/include $CPPFLAGS"
+fi
 
 # Editor {{{
+## Vim
 if [[ -e "$BREW_HOME/opt/macvim/MacVim.app" ]]; then
   export VIM="$BREW_HOME/opt/macvim/MacVim.app/Contents/MacOS/Vim"
 elif [ -e $GUI_APP/MacVim.app ]; then
@@ -15,11 +34,15 @@ elif /usr/bin/which -s vim; then
 elif /usr/bin/which -s vi; then
   export VIM=vi
 fi
+
+## Emacs
 if [ -e $GUI_APP/Emacs.app ]; then
   export EMACS="$GUI_APP/Emacs.app/Contents/MacOS/Emacs -nw"
 elif /usr/bin/which -s emacs; then
   export EMACS='emacs -nw'
 fi
+
+## Standard Editor
 export EDITOR=$VIM
 # }}}
 
@@ -40,6 +63,7 @@ export PYTHONSTARTUP=$HOME/.pythonrc.py
 # REPL
 export RLWRAP_HOME=$HOME/.rlwrap
 
+# PATH {{{
 typeset -Ua fpath
 fpath=(
   $ZSH_D/site-functions(N-/)
@@ -61,6 +85,7 @@ user_path=(
   $HOME/bin/private
   $HOME/scripts(N-/)
   $HOME/local/bin
+  $HOME/opt/*/(s|)bin(N-/)
 )
 brew_path=(
   $BREW_HOME/opt/coreutils/libexec/gnubin(N-/)
@@ -78,6 +103,7 @@ cabal_path=(
 system_path=(
   /usr/local/bin(N-/)
   /usr/bin(N-/)
+  /opt/*/(s|)bin(N-/)
   /bin(N-/)
 )
 sudo_path=(
@@ -109,18 +135,13 @@ typeset -Ua perl5lib
 perl5lib=(
   $BREW_HOME/opt/irssi/lib/perl5/site_perl/darwin-thread-multi-2level(N-/)
 )
+# }}}
 
-if /usr/bin/which -s brew; then
-  export LDFLAGS="-L$BREW_HOME/lib $CFLAGS"
-  export CPPFLAGS="-isystem $BREW_HOME/include $CPPFLAGS"
-fi
-
-if [ -d $BREW_HOME/opt/rsense ]; then
-  export RSENSE_HOME=$BREW_HOME/opt/rsense/libexec/
-elif [ -d $HOME/opt/rsense ]; then
-  export RSENSE_HOME=$HOME/opt/rsense
-elif [ -d /opt/rsense ]; then
-  export RSENSE_HOME=/opt/rsense
+# alias on tmux
+if [ -n "$TMUX" ]; then
+  alias pbcopy='ssh 0.0.0.0 pbcopy'
+  alias pbpaste='ssh 0.0.0.0 pbpaste'
+  alias launchctl='ssh 0.0.0.0 =launchctl'
 fi
 
 # Normalize commmand name

@@ -51,7 +51,7 @@ endfunction
 NeoBundleLazy 'ujihisa/neco-ruby', {
       \ 'autoload': { 'filetypes': [ 'ruby' ] }
       \ }
-NeoBundle 'Shougo/neosnippet'
+" NeoBundle 'Shougo/neosnippet'
 " Perform all your vim insert mode completions with Tab
 NeoBundle 'ervandew/supertab'
 
@@ -172,9 +172,7 @@ NeoBundleLazy 'tpope/vim-endwise', {
 NeoBundleLazy 'taq/vim-rspec', {
       \ 'autoload' : { 'filetypes': [ 'ruby' ] }
       \ }
-NeoBundleLazy 'tpope/vim-rails', {
-      \ 'autoload' : { 'filetypes': [ 'ruby', 'eruby', 'haml', 'slim' ] }
-      \ }
+NeoBundle 'tpope/vim-rails'
 NeoBundleLazy 'tpope/vim-cucumber', {
       \ 'autoload': { 'filetypes': [ 'ruby' ] }
       \ }

@@ -1,7 +1,0 @@
-launchctl() {
-  if [ -n "$TMUX" ]; then
-    ssh 0.0.0.0 =launchctl $@
-  else
-    =launchctl $@
-  fi
-}

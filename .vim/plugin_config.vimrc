@@ -139,7 +139,9 @@ let g:jscomplete_use = ['dom', 'moz']
 "------------------------------------
 " CtrlP
 "------------------------------------
-let g:ctrlp_map = '<leader>f'
+let g:ctrlp_map = '<C-q>'
+nmap <C-p> :CtrlP<cr>
+imap <C-p> <esc>:CtrlP<cr>
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
