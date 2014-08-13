@@ -50,7 +50,6 @@ export LC_All=ja_JP.UTF-8
 # }}}
 
 export DOCKER_HOST="tcp://"
-export GITHUB_USER="ToQoz"
 export ANDROID_SDK_ROOT="$HOME/opt/android-sdk"
 export GISTY_DIR="$HOME/dev/gists"
 export GNULIB_SRCDIR=$HOME/dev/coreutils/gnulib

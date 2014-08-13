@@ -221,7 +221,7 @@ goinit() {
     return 2
   fi
 
-  local user="$GITHUB_USER"
+  local user=$(git config github.user)
   if [ -z $user ]; then
     user=$(whoami)
   fi
