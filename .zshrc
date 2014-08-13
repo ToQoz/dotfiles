@@ -35,8 +35,9 @@ fi
 # Use git completion in zsh not git's own one.
 # http://qiita.com/items/5be55843ee615f56ebf6
 test -e $BREW_HOME/share/zsh/site-functions/_git && rm $BREW_HOME/share/zsh/site-functions/_git
+
 # http://toqoz.hateblo.jp/entry/2013/11/26/115824
-test $(ssh-add -l | grep "/Users/toqoz/.ssh/id_rsa" | wc -l) = 0 && ssh-add
+test $(ssh-add -l | grep "$HOME/.ssh/id_rsa" | wc -l) = 0 && ssh-add
 
 bindkey -e
 
