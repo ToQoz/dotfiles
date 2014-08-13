@@ -41,7 +41,7 @@ elif /usr/bin/which -s vi; then
 fi
 
 ## Standard Editor
-export EDITOR=vim
+export EDITOR=$VIM_E
 # }}}
 
 # Lang {{{
