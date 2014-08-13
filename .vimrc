@@ -273,10 +273,7 @@ NeoBundle 'tpope/vim-rails'
 " Golang
 NeoBundle 'dgryski/vim-godef'
 NeoBundle 'Blackrush/vim-gocode'
-execute 'set rtp+=' . s:goroot . '/misc/vim'
-let g:gofmt_command = "goimps fmt"
-nnoremap <leader>f  :Import fmt<CR>
-nnoremap <leader>F  :Drop fmt<CR>
+NeoBundle 'vim-jp/go-vim'
 execute 'set rtp+=' . s:gopath . '/src/github.com/golang/lint/misc/vim'
 execute 'set rtp+=' . s:gopath . '/src/github.com/ToQoz/goimps/misc/vim'
 NeoBundle 'ToQoz/vim-go-drop-unused-imports'
@@ -458,6 +455,12 @@ if neobundle#tap('vim-altercmd') " {{{
     AlterCommand wq GWQ
     AlterCommand GWQ wq   
   endif
+endif " }}}
+
+if neobundle#tap('go-vim') " {{{
+  let g:gofmt_command = "goimps fmt"
+  nnoremap <leader>f  :Import fmt<CR>
+  nnoremap <leader>F  :Drop fmt<CR>
 endif " }}}
 
 execute 'colorscheme ' . s:colorscheme
