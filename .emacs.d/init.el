@@ -1,6 +1,5 @@
 ;; add load path
 (add-to-list 'load-path (expand-file-name "~/.emacs.d"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/elisp"))
 
 ; set japanese
 (set-language-environment 'Japanese)
@@ -14,6 +13,10 @@
 (setq auto-save-default nil)
 ; [for mac] use option for meta key
 (setq mac-option-modifier 'meta)
+
+; disble auto fill
+; http://d.hatena.ne.jp/overlast/20071117/1195258595
+(setq text-mode-hook 'turn-off-auto-fill)
 
 ; font setting
 ; (set-frame-font "Menlo for Powerline:h11")
@@ -48,7 +51,7 @@
 ;; (nyan-mode)
 ;; (nyan-start-animation)
 
-(set-frame-parameter nil 'alpha 90)
+; (set-frame-parameter nil 'alpha 90)
 
 (global-set-key (kbd "M-<RET>") 'ns-toggle-fullscreen)
 
@@ -57,8 +60,34 @@
 (global-set-key (kbd "C-o") 'ctl-o-map)
 (define-key ctl-o-map (kbd "C-e") 'eval-current-buffer)
 
-(when (require 'auto-install nil t)
-  (setq auto-install-directory "~/.emacs.d/elisp/")
-  (auto-install-update-emacswiki-package-name t)
-  (setq auto-install-use-wget t)
-  (auto-install-compatibility-setup))
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+    (url-retrieve-synchronously
+      "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get/recipes")
+
+(el-get 'sync
+	'(el-get
+	  ddskk
+	  ))
+
+;; ddskk
+(require 'skk-setup)
+(require 'skk)
+
+; tutorial file
+(setq skk-tut-file "~/.emacs.d/el-get/ddskk/etc/SKK.tut")
+
+; dict
+(setq skk-jisyo "~/.emacs.d/el-get/ddskk/et/SKK-JISYO.L")
+(setq skk-backup-jisyo "~/.emacs.d/el-get/ddskk/etc/SKK-JISYO.L.backup")
+
+(require 'info)
+(add-to-list 'Info-additional-directory-list "~/.emacs.d/info")
+
+(setq confirm-kill-emacs 'y-or-n-p)

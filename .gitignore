@@ -5,3 +5,6 @@
 /.vim/undo
 /.vim/.eskk
 /.vim/.netrwhist
+
+/.emacs.d/auto-save-list
+/.emacs.d/el-get
