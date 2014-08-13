@@ -1,0 +1,5 @@
+;; vim:ft=scheme:fenc=euc-jp
+
+(define default-im-name 'skk)
+(define skk-use-skkserv? #t)
+(define skk-use-with-vi? #t)
