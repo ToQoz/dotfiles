@@ -1,6 +1,42 @@
+[ -z "$UIM_FEP_PID" ] && exec uim-fep -e "$SHELL" "-l"
+
+export COREUTILS_EXIST=false
+if [ -d $BREW_HOME/opt/coreutils ]; then
+  COREUTILS_EXIST=true
+fi
+
+export FINDUTILS_EXIST=false
+if [ -d $BREW_HOME/opt/findutils ]; then
+  FINDUTILS_EXIST=true
+fi
+
+export BINUTILS_EXIST=false
+if [ -d $BREW_HOME/opt/binutils ]; then
+  BINUTILS_EXIST=true
+fi
+
+export REATTACH_TO_USER_NAMESPACE_EXIST=false
+if /usr/bin/which -s reattach-to-user-namespace; then
+  REATTACH_TO_USER_NAMESPACE_EXIST=true
+fi
+
+export RBENV_EXIST=false
+if /usr/bin/which -s rbenv; then
+  RBENV_EXIST=true
+fi
+
+export Z_EXIST=false
+if [ -e $BREW_HOME/etc/profile.d/z.sh ]; then
+  Z_EXIST=true
+fi
+
+[ -d $RSENSE_HOME ] || echo "Rsense not found"
+
 # Use git completion in zsh not git's own one.
 # http://qiita.com/items/5be55843ee615f56ebf6
 test -e $BREW_HOME/share/zsh/site-functions/_git && rm $BREW_HOME/share/zsh/site-functions/_git
+# http://toqoz.hateblo.jp/entry/2013/11/26/115824
+test $(ssh-add -l | grep "/Users/toqoz/.ssh/id_rsa" | wc -l) = 0 && ssh-add
 
 bindkey -e
 
@@ -31,9 +67,14 @@ export REPORTTIME=10
 export HISTFILE=$HOME/.zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
+
+
+setopt complete_aliases
 setopt \
+  extended_history \
   append_history \
   inc_append_history \
+  hist_ignore_dups \
   share_history
 # }}}
 
@@ -88,39 +129,133 @@ zstyle ':completion:*:*:kill:*' insert-ids single
 zstyle ':vcs_info:git:*:-all-' command =git
 
 # Alias {{{
-## I am chicken
-alias rm="gmv -f --backup=numbered --target-directory ~/.Trash"
-alias mv="mv -vi"
+
+ok() {
+  local y
+
+  echo -n "[n]/Y "
+  read y
+  case "$y" in
+    "y"|"yes"|"Y"|"Yes")
+      return 0
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
+
+## coreutils
+alias_to_cmd_to_coreutils() {
+  alias ls="gls --color=auto -F"
+  alias rm="gmv -f --backup=numbered --target-directory ~/.Trash"
+  alias mv="gmv -vi"
+  alias ls="gls --color=auto -F"
+}
+$COREUTILS_EXIST || echo 'coreutils is not installed'
+$COREUTILS_EXIST && alias_to_cmd_to_coreutils
+
+## findutils
+alias_to_cmd_to_findutils() {
+  alias find='gfind'
+  alias xargs='gxargs'
+  alias locate='glocate'
+  alias updatedb='LC_ALL="C" sudo gupdatedb'
+}
+$FINDUTILS_EXIST || echo 'findutils is not installed'
+$FINDUTILS_EXIST && alias_to_cmd_to_findutils
+
+## binutils
+alias_to_cmd_to_binutils() {
+  alias size='gsize'
+}
+$BINUTILS_EXIST  || echo 'binutils is not installed'
+$BINUTILS_EXIST && alias_to_cmd_to_binutils
 
 ## Useful ls
-alias ls="ls --color=auto -F"
-alias l="ls"
 alias la="ls -a"
 alias ll="ls -l"
 alias lla="ls -la"
+
+alias hr="ruby -e \"puts '-' * $(tput cols)\""
 
 ## Useful bundler
 alias b='bundle'
 alias bi='bundle install'
 alias bu='bundle update'
 alias be='bundle exec'
-alias sp='spring'
 
-alias ftoday="date +%Y_%m_%d"
-
-## Emacs
-alias emacs=$EMACS
-
-## Vim
-if [ -n $TMUX ] && /usr/bin/which -s reattach-to-user-namespace; then
-  alias vim="reattach-to-user-namespace -l $VIM"
-else
-  alias vim=$VIM
-fi
+## Useful Vim
+alias vim=$VIM_E
 alias vi=vim
 svim() { vim sudo:$1; }
 
-## Global
+## Useful ag
+alias ag='ag -S --stats'
+alias agh='ag --hidden'
+
+## :)
+alias fdate="date +%Y-%m-%d"
+alias ggit="open -a SourceTree"
+
+## Golang {{{
+alias g='cd $(anything-gorepo)'
+alias gofmtall="git ls-tree --name-only -r HEAD | grep .go$ | xargs gofmt -w"
+
+gocovern() {
+  local cov="/tmp/gocover.$$.out"
+  go test -covermode=count -coverprofile=$cov $@ && go tool cover -html=$cov
+  unlink $cov
+}
+
+gorunn() {
+  local f="/tmp/gorun.$$.go"
+  cat > $f
+  go run $f
+  unlink $f
+}
+
+goinit() {
+  if [ -z $1 ]; then
+    echo "goinit require repo name" >> /dev/stderr
+    return 2
+  fi
+
+  local user="$GITHUB_USER"
+  if [ -z $user ]; then
+    user=$(whoami)
+  fi
+
+  local repo="$GOPATH/src/github.com/$user/$1"
+  if [ ls $repo 2> /dev/null ]; then
+    echo "$repo is already exists" >> /dev/stderr
+    return 2
+  fi
+
+  mkdir -p $repo &&
+    cd $repo &&
+    git init &&
+    git commit --allow-empty -m 'Initial commit'
+}
+# }}}
+
+alias_for_etc_on_tmux() {
+  add-zsh-hook precmd update-window-title-precmd
+  add-zsh-hook preexec update-window-title-preexec
+
+  $REATTACH_TO_USER_NAMESPACE_EXIST || echo 'reattach-to-user-namespace is not installed'
+  
+  $REATTACH_TO_USER_NAMESPACE_EXIST && alias vim="reattach-to-user-namespace -l $VIM_E"
+  $REATTACH_TO_USER_NAMESPACE_EXIST && alias vimr="reattach-to-user-namespace -l $VIM_E  -c ':Unite file_mru'"
+  $REATTACH_TO_USER_NAMESPACE_EXIST && alias gvim="reattach-to-user-namespace -l gvim"
+
+  alias pbcopy="ssh 127.0.0.1 pbcopy"
+  alias pbpaste='ssh 0.0.0.0 pbpaste'
+  alias launchctl="ssh 127.0.0.1 launchctl"
+}
+[ -z $TMUX ] || alias_for_etc_on_tmux
+
+## Global alias
 alias -g L='| less'
 alias -g H='| head'
 alias -g T='| tail'
@@ -130,7 +265,7 @@ alias -g A='| awk'
 alias -g W='| wc'
 alias -g P='| percol'
 
-## Filetype based alias
+## Filetype based alias {{{
 extract() {
   case $1 in
     *.tar.gz|*.tgz) tar xzvf $1;;
@@ -150,8 +285,7 @@ alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
 # }}}
 
 # Keybind {{{
-## Undo/Redo
-bindkey "^[u" undo
+## Redo(Undo is C-/)
 bindkey "^[r" redo
 
 ##
@@ -171,42 +305,77 @@ bindkey "^[l" insert-last-command-output
 bindkey -r "^J"
 # }}}
 
-# {{{
+
+set-window-title() {
+  echo -ne ""\e]2;$1\a""
+}
+
+set-tab-title() {
+  echo -ne ""\e]1;$1\a""
+}
+
+set-tab-and-window-title() {
+  echo -ne "\e]0;$1\a"
+}
+
+update-window-title-precmd() {
+  set-tab-and-window-title `history | tail -1 | cut -b8-`
+}
+
+update-window-title-preexec() {
+  emulate -L zsh
+  setopt extended_glob
+
+  # skip ENV=settings, sudo, ssh; show first distinctive word of command;
+  # mostly stolen from:
+  #   https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/termsupport.zsh
+  set-tab-and-window-title ${2[(wr)^(*=*|ssh|sudo)]}
+}
+
+# Prompt {{{
 update_prompt() {
   local ruby_version \
         current_working_directory \
         current_branch \
+        git_status \
+        git_ahead \
+        git_behind \
+        branch_pos \
+        goinfo \
+        newline \
         vcs_prompt
 
+  # goinfo="(GOPATH:$(echo $GOPATH | sed -e "s,$HOME,~,g") GOROOT:$(echo $GOROOT | sed -e "s,$HOME,~,g"))"
+  # skip GOROOT, if you want to see, exec `go env`.
+  goinfo="(GOPATH:$(echo $GOPATH | sed -e "s,$HOME,~,g"))"
   ruby_version=$(rbenv version-name)
   current_working_directory="%~"
   current_branch=$(git_info)
+  newline=$'\n'
 
   # Left prompt. -> Output
-  PROMPT="[${current_working_directory}] $current_branch"
-  PROMPT="$PROMPT "$'\n'"$USER> %(!.#.$) %{$reset_color%}"
+  PROMPT="[${current_working_directory}] $current_branch ${branch_pos}"
+  PROMPT="$PROMPT "$newline"$USER> %(!.#.$) %{$reset_color%}"
 
   # Right prompt. -> Output.
-  RPROMPT="%{$fg[red]%}(rbenv:$ruby_version)%{$reset_color%}"
+  RPROMPT="%{$fg[red]%}(ruby:$ruby_version)%{$reset_color%}"
+  RPROMPT="$RPROMPT %{$fg[blue]%}$goinfo %{$reset_color%}"
 }
 add-zsh-hook precmd update_prompt
 # }}}
 
 # External {{{
 ## z.sh
-if [ -e $BREW_HOME/etc/profile.d/z.sh ]; then
+setup_z() {
   _Z_CMD=j
   source $BREW_HOME/etc/profile.d/z.sh
   precmd () {
     _z --add "$(pwd -P)"
   }
-fi
+}
+$Z_EXIST && setup_z
 
-## rbenv
-if /usr/bin/which -s rbenv; then
-  eval "$(rbenv init - --no-rehash)"
-fi
-# }}}
+$RBENV_EXIST && eval "$(rbenv init - zsh --no-rehash)"
 
 # private {{{
 test -e $PRIVATE_D/.zshrc && source $PRIVATE_D/.zshrc
