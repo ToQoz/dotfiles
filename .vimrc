@@ -181,7 +181,7 @@ autocmd MyAutoCmds FileType    go              call s:hardTab(8)
 autocmd MyAutoCmds FileType    zsh             call s:softTab(2)
 autocmd MyAutoCmds FileType    vim             call s:softTab(2)
 
-autocmd MyAutoCmds FileType    help            nnoremap <buffer> q <C-w>c " quit help by `q`
+autocmd MyAutoCmds FileType    help nnoremap <buffer> q <C-w>c " quit help by `q`
 autocmd MyAutoCmds BufWritePre *    call s:autoMkdir(expand('<afile>:p:h'), v:cmdbang)
 autocmd MyAutoCmds CmdwinEnter *    call s:cmdwinEnter()
 autocmd MyAutoCmds FileType    ruby nnoremap <leader>r :execute '!spring rspec ' . @% . ':' . line('.')<CR>
