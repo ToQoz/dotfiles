@@ -1,5 +1,6 @@
 /*.DS_Store
 /.vim/bundle
+/.vim/swp
 /.vim/undo
 /.vim/.eskk
 /.vim/.netrwhist
