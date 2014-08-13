@@ -1,131 +1,44 @@
 [user]
 	name = Takatoshi Matsumoto
 	email = toqoz403@gmail.com
-[color]
-	ui = auto
-	status = auto
-	diff = auto
-	branch = auto
-	interactive = auto
-	grep = auto
-[color "diff"]
-	plain = normal
-	meta = bold green
-	frag = bold cyan
-	func = bold magenta
-	old = bold red
-	new = bold blue
-	commit = bold white
-	whitespace = normal magenta
-[push]
-	default = tracking
+[github]
+	user = "ToQoz"
 [core]
-  #editor = $EDITOR -u NONE -U NONE --noplugin -i NONE -N -c 'syntax on'
-  editor = $EDITOR
-	excludesfile = /Users/toqoz/.gitignore_global
+	attributesfile = ~/.gitattributes_global
+	editor = $EDITOR
+	excludesfile = ~/.gitignore_global
 	autocrlf = input
 	quotepath = false
 	precomposeunicode = true
+	ignorecase = false
+[init]
+	templatedir = ~/.git_template
+[push]
+	default = simple
+[rebase]
+	autosquash = true
+[diff]
+	algorithm = histogram
+[url "git@github.com:"]
+	pushinsteadof = "git://github.com"
+	pushinsteadof = "https://github.com"
 [alias]
-	s    = status -sb
-	st   = status
-	ss   = status -s
-	sh   = show
-	# pull/push/fetch
-	ft   = fetch
-	ftp  = fetch --prune
-	up   = pull --rebase
-	po   = push origin
-	pof  = push -f origin
-	pu   = push -u origin
-	# rebase
-	rbm = rebase master       # masterへのrebaseはよく使うのでalias
-	rbc = rebase --continue
-	rba = rebase --abort
-	rbi = rebase -i
-	rbi1 = rebase -i HEAD^
-	rbi2 = rebase -i HEAD^^
-	rbi3 = rebase -i HEAD^^^
-	rbi4 = rebase -i HEAD^^^^
-	rbi5 = rebase -i HEAD^^^^^
-	# merge
-	mn  = merge --no-ff
-	# commit
-	ad   = add
-	c    = commit
-	ca   = commit -a
-	cam  = commit -a --amend
-	co   = checkout
-	cob  = checkout -b
-	cp   = cherry-pick
-	cpn  = cherry-pick -n
-	# branch
-	br   = branch
-	ba   = branch -a
-	bm   = branch --merged
-	bn   = branch --no-merge
-	# log
-	yesterday = "!f() { git log $1@{yesterday}..$1; }; f"
-	d-remote-branches = "!branches=$* sh -c 'for br in $branches; do git push origin :$br; done'"
-	wc   = whatchanged
-	l    = log --stat
-	la   = log -p
-	lo   = log origin
-	ll   = log --graph --all --color --pretty='%x09%h %cn%x09%s %Cred%d%Creset'
-	lg   = log --graph --pretty=format:'%Cgreen%h %ad %Cblue%cn %Creset%s %Cred%d'
-	rank = shortlog -s -n --no-merges
-	d    = diff
-	dm   = diff master
-	dw   = diff --color-words
-	dc   = diff --cached
-	ds   = diff --staged
-	d1   = diff HEAD~
-	d2   = diff HEAD~~
-	d3   = diff HEAD~~~
-	d4   = diff HEAD~~~~
-	d5   = diff HEAD~~~~~
-	d10  = diff HEAD~~~~~~~~~~
-	# reset
-	rhs  = reset --soft HEAD
-	rhs1 = reset --soft HEAD~
-	rhs2 = reset --soft HEAD~~
-	rhs3 = reset --soft HEAD~~~
-	rhs4 = reset --soft HEAD~~~~
-	rhs5 = reset --soft HEAD~~~~~
-	# rhh  = reset --hard HEAD
-	rhh1 = reset --hard HEAD~
-	rhh2 = reset --hard HEAD~~
-	rhh3 = reset --hard HEAD~~~
-	rhh4 = reset --hard HEAD~~~~
-	rhh5 = reset --hard HEAD~~~~~
-	# diff
-	di   = diff
-	dm   = diff master           # masterとのdiff
-	dw   = diff --color-words    # 単語単位でいろつけてdiff
-	dc   = diff --cached         # addされているものとのdiff
-	ds   = diff --staged         # 同上(1.6.1移行)
-	d1   = diff HEAD~            # HEADから1つ前とdiff
-	d2   = diff HEAD~~           # HEADから2つ前とdiff
-	d3   = diff HEAD~~~          # HEADから3つ前とdiff
-	d4   = diff HEAD~~~~         # HEADから4つ前とdiff
-	d5   = diff HEAD~~~~~        # HEADから5つ前とdiff
-	d10  = diff HEAD~~~~~~~~~~   # HEADから10前とdiff
-	# grep
-	gr   = grep
-	gn   = grep -n
-	# http://blog.udzura.jp/2012/07/20/git-alias-for-review-benri/
-	run-features-spec = "!head=${1:-HEAD~} sh -c ' \
-	echo spec diff between ${head}..HEAD; \
-	git diff --name-only ${head}..HEAD ./spec | \
-	grep -v javascripts | \
-	ruby -pne \"STDERR.puts \\$_\" | \
-	xargs rspec'"
-
+	ls-aliases = "!sh -c 'git config -l | grep ^alias'"
+	bootstrap  = "!sh -c 'git init && git commit --allow-empty'"
+	unstage    = "reset HEAD"
+	cancel     = "!git commit -a -m 'Temporary commit for cancel' && git reset --hard HEAD~" # http://d.hatena.ne.jp/thinca/20120924/1348491052
+	yesterday  = "!f() { git log $1@{yesterday}..$1; }; f"
+	rank       = shortlog -s -n --no-merges
+	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
+	s   = status -sb
+	ft  = fetch
+	ftp = fetch --prune
+	fto = fetch origin
+	co  = checkout
+	ci  = commit -v
+	br  = branch
+	wc  = whatchanged
+	lp  = log --decorate --stat --patch
+	dw  = diff --color-words
 [include]
 	path = ~/private/.gitconfig
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
