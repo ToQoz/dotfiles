@@ -1,7 +1,5 @@
 /*.DS_Store
 /.vim/bundle
-/.vimperator/info/default/history-*
-/.vimperator/info/default/local-*
 /.vim/undo
 /.vim/.eskk
 /.vim/.netrwhist
