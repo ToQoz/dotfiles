@@ -8,6 +8,20 @@ endif
 
 call neobundle#rc(expand('~/.vim/bundle'))
 
+let s:gopath = ''
+if $GOPATH == ''
+  let s:gopath = system('go env GOPATH')
+else
+  let s:gopath = split($GOPATH, ':')[0]
+endif
+
+let s:goroot = ''
+if $GOROOT == ''
+  let s:goroot = system('go env GOROOT')
+else
+  let s:goroot = split($GOROOT, ':')[0]
+endif
+
 augroup MyAutoCmds
   autocmd!
 augroup END
@@ -259,20 +273,12 @@ NeoBundle 'tpope/vim-rails'
 " Golang
 NeoBundle 'dgryski/vim-godef'
 NeoBundle 'Blackrush/vim-gocode'
-if $GOROOT == ''
-  echoerr "$GOROOT is empty."
-else
-  set rtp+=$GOROOT/misc/vim
-  let g:gofmt_command = "goimps fmt"
-  nnoremap <leader>f  :Import fmt<CR>
-  nnoremap <leader>F  :Drop fmt<CR>
-endif
-if $GOPATH == ''
-  echoerr "$GOPATH is empty."
-else
-  set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
-  set rtp+=$GOPATH/src/github.com/ToQoz/goimps/misc/vim
-endif
+execute 'set rtp+=' . s:goroot . '/misc/vim'
+let g:gofmt_command = "goimps fmt"
+nnoremap <leader>f  :Import fmt<CR>
+nnoremap <leader>F  :Drop fmt<CR>
+execute 'set rtp+=' . s:gopath . '/src/github.com/golang/lint/misc/vim'
+execute 'set rtp+=' . s:gopath . '/src/github.com/ToQoz/goimps/misc/vim'
 NeoBundle 'ToQoz/vim-go-drop-unused-imports'
 
 " Moving
