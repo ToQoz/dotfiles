@@ -115,9 +115,6 @@ match WhitespaceEOL /\s\+$/
 highlight ZenkakuSpace cterm=underline ctermbg=red guibg=red
 match ZenkakuSpace /　/
 
-" Rename file
-command! -nargs=1 -complete=file Rename f <args>|call delete(expand('#'))
-
 " Mappings {{{
 " let mapleader=","
 
@@ -298,6 +295,7 @@ NeoBundle 'vim-scripts/sudo.vim'
 NeoBundle 'tpope/vim-fugitive'
 " Perl/Ruby style regexp notation for Vim
 NeoBundle 'othree/eregex.vim'
+NeoBundle 'vim-scripts/Rename'
 NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'sjl/gundo.vim'
 " 現在の検索位置を画面に表示するためのプラグイン
