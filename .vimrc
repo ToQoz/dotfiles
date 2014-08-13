@@ -8,19 +8,17 @@ endif
 
 call neobundle#rc(expand('~/.vim/bundle'))
 
-let s:gopath = ''
-if $GOPATH == ''
+let s:gopath = $GOPATH
+if s:gopath == ''
   let s:gopath = system('go env GOPATH')
-else
-  let s:gopath = split($GOPATH, ':')[0]
 endif
+let s:gopath = split(s:gopath, ':')[0]
 
-let s:goroot = ''
-if $GOROOT == ''
+let s:goroot = $GOROOT
+if s:goroot == ''
   let s:goroot = system('go env GOROOT')
-else
-  let s:goroot = split($GOROOT, ':')[0]
 endif
+let s:goroot = split(s:goroot, ':')[0]
 
 augroup MyAutoCmds
   autocmd!
