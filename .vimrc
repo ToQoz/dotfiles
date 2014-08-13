@@ -352,7 +352,7 @@ if neobundle#tap("unite.vim") " {{{
   let g:unite_source_rec_max_cache_files = 5000
   let g:unite_force_overwrite_statusline = 0
 
-  if !executable('pt')
+  if !executable($GOPATH.'/bin/pt')
     let cmd = "go get -v github.com/monochromegane/the_platinum_searcher/cmd/pt"
     echo "start: " . cmd
     let out = system(cmd)
