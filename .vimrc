@@ -256,6 +256,7 @@ NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'soh335/unite-outline-go'
 NeoBundle 'ToQoz/unite-go-imports'
+NeoBundle 'ToQoz/unite-go-doc'
 
 " TextObj
 " Vim plugin: Operators to edit surrounding text
@@ -401,6 +402,10 @@ if neobundle#tap("unite.vim") " {{{
   if neobundle#is_installed("unite-go-imports")
     autocmd MyAutoCmds FileType go nnoremap <C-i>      :Unite go/import<CR>
     autocmd MyAutoCmds FileType go nnoremap <leader>dd :Unite go/drop<CR>
+  endif
+
+  if neobundle#is_installed("unite-go-doc")
+    autocmd MyAutoCmds FileType go nnoremap <C-?> :Unite go/doc<CR>
   endif
 endif " }}}
 
