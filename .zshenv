@@ -133,6 +133,8 @@ export GOPATH=$HOME/_go
 export PATH=$GOPATH/bin:$PATH
 # export GOENVTARGET=$HOME/.goenvtarget
 
+export AWKPATH=$HOME/.awk.d/site-progfiles
+
 # REPL
 export RLWRAP_HOME=$HOME/.rlwrap
 
