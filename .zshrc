@@ -346,7 +346,6 @@ update_prompt() {
         newline \
         vcs_prompt
 
-  # goinfo="(GOPATH:$(echo $GOPATH | sed -e "s,$HOME,~,g") GOROOT:$(echo $GOROOT | sed -e "s,$HOME,~,g"))"
   # skip GOROOT, if you want to see, exec `go env`.
   goinfo="(GOPATH:$(echo $GOPATH | sed -e "s,$HOME,~,g"))"
   ruby_version=$(rbenv version-name)
