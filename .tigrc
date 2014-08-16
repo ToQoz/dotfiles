@@ -4,4 +4,7 @@ bind diff o !hub browse -- commit/%(commit)
 bind log  o !hub browse -- commit/%(commit)
 
 bind generic g move-first-line
+bind generic G none # unbind(generic) !git gc
 bind generic G move-last-line
+bind main    G none # unbind(main) set commit-title-graph = no
+bind main    G move-last-line
