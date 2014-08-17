@@ -252,7 +252,6 @@ NeoBundle 'Shougo/unite-outline' " fork from h1mesuke/unite-outline
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'Shougo/unite-session'
 NeoBundle 'thinca/vim-unite-history'
-NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'soh335/unite-outline-go'
 NeoBundle 'ToQoz/unite-go-imports'
