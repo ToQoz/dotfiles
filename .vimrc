@@ -286,6 +286,7 @@ NeoBundle 'goldfeld/vim-seek'
 NeoBundle 'bling/vim-airline'
 NeoBundle "mkitt/tabline.vim"
 
+NeoBundle 'thinca/vim-poslist'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-jp/vimdoc-ja' 
 NeoBundle 'nathanaelkane/vim-indent-guides'
@@ -372,8 +373,8 @@ if neobundle#tap("unite.vim") " {{{
   nnoremap [unite]/ :<C-u>Unite line -buffer-name=search -start-insert<CR>
   nnoremap [unite]* :<C-u>UniteWithCursorWord line -buffer-name=search<CR>
   nnoremap [unite]n :<C-u>UniteResume search -no-start-insert<CR>
-  nnoremap <silent> [unite]p :<C-u>Unite file_rec/async:!<CR>
-  nnoremap <silent> [unite]P :<C-u>Unite file_rec:!<CR>
+  nnoremap <silent> [unite]f :<C-u>Unite file_rec/async:!<CR>
+  nnoremap <silent> [unite]F :<C-u>Unite file_rec:!<CR>
   nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
   nnoremap <silent> [unite]y :Unite -buffer-name=register register<CR>
 
@@ -400,11 +401,17 @@ if neobundle#tap("unite.vim") " {{{
 
   if neobundle#is_installed("unite-go-imports")
     autocmd MyAutoCmds FileType go nnoremap <C-i>      :Unite go/import<CR>
+    autocmd MyAutoCmds FileType go inoremap <C-i>      <ESC>:Unite go/import<CR>
+    autocmd MyAutoCmds FileType go vnoremap <C-i>      <ESC>:Unite go/import<CR>
     autocmd MyAutoCmds FileType go nnoremap <leader>dd :Unite go/drop<CR>
   endif
 
   if neobundle#is_installed("unite-go-doc")
     autocmd MyAutoCmds FileType go nnoremap <C-?> :Unite go/doc<CR>
+  endif
+
+  if neobundle#is_installed("vim-poslist")
+    nnoremap <silent> [unite]p :<C-u>Unite poslist<CR>
   endif
 endif " }}}
 
