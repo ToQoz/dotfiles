@@ -1,4 +1,4 @@
-[ -z "$UIM_FEP_PID" ] && exec uim-fep -e "$SHELL" "-l"
+# [ -z "$UIM_FEP_PID" ] && exec uim-fep -e "$SHELL" "-l"
 
 export COREUTILS_EXIST=false
 if [ -d $BREW_HOME/opt/coreutils ]; then
@@ -42,7 +42,7 @@ test $(ssh-add -l | grep "$HOME/.ssh/id_rsa" | wc -l) = 0 && ssh-add
 bindkey -e
 
 export GIT_PS1_SHOWDIRTYSTATE=true
-# user-site-functions {{{
+
 autoload -Uz zmv
 autoload -Uz ssh
 autoload -Uz gem
@@ -53,22 +53,19 @@ autoload -Uz easytether
 autoload -Uz i
 autoload -Uz isim
 autoload -Uz git_info
-# }}}
+
 autoload colors; colors
 autoload -Uz compinit; compinit
 autoload -Uz add-zsh-hook
 autoload -Uz vcs_info
 autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git 2>/dev/null
 autoload -Uz VCS_INFO_git_getaction; VCS_INFO_git_getaction 2>/dev/null
-# }}}
 
-# History {{{
 ## print elapsed time when more than 10 seconds
 export REPORTTIME=10
 export HISTFILE=$HOME/.zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
-
 
 setopt complete_aliases
 setopt \
@@ -86,15 +83,13 @@ setopt \
   auto_cd \
   re_match_pcre
 
-# Prompt opt {{{
 setopt \
   transient_rprompt \
   prompt_subst
-# }}}
 
-## Menu
+# Menu
 zstyle ':completion:*:default' menu select=2
-## Grouping
+# Grouping
 zstyle ':completion:*' format '%F{magenta}-- %d --%f'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:options' description yes
@@ -104,24 +99,24 @@ zstyle ':completion:*:descriptions' format ' %F{magenta}-- %d --%f'
 zstyle ':completion:*:messages' format ' %F{blue}-- %d --%f'
 zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
 zstyle ':completion:*:default' list-prompt '%S%M matches%s'
-## Colorize
+# Colorize
 zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
 ## Cache
 zstyle ':completion:*' use-cache yes
 zstyle ':completion:*' cache-path "${ZDOTDIR:-$HOME}/.zcompcache"
-## Verbose
+# Verbose
 zstyle ':completion:*' verbose yes
-## Fuzzy completion
+# Fuzzy completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} r:|[._-]=*'
 zstyle ':completion:*' completer _oldlist _complete _match _ignored _approximate _prefix
 zstyle ':completion:*' verbose yes
-## sudo
+# sudo
 zstyle ':completion:sudo:*' environ PATH="$SUDO_PATH:$PATH"
-## cd
+# cd
 zstyle ':completion:*:cd:*' tag-order local-directories path-directories
-## Ignore current directory
+# Ignore current directory
 zstyle ':completion:*' ignore-parents parent pwd
-## Process
+# Process
 zstyle ':completion:*:*:*:*:processes' command 'ps -u $USER -o pid,user,comm -w'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;36=0=01'
 zstyle ':completion:*:*:kill:*' menu yes select
@@ -129,7 +124,31 @@ zstyle ':completion:*:*:kill:*' force-list always
 zstyle ':completion:*:*:kill:*' insert-ids single
 zstyle ':vcs_info:git:*:-all-' command =git
 
-# Alias {{{
+alias -g L='| less'
+alias -g H='| head'
+alias -g T='| tail'
+alias -g G='| grep'
+alias -g S='| sed'
+alias -g A='| awk'
+alias -g W='| wc'
+alias -g P='| percol'
+
+extract() {
+  case $1 in
+    *.tar.gz|*.tgz) tar xzvf $1;;
+    *.tar.xz) tar Jxvf $1;;
+    *.zip) unzip $1;;
+    *.lzh) lha e $1;;
+    *.tar.bz2|*.tbz) tar xjvf $1;;
+    *.tar.Z) tar zxvf $1;;
+    *.gz) gzip -dc $1;;
+    *.bz2) bzip2 -dc $1;;
+    *.Z) uncompress $1;;
+    *.tar) tar xvf $1;;
+    *.arj) unarj $1;;
+  esac
+}
+alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
 
 ok() {
   local y
@@ -146,60 +165,31 @@ ok() {
   esac
 }
 
-## coreutils
-alias_to_cmd_to_coreutils() {
-  alias ls="gls --color=auto -F"
-  alias rm="gmv -f --backup=numbered --target-directory ~/.Trash"
-  alias mv="gmv -vi"
-  alias ls="gls --color=auto -F"
-}
-$COREUTILS_EXIST || echo 'coreutils is not installed'
-$COREUTILS_EXIST && alias_to_cmd_to_coreutils
-
-## findutils
-alias_to_cmd_to_findutils() {
-  alias find='gfind'
-  alias xargs='gxargs'
-  alias locate='glocate'
-  alias updatedb='LC_ALL="C" sudo gupdatedb'
-}
-$FINDUTILS_EXIST || echo 'findutils is not installed'
-$FINDUTILS_EXIST && alias_to_cmd_to_findutils
-
-## binutils
-alias_to_cmd_to_binutils() {
-  alias size='gsize'
-}
-$BINUTILS_EXIST  || echo 'binutils is not installed'
-$BINUTILS_EXIST && alias_to_cmd_to_binutils
-
-## Useful ls
-alias la="ls -a"
-alias ll="ls -l"
-alias lla="ls -la"
-
 alias hr="ruby -e \"puts '-' * $(tput cols)\""
 
-## Useful bundler
-alias b='bundle'
-alias bi='bundle install'
-alias bu='bundle update'
+# Useful bundler
 alias be='bundle exec'
 
-## Useful Vim
+# Useful Vim
 alias vim=$VIM_E
 alias vi=vim
 svim() { vim sudo:$1; }
 
-## Useful ag
-alias ag='ag -S --stats'
-alias agh='ag --hidden'
-
-## :)
+# :)
 alias fdate="date +%Y-%m-%d"
 alias ggit="open -a SourceTree"
 
-## Golang {{{
+alias_for_etc_on_tmux() {
+  add-zsh-hook precmd update-window-title-precmd
+  add-zsh-hook preexec update-window-title-preexec
+
+  alias pbcopy="ssh 127.0.0.1 pbcopy"
+  alias pbpaste='ssh 0.0.0.0 pbpaste'
+  alias launchctl="ssh 127.0.0.1 launchctl"
+}
+[ -z $TMUX ] || alias_for_etc_on_tmux
+
+# Golang
 alias g='cd $(anything-gorepo)'
 alias gofmtall="git ls-tree --name-only -r HEAD | grep .go$ | xargs gofmt -w"
 
@@ -207,13 +197,6 @@ gocovern() {
   local cov="/tmp/gocover.$$.out"
   go test -covermode=count -coverprofile=$cov $@ && go tool cover -html=$cov
   unlink $cov
-}
-
-gorunn() {
-  local f="/tmp/gorun.$$.go"
-  cat > $f
-  go run $f
-  unlink $f
 }
 
 goinit() {
@@ -238,63 +221,14 @@ goinit() {
     git init &&
     git commit --allow-empty -m 'Initial commit'
 }
-# }}}
 
-alias_for_etc_on_tmux() {
-  add-zsh-hook precmd update-window-title-precmd
-  add-zsh-hook preexec update-window-title-preexec
-
-  $REATTACH_TO_USER_NAMESPACE_EXIST || echo 'reattach-to-user-namespace is not installed'
-  
-  $REATTACH_TO_USER_NAMESPACE_EXIST && alias vim="reattach-to-user-namespace -l $VIM_E"
-  $REATTACH_TO_USER_NAMESPACE_EXIST && alias vimr="reattach-to-user-namespace -l $VIM_E  -c ':Unite file_mru'"
-  $REATTACH_TO_USER_NAMESPACE_EXIST && alias gvim="reattach-to-user-namespace -l gvim"
-
-  alias pbcopy="ssh 127.0.0.1 pbcopy"
-  alias pbpaste='ssh 0.0.0.0 pbpaste'
-  alias launchctl="ssh 127.0.0.1 launchctl"
-}
-[ -z $TMUX ] || alias_for_etc_on_tmux
-
-## Global alias
-alias -g L='| less'
-alias -g H='| head'
-alias -g T='| tail'
-alias -g G='| grep'
-alias -g S='| sed'
-alias -g A='| awk'
-alias -g W='| wc'
-alias -g P='| percol'
-
-## Filetype based alias {{{
-extract() {
-  case $1 in
-    *.tar.gz|*.tgz) tar xzvf $1;;
-    *.tar.xz) tar Jxvf $1;;
-    *.zip) unzip $1;;
-    *.lzh) lha e $1;;
-    *.tar.bz2|*.tbz) tar xjvf $1;;
-    *.tar.Z) tar zxvf $1;;
-    *.gz) gzip -dc $1;;
-    *.bz2) bzip2 -dc $1;;
-    *.Z) uncompress $1;;
-    *.tar) tar xvf $1;;
-    *.arj) unarj $1;;
-  esac
-}
-alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
-# }}}
-
-# Keybind {{{
-## Redo(Undo is C-/)
+# Redo(Undo is C-/)
 bindkey "^[r" redo
 
-##
 autoload smart-insert-last-word
 zle -N insert-last-word smart-insert-last-word
 bindkey '^]' insert-last-word
 
-##
 zmodload -i zsh/parameter
 insert-last-command-output() {
   LBUFFER+="$(eval $history[$((HISTCMD-1))])"
@@ -302,11 +236,7 @@ insert-last-command-output() {
 zle -N insert-last-command-output
 bindkey "^[l" insert-last-command-output
 
-## delete keybind for ctrl + j(for aquaskk)
-bindkey -r "^J"
-# }}}
-
-
+#  Window title {{{
 set-window-title() {
   echo -ne ""\e]2;$1\a""
 }
@@ -332,6 +262,7 @@ update-window-title-preexec() {
   #   https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/termsupport.zsh
   set-tab-and-window-title ${2[(wr)^(*=*|ssh|sudo)]}
 }
+# }}}
 
 # Prompt {{{
 update_prompt() {
@@ -364,8 +295,34 @@ update_prompt() {
 add-zsh-hook precmd update_prompt
 # }}}
 
-# External {{{
-## z.sh
+# Setup plugins {{{
+# coreutils
+alias_to_cmd_to_coreutils() {
+  alias ls="gls --color=auto -F"
+  alias rm="gmv -f --backup=numbered --target-directory ~/.Trash"
+  alias mv="gmv -vi"
+}
+$COREUTILS_EXIST || echo 'coreutils is not installed'
+$COREUTILS_EXIST && alias_to_cmd_to_coreutils
+
+# findutils
+alias_to_cmd_to_findutils() {
+  alias find='gfind'
+  alias xargs='gxargs'
+  alias locate='glocate'
+  alias updatedb='LC_ALL="C" sudo gupdatedb'
+}
+$FINDUTILS_EXIST || echo 'findutils is not installed'
+$FINDUTILS_EXIST && alias_to_cmd_to_findutils
+
+# binutils
+alias_to_cmd_to_binutils() {
+  alias size='gsize'
+}
+$BINUTILS_EXIST  || echo 'binutils is not installed'
+$BINUTILS_EXIST && alias_to_cmd_to_binutils
+
+# z.sh
 setup_z() {
   _Z_CMD=j
   source $BREW_HOME/etc/profile.d/z.sh
@@ -375,8 +332,20 @@ setup_z() {
 }
 $Z_EXIST && setup_z
 
-$RBENV_EXIST && eval "$(rbenv init - zsh --no-rehash)"
+# reattach-to-user-namespace
+setup_reattach-to-user-namespace() {
+  $REATTACH_TO_USER_NAMESPACE_EXIST || echo 'reattach-to-user-namespace is not installed'
 
-# private {{{
-test -e $PRIVATE_D/.zshrc && source $PRIVATE_D/.zshrc
+  $REATTACH_TO_USER_NAMESPACE_EXIST && alias vim="reattach-to-user-namespace -l $VIM_E"
+  $REATTACH_TO_USER_NAMESPACE_EXIST && alias vimr="reattach-to-user-namespace -l $VIM_E  -c ':Unite file_mru'"
+  $REATTACH_TO_USER_NAMESPACE_EXIST && alias gvim="reattach-to-user-namespace -l gvim"
+}
+[ -z $TMUX ] || setup_reattach-to-user-namespace
+
+# rbenv
+$RBENV_EXIST && eval "$(rbenv init - zsh --no-rehash)"
 # }}}
+
+test -e $PRIVATE_D/.zshrc && source $PRIVATE_D/.zshrc
+
+# vim:set ft=zsh et foldmethod=marker:
