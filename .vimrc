@@ -228,6 +228,8 @@ function! s:tabWidth(width)
   execute 'setl softtabstop=' . a:width
 endfunction
 
+NeoBundle 'tikhomirov/vim-glsl'
+
 NeoBundle 'Shougo/vimproc', {
       \   'build' : {
       \     'mac' : 'make -f make_mac.mak',
