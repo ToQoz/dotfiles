@@ -19,6 +19,8 @@
 	autosquash = true
 [diff]
 	algorithm = histogram
+[merge]
+	tool = vimdiff
 [url "git@github.com:"]
 	pushinsteadof = "git://github.com"
 	pushinsteadof = "https://github.com"
