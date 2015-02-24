@@ -333,6 +333,7 @@ NeoBundle 'sickill/vim-monokai'
 NeoBundle 'molokai'
 NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'takahirojin/gbr.vim'
 
 if neobundle#tap("neocomplete.vim") " {{{
   let g:acp_enableAtStartup                           = 0
