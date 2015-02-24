@@ -21,9 +21,6 @@
 	algorithm = histogram
 [merge]
 	tool = vimdiff
-[url "git@github.com:"]
-	pushinsteadof = "git://github.com"
-	pushinsteadof = "https://github.com"
 [alias]
 	ls-aliases = "!sh -c 'git config -l | grep ^alias'"
 	bootstrap  = "!sh -c 'git init && git commit --allow-empty'"
@@ -43,5 +40,12 @@
 	wc  = whatchanged
 	lp  = log --decorate --stat --patch
 	dw  = diff --color-words
+[url "git@github.com:"]
+	pushInsteadOf = "git://github.com/"
+	pushInsteadOf = "https://github.com/"
+[url "git://github.com/"]
+	insteadOf     = "https://github.com/"
 [include]
 	path = ~/private/.gitconfig
+[ghq]
+	root = ~/_dev
