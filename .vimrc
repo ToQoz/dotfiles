@@ -266,6 +266,7 @@ NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'soh335/unite-outline-go'
 NeoBundle 'ToQoz/unite-go-imports'
 NeoBundle 'ToQoz/unite-go-doc'
+NeoBundle 'basyura/unite-rails'
 
 " TextObj
 " Vim plugin: Operators to edit surrounding text
