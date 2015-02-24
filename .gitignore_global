@@ -32,3 +32,7 @@ GTAGS
 tags
 
 /vendor/gems
+
+# User's sandbox
+# http://qiita.com/uasi/items/cedae627b7596a837c57
+/,
