@@ -165,6 +165,26 @@ ok() {
   esac
 }
 
+ls-git() {
+  local base_dir
+  if [ -n "$1" ]; then
+    base_dir=$1
+  else
+    base_dir=$(pwd)
+  fi
+  (cd $base_dir && find . -maxdepth 1 -type d | grep -v "^.$" | xargs -I{} sh -c '(cd {}; git remote > /dev/null 2>&1 && pwd)')
+}
+
+# ls non-git dirs
+ls-gitn() {
+  local base_dir
+  if [ -n "$1" ]; then
+    base_dir=$1
+  else
+    base_dir=$(pwd)
+  fi
+  (cd $base_dir && find . -maxdepth 1 -type d | grep -v "^.$" | xargs -I{} sh -c '(cd {}; git remote > /dev/null 2>&1 || pwd)')
+}
 alias hr="ruby -e \"puts '-' * $(tput cols)\""
 
 pushbullet() {
