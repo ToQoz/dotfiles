@@ -187,7 +187,7 @@ alias_for_etc_on_tmux() {
   alias pbpaste='ssh 0.0.0.0 pbpaste'
   alias launchctl="ssh 127.0.0.1 launchctl"
 }
-[ -z $TMUX ] || alias_for_etc_on_tmux
+[ -z "$TMUX" ] || alias_for_etc_on_tmux
 
 # Golang
 alias g='cd $(anything-gorepo)'
@@ -340,7 +340,7 @@ setup_reattach-to-user-namespace() {
   $REATTACH_TO_USER_NAMESPACE_EXIST && alias vimr="reattach-to-user-namespace -l $VIM_E  -c ':Unite file_mru'"
   $REATTACH_TO_USER_NAMESPACE_EXIST && alias gvim="reattach-to-user-namespace -l gvim"
 }
-[ -z $TMUX ] || setup_reattach-to-user-namespace
+[ -z "$TMUX" ] && setup_reattach-to-user-namespace
 
 # rbenv
 $RBENV_EXIST && eval "$(rbenv init - zsh --no-rehash)"
