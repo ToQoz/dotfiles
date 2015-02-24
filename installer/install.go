@@ -75,7 +75,7 @@ func main() {
 	}
 
 	// Install settings of Karabiner(keyremap4macbook)
-	from := filepath.Join(wd, "os", "keyremap4macbook", "private.xml")
+	from := filepath.Join(wd, "os", "karabiner", "private.xml")
 	to := filepath.Join(os.Getenv("HOME"), "Library", `Application\ Support`, "Karabiner", "private.xml")
 	err = runLink(from, to)
 	if err != nil {
