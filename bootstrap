@@ -11,6 +11,11 @@ export GOPATH=$HOME/_go
 export GOROOT=$(go env GOROOT)
 # }}}
 
+# Configure karabiner/seil {{{
+./osx/karabiner/config.sh
+./osx/seil/config.sh
+# }}}
+
 # Set defaults {{{
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock autohide-delay -float 0
