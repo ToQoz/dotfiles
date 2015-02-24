@@ -1,16 +1,17 @@
 #!/bin/sh
 
-# brew {{{
+xcode-select --install
+
+# Install brew & brewed packages {{{
 mkdir ~/brew && curl -L https://github.com/Homebrew/homebrew/tarball/master | tar xz --strip 1 -C ~/brew
-rehash
-./brew-bundle Brewfile
+export PATH=$HOME/brew/bin:$PATH
+sh ./Brewbundle
+export PATH=$HOME/.rbenv/shims:$PATH
+export GOPATH=$HOME/_go
+export GOROOT=$(go env GOROOT)
 # }}}
 
-# link dotfiles {{{
-go run installer/install.go
-# }}}
-
-# defaults {{{
+# Set defaults {{{
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock autohide-delay -float 0
 defaults write com.apple.dock expose-animation-duration -float 0.1
@@ -19,9 +20,7 @@ defaults write com.apple.finder FXDefaultSearchScope -string 'SCcf'
 defaults write com.apple.finder FXPreferredViewStyle -string "Nslv"
 
 defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
-
 defaults write -g NSQuitAlwaysKeepsWindows -bool false
-
 defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
 
 killall Finder
@@ -29,30 +28,42 @@ killall Dock
 killall SystemUIServer
 # }}}
 
-# ruby & gems {{{
+# Install dotfiles {{{
+go run installer/install.go
+# }}}
+
+# Install ruby & gems(cmd) {{{
 rbenv install 2.1.1
 rbenv install 2.2.0
 rbenv global 2.2.0
 
-gem install foreman
-gem install pry
-gem install pry-doc
-gem install ruby-anything
+sh ./Gembundle
+
+rbenv rehash
 # }}}
 
-# go cmds {{{
-go get github.com/golang/lint/golint
-go get golang.org/x/tools/cmd/vet
-go get golang.org/x/tools/cmd/godoc
-go get golang.org/x/tools/cmd/benchcmp
-go get golang.org/x/tools/cmd/cover
-go get golang.org/x/tools/cmd/gorename
-go get github.com/mitchellh/gox
-go get github.com/nsf/gocode
-go get github.com/motemen/ghq
-go get github.com/ToQoz/godecls
-go get github.com/ToQoz/goimps
-go get github.com/ToQoz/gomain
-go get github.com/ToQoz/godeps
-go get github.com/ToQoz/go-unitypackage
+# Install go packages(cmd) {{{
+sh ./Gobundle
 # }}}
+
+# Fetch projects {{{
+osascript -e 'tell application "Dropbox" to run'
+
+# wait for sync ~/Dropbox/ghq-list.txt and ~/Dropbox/go-list.txt
+while [ : ]
+do
+    ls ~/Dropbox/ghq-list.txt && ls ~/Dropbox/go-list.txt && break
+    sleep 3
+done
+
+cat ~/Dropbox/ghq-list.txt | ghq import
+
+# インストールしたいわけじゃなくて、
+# リポジトリあつめてきたいだけなのでgo getじゃなくてghqでやる
+ghq_root=$(ghq root | sed -e "s,$HOME,~,")
+git config --global --replace-all ghq.root $GOPATH/src
+cat ~/Dropbox/go-list.txt | ghq import
+git config --global --replace-all ghq.root $ghq_root
+# }}}
+
+# vim:set ft=sh et foldmethod=marker:

@@ -1,0 +1,5 @@
+gem install foreman
+gem install pry
+gem install pry-doc
+gem install git-gsub
+gem install ruby-anything

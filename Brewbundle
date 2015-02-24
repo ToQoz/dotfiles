@@ -1,3 +1,40 @@
+casks=$(brew cask list)
+cask() {
+    case "$1" in
+    install)
+        if [ $(echo "$casks" | grep "^$1$" | wc -l) -gt 0 ]; then
+            echo "[skip] brew cask $@" >> /dev/stderr
+            return 0 # this is not error
+        fi
+        ;;
+    esac
+    brew cask $@
+}
+
+list=$(brew list)
+install () {
+    if [ $(echo "$list" | grep "^$1$" | wc -l) -gt 0 ]; then
+        echo "[skip] brew install $@" >> /dev/stderr
+        return 0 # this is not error
+    fi
+
+    brew install $@
+}
+
+taps=$(brew tap)
+tap() {
+    if [ $(echo "$taps" | grep "^$1$" | wc -l) -gt 0 ]; then
+        echo "[skip] brew tap $@" >> /dev/stderr
+        return 0 # this is not error
+    fi
+
+    brew tap $@
+}
+
+update() {
+    brew update
+}
+
 tap homebrew/dupes
 tap homebrew/versions
 tap railwaycat/emacsmacport
@@ -12,7 +49,7 @@ install brew-cask
 install pcre
 
 # GCC {{{
-nstall gcc
+install gcc
 install gcc47
 install apple-gcc42
 # }}}
@@ -120,14 +157,45 @@ install uncrustify
 install xctool
 install xmlto
 
-cask install aquaskk
 cask install xquartz
-# keyremap4macbook {{{
+cask install aquaskk
+cask install google-chrome
+cask install virtualbox
+cask install vagrant
+# KeyRemap4MacBook {{{
 cask install karabiner
 cask install seil
 # }}}
-cask install vagrant
-cask install virtualbox
-cask install appcleaner
-cask install google-chrome
+# IDE/GUI manager {{{
+cask install sourcetree
+cask install mysqlworkbench
+cask install unity
+cask install xamarin-studio
+cask install android-studio
+cask install darteditor
+# }}}
+# Visual {{{
+cask install sketch
+cask install sketch-tool
+cask install lisanet-gimp # X11 free version
+cask install inkscape
+cask install blender
+cask install tiled
+# }}}
+# Fun {{{
+cask install soundcleod
+cask install radiant-player
+cask install vlc
+cask install cooviewer
+cask install steam
+# }}}
+# Utils {{{
 cask install dropbox
+cask install appcleaner
+cask install divvy
+cask install fitbit-connect
+# }}}
+# OMG {{{
+cask install openoffice
+cask install libreoffice
+# }}}

@@ -1,0 +1,15 @@
+go get github.com/golang/lint/golint
+go get golang.org/x/tools/cmd/vet
+go get golang.org/x/tools/cmd/godoc
+go get golang.org/x/tools/cmd/benchcmp
+go get golang.org/x/tools/cmd/cover
+go get golang.org/x/tools/cmd/gorename
+go get github.com/mitchellh/gox
+go get github.com/nsf/gocode
+go get github.com/motemen/ghq
+go get github.com/ToQoz/godecls
+go get github.com/ToQoz/goimps
+go get github.com/ToQoz/gomain
+go get github.com/ToQoz/godeps
+go get github.com/ToQoz/go-unitypackage
+go get github.com/ToQoz/git-ls-untracked-files
