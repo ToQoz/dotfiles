@@ -178,6 +178,9 @@ autocmd MyAutoCmds FileType    gitconfig       call s:hardTab(8)
 autocmd MyAutoCmds FileType    go              call s:hardTab(8) 
 autocmd MyAutoCmds FileType    zsh             call s:softTab(2)
 autocmd MyAutoCmds FileType    vim             call s:softTab(2)
+autocmd MyAutoCmds FileType    ruby            call s:softTab(2)
+autocmd MyAutoCmds FileType    eruby           call s:softTab(2)
+autocmd MyAutoCmds FileType    yaml            call s:softTab(2)
 
 autocmd MyAutoCmds FileType    help nnoremap <buffer> q <C-w>c " quit help by `q`
 autocmd MyAutoCmds BufWritePre *    call s:autoMkdir(expand('<afile>:p:h'), v:cmdbang)
