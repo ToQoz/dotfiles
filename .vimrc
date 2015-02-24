@@ -184,12 +184,19 @@ autocmd MyAutoCmds BufWritePre *    call s:autoMkdir(expand('<afile>:p:h'), v:cm
 autocmd MyAutoCmds CmdwinEnter *    call s:cmdwinEnter()
 autocmd MyAutoCmds FileType    ruby nnoremap <leader>r :execute '!spring rspec ' . @% . ':' . line('.')<CR>
 autocmd MyAutoCmds FileType    go   call s:hiErr()
+autocmd MyAutoCmds FileType    git  call s:hiCommit()
 
 function! s:hiErr()
   call s:hardTab(8)
   " http://yuroyoro.hatenablog.com/entry/2014/08/12/144157
   highlight err cterm=bold ctermfg=214
   match err /\c[a-z0-9]*err /
+endfunction
+
+function! s:hiCommit()
+  " http://yuroyoro.hatenablog.com/entry/2014/08/12/144157
+  highlight commit cterm=bold ctermfg=214
+  match commit /^commit .*\nAuthor: .*\nDate: .*/
 endfunction
 
 function! s:autoMkdir(dir, force)
