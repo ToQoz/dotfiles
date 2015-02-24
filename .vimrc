@@ -476,6 +476,10 @@ endif " }}}
 
 execute 'colorscheme ' . s:colorscheme
 
+if filereadable(expand('~/private/.vimrc'))
+  source expand('~/private/.vimrc')
+endif
+
 filetype plugin indent on
 syntax on
 NeoBundleCheck
