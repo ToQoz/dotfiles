@@ -30,3 +30,5 @@ GTAGS
 
 # Ctags
 tags
+
+/vendor/gems
