@@ -111,7 +111,7 @@ endif
 
 if &term =~ '256color'
   set t_Co=256
-  let s:colorscheme = 'molokai'
+  let s:colorscheme = 'hybrid'
 endif
 
 " Special Keys
