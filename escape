@@ -1,0 +1,12 @@
+#!/bin/sh
+
+ghq list > ~/Dropbox/ghq-list.txt
+echo "saved to ~/Dropbox/ghq-list.txt"
+
+# あくまで、repositoryを記録したいだけなので、(sub packageとかいれたくない)
+# go list all とかじゃなくて無理やりだけど、ghqで記録する。
+ghq_root=$(ghq root | sed -e "s,$HOME,~,")
+git config --global --replace-all ghq.root $GOPATH/src
+ghq list > ~/Dropbox/go-list.txt
+git config --global --replace-all ghq.root $ghq_root
+echo "saved to ~/Dropbox/go-list.txt"
