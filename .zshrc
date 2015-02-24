@@ -54,6 +54,8 @@ autoload -Uz i
 autoload -Uz isim
 autoload -Uz git_info
 
+alias zmv="noglob zmv -W"
+
 autoload colors; colors
 autoload -Uz compinit; compinit
 autoload -Uz add-zsh-hook
@@ -232,31 +234,53 @@ alias_for_etc_on_tmux() {
 alias g='cd $(anything-gorepo)'
 alias gofmtall="git ls-tree --name-only -r HEAD | grep .go$ | xargs gofmt -w"
 
-gocovern() {
+ghuser() {
+  local user=$(git config github.user)
+
+  if [ -z $user ]; then
+    user=$GITHUB_USER
+  fi
+
+  if [ -z $user ]; then
+    user=$GITHUBUSER
+  fi
+
+  if [ -z $user ]; then
+    user=$(whoami)
+  fi
+
+  echo $user
+}
+
+gocover() {
   local cov="/tmp/gocover.$$.out"
   go test -covermode=count -coverprofile=$cov $@ && go tool cover -html=$cov
   unlink $cov
 }
 
+gohome() {
+  echo $GOPATH/src/github.com/$(ghuser)
+}
+
+gocdm() {
+  cd $(gohome)
+}
+
 goinit() {
-  if [ -z $1 ]; then
+  chdir $(gohome)
+
+  local reponm=$1
+  if [ -z $reponm ]; then
     echo "goinit require repo name" >> /dev/stderr
     return 2
   fi
-
-  local user=$(git config github.user)
-  if [ -z $user ]; then
-    user=$(whoami)
-  fi
-
-  local repo="$GOPATH/src/github.com/$user/$1"
-  if [ ls $repo 2> /dev/null ]; then
-    echo "$repo is already exists" >> /dev/stderr
+  if [ ls $reponm 2> /dev/null ]; then
+    echo "repo($reponm) is already exists" >> /dev/stderr
     return 2
   fi
 
-  mkdir -p $repo &&
-    cd $repo &&
+  mkdir $reponm &&
+    cd $reponm &&
     git init &&
     git commit --allow-empty -m 'Initial commit'
 }
