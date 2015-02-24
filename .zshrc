@@ -167,6 +167,25 @@ ok() {
 
 alias hr="ruby -e \"puts '-' * $(tput cols)\""
 
+pushbullet() {
+  p=$PUSHBULLET_ACCESS_TOKEN
+  if [ -z "$p" ]; then
+    echo "access token is required. set to \$PUSHBULLET_ACCESS_TOKEN" >> /dev/stderr
+    return 1
+  fi
+
+  t=$1
+  if [ -z "$t" ]; then
+    echo "title is required" >> /dev/stderr
+    return 1
+  fi
+
+  b=$2
+  [ -n "$b" ] || b=$t
+
+  curl -X POST -u $p: https://api.pushbullet.com/v2/pushes -d type=note -d title=$t -d body=$b 2> /dev/null 1>&2
+}
+
 # Useful bundler
 alias be='bundle exec'
 
