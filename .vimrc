@@ -415,14 +415,15 @@ if neobundle#tap("unite.vim") " {{{
   endif
 
   if neobundle#is_installed("unite-go-imports")
-    autocmd MyAutoCmds FileType go nnoremap <C-i>      :Unite go/import<CR>
-    autocmd MyAutoCmds FileType go inoremap <C-i>      <ESC>:Unite go/import<CR>
-    autocmd MyAutoCmds FileType go vnoremap <C-i>      <ESC>:Unite go/import<CR>
-    autocmd MyAutoCmds FileType go nnoremap <leader>dd :Unite go/drop<CR>
+    autocmd MyAutoCmds FileType go nnoremap [unite]i   :Unite go/import<CR>
+    autocmd MyAutoCmds FileType go inoremap [unite]i   :Unite go/import<CR>
+    autocmd MyAutoCmds FileType go nnoremap [unite]rp  :Unite go/drop<CR>
   endif
 
   if neobundle#is_installed("unite-go-doc")
-    autocmd MyAutoCmds FileType go nnoremap <C-?> :Unite go/doc<CR>
+    autocmd MyAutoCmds FileType go nnoremap [unite]d :Unite go/doc<CR>
+    autocmd MyAutoCmds FileType go inoremap [unite]d <ESC>:Unite go/doc<CR>
+    autocmd MyAutoCmds FileType go vnoremap [unite]d <ESC>:Unite go/doc<CR>
   endif
 
   if neobundle#is_installed("vim-poslist")
