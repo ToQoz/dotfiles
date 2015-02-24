@@ -488,6 +488,13 @@ if neobundle#tap('go-vim') " {{{
   nnoremap <leader>F  :Drop fmt<CR>
 endif " }}}
 
+if neobundle#tap('vim-fugitive') " {{{
+  function! s:Grep(word)
+    execute ':sp | Ggrep ' . a:word . ' | copen'
+  endfunction
+  command! -nargs=1 Grep silent call s:Grep(<f-args>)
+endif " }}}
+
 execute 'colorscheme ' . s:colorscheme
 
 if filereadable(expand('~/private/.vimrc'))
