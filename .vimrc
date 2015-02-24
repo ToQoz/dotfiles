@@ -381,7 +381,7 @@ if neobundle#tap("unite.vim") " {{{
   let g:unite_source_grep_recursive_opt = ''
   let g:unite_source_grep_encoding = 'utf-8'
 
-  nmap <C-x> [unite]
+  map <C-x> [unite]
   nnoremap [unite]<C-u> :<C-u>Unite<Space>
 
   nnoremap [unite]/ :<C-u>Unite line -buffer-name=search -start-insert<CR>
