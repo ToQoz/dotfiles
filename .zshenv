@@ -149,4 +149,6 @@ export ANDROID_SDK_ROOT="$HOME/opt/android-sdk"
 # export COCOS_CONSOLE_ROOT=~/opt/cocos2d-x-3.1/tools/cocos2d-console/bin
 # export PATH=$COCOS_CONSOLE_ROOT:$PATH
 
+source $PRIVATE_D/.zshenv
+
 # vim:set ft=zsh et foldmethod=marker:
