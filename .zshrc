@@ -277,6 +277,15 @@ goinit() {
     git commit --allow-empty -m 'Initial commit'
 }
 
+# ghq+peco {{{
+cdany() {
+  cd $(ghq list -p | peco)
+  zle reset-prompt
+}
+zle -N cdany
+bindkey "^xg" cdany
+# }}}
+
 # Redo(Undo is C-/)
 bindkey "^[r" redo
 
