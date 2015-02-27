@@ -124,6 +124,8 @@ install ghq
 install peco
 install tig
 install irssi
+install slack
+install hipchat
 install uim
 install wireshark
 install nkf
