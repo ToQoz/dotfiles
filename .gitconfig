@@ -5,7 +5,6 @@
 	user = "ToQoz"
 [core]
 	attributesfile = ~/.gitattributes_global
-	editor = $EDITOR
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
 	quotepath = false
