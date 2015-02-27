@@ -197,7 +197,7 @@ cask install steam
 # Utils {{{
 cask install dropbox
 cask install appcleaner
-cask install divvy
+cask install slate
 cask install fitbit-connect
 # }}}
 # OMG {{{
