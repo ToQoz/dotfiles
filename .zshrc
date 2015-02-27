@@ -208,16 +208,10 @@ pushbullet() {
   curl -X POST -u $p: https://api.pushbullet.com/v2/pushes -d type=note -d title=$t -d body=$b 2> /dev/null 1>&2
 }
 
-# Useful bundler
-alias be='bundle exec'
-
 # Useful Vim
 alias vim=$VIM_E
-alias vi=vim
-svim() { vim sudo:$1; }
 
 # :)
-alias fdate="date +%Y-%m-%d"
 alias ggit="open -a SourceTree"
 
 alias_for_etc_on_tmux() {
