@@ -225,7 +225,6 @@ alias_for_etc_on_tmux() {
 [ -z "$TMUX" ] || alias_for_etc_on_tmux
 
 # Golang
-alias g='cd $(anything-gorepo)'
 alias gofmtall="git ls-tree --name-only -r HEAD | grep .go$ | xargs gofmt -w"
 
 ghuser() {
