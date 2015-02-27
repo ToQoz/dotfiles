@@ -185,6 +185,7 @@ ls-gitn() {
   fi
   (cd $base_dir && find . -maxdepth 1 -type d | grep -v "^.$" | xargs -I{} sh -c '(cd {}; git remote > /dev/null 2>&1 || pwd)')
 }
+alias airport="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
 alias hr="ruby -e \"puts '-' * $(tput cols)\""
 
 pushbullet() {
