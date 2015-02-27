@@ -121,6 +121,7 @@ install ricty
 # }}}
 
 install ghq
+install peco
 install tig
 install irssi
 install uim
