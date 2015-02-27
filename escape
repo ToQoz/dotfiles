@@ -1,12 +1,13 @@
 #!/bin/sh
 
-ghq list > ~/Dropbox/ghq-list.txt
+ghq list | xargs -I{} echo "https://{}" > ~/Dropbox/ghq-list.txt
 echo "saved to ~/Dropbox/ghq-list.txt"
 
-# あくまで、repositoryを記録したいだけなので、(sub packageとかいれたくない)
-# go list all とかじゃなくて無理やりだけど、ghqで記録する。
-ghq_root=$(ghq root | sed -e "s,$HOME,~,")
-git config --global --replace-all ghq.root $GOPATH/src
-ghq list > ~/Dropbox/go-list.txt
-git config --global --replace-all ghq.root $ghq_root
+# あくまで、repositoryを記録したいだけなので、(sub packageとかいれたくない)ghqで記録する。
+ghq list -p | grep "^$GOPATH/src/" | sed "s,^$GOPATH/src/,," > ~/Dropbox/go-list.txt
 echo "saved to ~/Dropbox/go-list.txt"
+
+echo "WARNING: export ios development certificates as .p12"
+echo "  e.g."
+echo "    iPhone Developer: .+"
+echo "    iPhone Distribution: .+"

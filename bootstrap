@@ -61,14 +61,9 @@ do
     sleep 3
 done
 
-cat ~/Dropbox/ghq-list.txt | ghq import
-
-# インストールしたいわけじゃなくて、
-# リポジトリあつめてきたいだけなのでgo getじゃなくてghqでやる
-ghq_root=$(ghq root | sed -e "s,$HOME,~,")
-git config --global --replace-all ghq.root $GOPATH/src
-cat ~/Dropbox/go-list.txt | ghq import
-git config --global --replace-all ghq.root $ghq_root
+ghq import < ~/Dropbox/ghq-list.txt
+# インストールしたいわけじゃなくて、リポジトリあつめてきたいだけなのでgo get -d
+go get -d $(cat ~/Dropbox/go-list.txt)
 # }}}
 
 # vim:set ft=sh et foldmethod=marker:
