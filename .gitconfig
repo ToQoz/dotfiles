@@ -55,3 +55,4 @@
 	path = ~/private/.gitconfig
 [ghq]
 	root = ~/_dev
+	root = ~/_go/src
