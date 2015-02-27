@@ -1,5 +1,3 @@
-# [ -z "$UIM_FEP_PID" ] && exec uim-fep -e "$SHELL" "-l"
-
 export COREUTILS_EXIST=false
 if [ -d $BREW_HOME/opt/coreutils ]; then
   COREUTILS_EXIST=true
