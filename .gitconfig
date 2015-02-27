@@ -40,6 +40,12 @@
 	wc  = whatchanged
 	lp  = log --decorate --stat --patch
 	dw  = diff --color-words
+[sendemail]
+	smtpserver = msmtp
+	smtpencryption = tls
+	smtpserver     = smtp.gmail.com
+	smtpuser       = toqoz403@gmail.com
+	smtpserverport = 587
 [url "git@github.com:"]
 	pushInsteadOf = "git://github.com/"
 	pushInsteadOf = "https://github.com/"
