@@ -40,6 +40,7 @@ tap homebrew/versions
 tap railwaycat/emacsmacport
 tap aereal/aereal
 tap aereal/aereal_casks
+tap motemen/ghq
 tap sanemat/font
 
 update
@@ -119,6 +120,7 @@ install binutils
 install ricty
 # }}}
 
+install ghq
 install tig
 install irssi
 install uim
