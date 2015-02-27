@@ -270,6 +270,7 @@ NeoBundle 'soh335/unite-outline-go'
 NeoBundle 'ToQoz/unite-go-imports'
 NeoBundle 'ToQoz/unite-go-doc'
 NeoBundle 'basyura/unite-rails'
+NeoBundle 'sorah/unite-ghq'
 
 " TextObj
 " Vim plugin: Operators to edit surrounding text
@@ -388,6 +389,7 @@ if neobundle#tap("unite.vim") " {{{
   nnoremap [unite]/ :<C-u>Unite line -buffer-name=search -start-insert<CR>
   nnoremap [unite]* :<C-u>UniteWithCursorWord line -buffer-name=search<CR>
   nnoremap [unite]n :<C-u>UniteResume search -no-start-insert<CR>
+  nnoremap <silent> [unite]g :<C-u>Unite ghq<CR>
   nnoremap <silent> [unite]f :<C-u>Unite file_rec/async:!<CR>
   nnoremap <silent> [unite]F :<C-u>Unite file_rec:!<CR>
   nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
