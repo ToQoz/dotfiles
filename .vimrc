@@ -286,7 +286,8 @@ NeoBundle 'tpope/vim-rails'
 " Golang
 NeoBundle 'dgryski/vim-godef'
 NeoBundle 'Blackrush/vim-gocode'
-NeoBundle 'vim-jp/go-vim'
+NeoBundle 'google/vim-ft-go'
+NeoBundle 'vim-jp/vim-go-extra'
 execute 'set rtp+=' . s:gopath . '/src/github.com/golang/lint/misc/vim'
 execute 'set rtp+=' . s:gopath . '/src/github.com/ToQoz/goimps/misc/vim'
 NeoBundle 'ToQoz/vim-go-drop-unused-imports'
@@ -484,7 +485,7 @@ if neobundle#tap('vim-altercmd') " {{{
   endif
 endif " }}}
 
-if neobundle#tap('go-vim') " {{{
+if neobundle#tap('vim-go-extra') " {{{
   let g:gofmt_command = "goimps fmt"
   nnoremap <leader>f  :Import fmt<CR>
   nnoremap <leader>F  :Drop fmt<CR>
