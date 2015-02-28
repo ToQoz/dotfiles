@@ -1,0 +1,14 @@
+#!/bin/sh
+
+cd /tmp
+wget http://uim.googlecode.com/files/uim-1.8.6.tar.bz2
+tar xjvf uim-1.8.6.tar.bz2
+cd uim-1.8.6
+
+export CFLAGS='-g -O0'
+export CXXFLAGS=$CFLAGS
+
+./configure --prefix=$(brew --prefix)/Cellar/uim/1.8.6 --without-x --disable-debug --disable-dependency-tracking
+make
+make install
+brew link uim
