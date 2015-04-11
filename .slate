@@ -1,0 +1,7 @@
+alias sox screenOriginX
+alias soy screenOriginY
+alias ssx screenSizeX
+alias ssy screenSizeY
+
+alias full move ${sox};${soy} ${ssx};${ssy}
+bind f:cmd,ctrl ${full}
