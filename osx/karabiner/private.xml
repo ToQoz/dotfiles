@@ -10,8 +10,9 @@
     <equal>org.vim.MacVim</equal>
   </appdef>
   <appdef>
-    <appname>ECLIPSE</appname>
-    <equal>org.eclipse.eclipse</equal>
+    <appname>JAVA_APP</appname>
+    <equal>org.java_app.java_app</equal>
+    <equal>jp.naver.line.mac</equal>
   </appdef>
   <appdef>
     <appname>MONODEVELOP</appname>
@@ -42,47 +43,47 @@
       </item>
     </item>
     <item>
-      <name>Eclipse</name>
+      <name>Java application</name>
       <item>
         <name>Control+A to Command+Shift+Right</name>
-        <identifier>net.toqoz.eclipse.emacsmode_controlA_ex</identifier>
-        <only>ECLIPSE</only>
+        <identifier>net.toqoz.java_app.emacsmode_controlA_ex</identifier>
+        <only>JAVA_APP</only>
         <autogen>__KeyToKey__ KeyCode::A, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_CONTROL | ModifierFlag::NONE, KeyCode::CURSOR_LEFT, ModifierFlag::COMMAND_L</autogen>
       </item>
       <item>
         <name>Control+K to Command+Shift+Right,Forward Delete</name>
-        <identifier>net.toqoz.eclipse.emacsmode_controlK_ex</identifier>
-        <only>ECLIPSE</only>
+        <identifier>net.toqoz.java_app.emacsmode_controlK_ex</identifier>
+        <only>JAVA_APP</only>
         <autogen>__KeyToKey__ KeyCode::K, MODIFIERFLAG_EITHER_LEFT_OR_RIGHT_CONTROL | ModifierFlag::NONE, KeyCode::CURSOR_RIGHT, ModifierFlag::COMMAND_L | ModifierFlag::SHIFT_L, KeyCode::FORWARD_DELETE</autogen>
       </item>
       <item>
         <name>Ctrl+p to cursor up</name>
-        <identifier>net.toqoz.eclipse.cursor_up</identifier>
-        <only>ECLIPSE</only>
+        <identifier>net.toqoz.java_app.cursor_up</identifier>
+        <only>JAVA_APP</only>
         <autogen>--KeyToKey-- KeyCode::P, VK_CONTROL, KeyCode::CURSOR_UP</autogen>
       </item>
       <item>
         <name>Ctrl+n to cursor down</name>
-        <identifier>net.toqoz.eclipse.cursor_down</identifier>
-        <only>ECLIPSE</only>
+        <identifier>net.toqoz.java_app.cursor_down</identifier>
+        <only>JAVA_APP</only>
         <autogen>--KeyToKey-- KeyCode::N, VK_CONTROL, KeyCode::CURSOR_DOWN</autogen>
       </item>
       <item>
         <name>Ctrl+h to backspace</name>
-        <identifier>net.toqoz.eclipse.ctrl_h_to_backspace</identifier>
-        <only>ECLIPSE</only>
+        <identifier>net.toqoz.java_app.ctrl_h_to_backspace</identifier>
+        <only>JAVA_APP</only>
         <autogen>--KeyToKey-- KeyCode::H, VK_CONTROL, KeyCode::DELETE</autogen>
       </item>
       <item>
         <name>Ctrl+f to cursor right</name>
-        <identifier>net.toqoz.eclipse.cursor_right</identifier>
-        <only>ECLIPSE</only>
+        <identifier>net.toqoz.java_app.cursor_right</identifier>
+        <only>JAVA_APP</only>
         <autogen>--KeyToKey-- KeyCode::F, VK_CONTROL, KeyCode::CURSOR_RIGHT</autogen>
       </item>
       <item>
         <name>Ctrl+b to cursor left</name>
-        <identifier>net.toqoz.eclipse.cursor_left</identifier>
-        <only>ECLIPSE</only>
+        <identifier>net.toqoz.java_app.cursor_left</identifier>
+        <only>JAVA_APP</only>
         <autogen>--KeyToKey-- KeyCode::B, VK_CONTROL, KeyCode::CURSOR_LEFT</autogen>
       </item>
     </item>
