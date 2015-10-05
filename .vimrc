@@ -67,6 +67,7 @@ set number
 set relativenumber
 set visualbell
 set showtabline=2
+" do not insert space on joining japanese lines
 set formatoptions& formatoptions+=mM
 set formatoptions-=ro " Disable automatically inserting comment on newline
 set cursorline
