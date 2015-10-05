@@ -243,12 +243,12 @@ function! s:tabWidth(width)
   execute 'setl softtabstop=' . a:width
 endfunction
 
+" Lightweight filer
 NeoBundle "justinmk/vim-dirvish"
-NeoBundle "pangloss/vim-javascript"
-NeoBundle 'tikhomirov/vim-glsl'
 " Wrappers for UNIX commands. e.g. Rename, Move, SudoWrite...
 NeoBundle "tpope/vim-eunuch"
 
+" Async procedure
 NeoBundle 'Shougo/vimproc', {
       \   'build' : {
       \     'mac' : 'make -f make_mac.mak',
@@ -285,12 +285,16 @@ NeoBundle 'sorah/unite-ghq'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'kana/vim-textobj-user'
 
+" Frontend (JS/HTML/CSS...)
+NeoBundle "pangloss/vim-javascript"
+NeoBundle 'tikhomirov/vim-glsl'
+NeoBundle 'tpope/vim-haml'
+
 " Ruby
 NeoBundle 'ruby.vim'
 NeoBundle 'ruby-matchit'
 NeoBundle 'tpope/vim-endwise' " Expand if<CR> to if [condition] end
 NeoBundle 'tpope/vim-rails'
-NeoBundle 'tpope/vim-haml'
 
 " Golang
 NeoBundle 'dgryski/vim-godef'
@@ -308,26 +312,37 @@ NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'rhysd/clever-f.vim'
 " Seek makes navigating long lines effortless, acting like f but taking two characters.
 NeoBundle 'goldfeld/vim-seek'
+" position history
+NeoBundle 'thinca/vim-poslist'
 
-NeoBundle 'bling/vim-airline'
+" Configure tabs within Terminal Vim
 NeoBundle "mkitt/tabline.vim"
 
-NeoBundle 'thinca/vim-poslist'
 " Error check tool
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'nathanaelkane/vim-indent-guides'
 " Use one tab page per project
 NeoBundle 'kana/vim-tabpagecd'
+" Comment out depending on filetype
 NeoBundle 'tomtom/tcomment_vim'
 " Perl/Ruby style regexp notation for Vim
 NeoBundle 'othree/eregex.vim'
+" replace in quickfix
 NeoBundle 'thinca/vim-qfreplace'
+" undo tree
 NeoBundle 'sjl/gundo.vim'
-" 現在の検索位置を画面に表示するためのプラグイン
+" show current search position
 NeoBundle 'osyo-manga/vim-anzu'
+" :substitute preview
 NeoBundle 'osyo-manga/vim-over'
+" Alter built-in Ex commands by your own ones
 NeoBundle 'tyru/vim-altercmd'
+" Confirm before quiting
 NeoBundle 'ToQoz/gentle_quitman.vim'
+
+" Visualize indent level
+NeoBundle 'nathanaelkane/vim-indent-guides'
+" Kawaii status
+NeoBundle 'bling/vim-airline'
 
 " Colorschemes
 NeoBundle 'altercation/vim-colors-solarized'
