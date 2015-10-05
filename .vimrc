@@ -469,7 +469,8 @@ if neobundle#tap('syntastic') " {{{
         \ }
   let g:syntastic_enable_highlighting = 1
   let g:syntastic_ruby_exec           = expand('~/.rbenv/shims/ruby')
-  let g:syntastic_go_checkers         = ['go', 'golint', 'govet']
+  " let g:syntastic_go_checkers         = ['go', 'golint', 'govet']
+  let g:syntastic_go_checkers         = ['go', 'golint']
 endif " }}}
 
 if neobundle#tap('vim-indent-guides') " {{{
