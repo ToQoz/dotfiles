@@ -3,3 +3,4 @@ gem install pry
 gem install pry-doc
 gem install git-gsub
 gem install ruby-anything
+gem install netprint
