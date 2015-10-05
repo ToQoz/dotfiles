@@ -283,6 +283,7 @@ NeoBundle 'ruby.vim'
 NeoBundle 'ruby-matchit'
 NeoBundle 'tpope/vim-endwise' " Expand if<CR> to if [condition] end
 NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-haml'
 
 " Golang
 NeoBundle 'dgryski/vim-godef'
