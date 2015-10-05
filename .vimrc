@@ -296,7 +296,7 @@ NeoBundle 'ToQoz/vim-go-drop-unused-imports'
 
 " Moving
 " <leader> w/f (interface like selecting link on vimp)
-NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'rhysd/clever-f.vim'
 " Seek makes navigating long lines effortless, acting like f but taking two characters.
 NeoBundle 'goldfeld/vim-seek'
