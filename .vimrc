@@ -469,6 +469,10 @@ if neobundle#tap('syntastic') " {{{
         \ }
   let g:syntastic_enable_highlighting = 1
   let g:syntastic_ruby_exec           = expand('~/.rbenv/shims/ruby')
+
+  " https://github.com/thoughtbot/dotfiles/commit/6a034a7d659ef332345d17d55aaf47994aa9f96b
+  let g:syntastic_eruby_ruby_quiet_messages =
+      \ {'regex': 'possibly useless use of a variable in void context'}
   " let g:syntastic_go_checkers         = ['go', 'golint', 'govet']
   let g:syntastic_go_checkers         = ['go', 'golint']
 endif " }}}
