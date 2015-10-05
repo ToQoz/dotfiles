@@ -238,6 +238,7 @@ function! s:tabWidth(width)
   execute 'setl softtabstop=' . a:width
 endfunction
 
+NeoBundle "justinmk/vim-dirvish"
 NeoBundle "pangloss/vim-javascript"
 NeoBundle 'tikhomirov/vim-glsl'
 
