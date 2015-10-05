@@ -297,6 +297,7 @@ NeoBundle 'ToQoz/vim-go-drop-unused-imports'
 " Moving
 " <leader> w/f (interface like selecting link on vimp)
 NeoBundle 'easymotion/vim-easymotion'
+" Sequential f,F,t,T
 NeoBundle 'rhysd/clever-f.vim'
 " Seek makes navigating long lines effortless, acting like f but taking two characters.
 NeoBundle 'goldfeld/vim-seek'
@@ -305,14 +306,13 @@ NeoBundle 'bling/vim-airline'
 NeoBundle "mkitt/tabline.vim"
 
 NeoBundle 'thinca/vim-poslist'
+" Error check tool
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'vim-jp/vimdoc-ja' 
 NeoBundle 'nathanaelkane/vim-indent-guides'
 " Use one tab page per project
 NeoBundle 'kana/vim-tabpagecd'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'vim-scripts/sudo.vim'
-NeoBundle 'tpope/vim-fugitive'
 " Perl/Ruby style regexp notation for Vim
 NeoBundle 'othree/eregex.vim'
 NeoBundle 'vim-scripts/Rename'
@@ -323,12 +323,6 @@ NeoBundle 'osyo-manga/vim-anzu'
 NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'tyru/vim-altercmd'
 NeoBundle 'ToQoz/gentle_quitman.vim'
-" OSX Dictionary interface
-NeoBundle 'modsound/macdict-vim.git', {
-      \   'build': {
-      \     'mac': 'cd autoload && make'
-      \    },
-      \ }
 
 " Colorschemes
 NeoBundle 'altercation/vim-colors-solarized'
@@ -337,7 +331,18 @@ NeoBundle 'sickill/vim-monokai'
 NeoBundle 'molokai'
 NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'w0ng/vim-hybrid'
+
+" Git frontends
 NeoBundle 'takahirojin/gbr.vim'
+NeoBundle 'tpope/vim-fugitive'
+
+" OSX Dictionary interface
+NeoBundle 'modsound/macdict-vim.git', {
+      \   'build': {
+      \     'mac': 'cd autoload && make'
+      \    },
+      \ }
+NeoBundle 'vim-jp/vimdoc-ja'
 
 if neobundle#tap("neocomplete.vim") " {{{
   let g:acp_enableAtStartup                           = 0
