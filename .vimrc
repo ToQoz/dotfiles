@@ -8,17 +8,17 @@ endif
 
 call neobundle#rc(expand('~/.vim/bundle'))
 
-let s:gopath = $GOPATH
-if s:gopath == ''
-  let s:gopath = system('go env GOPATH')
+let g:gopath = $GOPATH
+if g:gopath == ''
+  let g:gopath = system('go env GOPATH')
 endif
-let s:gopath = split(s:gopath, ':')[0]
+let g:gopath = split(g:gopath, ':')[0]
 
-let s:goroot = $GOROOT
-if s:goroot == ''
-  let s:goroot = system('go env GOROOT')
+let g:goroot = $GOROOT
+if g:goroot == ''
+  let g:goroot = system('go env GOROOT')
 endif
-let s:goroot = split(s:goroot, ':')[0]
+let g:goroot = split(g:goroot, ':')[0]
 
 augroup MyAutoCmds
   autocmd!
@@ -294,8 +294,8 @@ NeoBundle 'dgryski/vim-godef'
 NeoBundle 'Blackrush/vim-gocode'
 NeoBundle 'google/vim-ft-go'
 NeoBundle 'vim-jp/vim-go-extra'
-execute 'set rtp+=' . s:gopath . '/src/github.com/golang/lint/misc/vim'
-execute 'set rtp+=' . s:gopath . '/src/github.com/ToQoz/goimps/misc/vim'
+execute 'set rtp+=' . g:gopath . '/src/github.com/golang/lint/misc/vim'
+execute 'set rtp+=' . g:gopath . '/src/github.com/ToQoz/goimps/misc/vim'
 NeoBundle 'ToQoz/vim-go-drop-unused-imports'
 
 " Moving
