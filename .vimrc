@@ -111,6 +111,7 @@ endif
 
 if &term =~ '256color'
   set t_Co=256
+  let g:hybrid_use_Xresources = 1
   let s:colorscheme = 'hybrid'
 endif
 
