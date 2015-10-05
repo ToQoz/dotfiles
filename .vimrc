@@ -243,6 +243,8 @@ endfunction
 NeoBundle "justinmk/vim-dirvish"
 NeoBundle "pangloss/vim-javascript"
 NeoBundle 'tikhomirov/vim-glsl'
+" Wrappers for UNIX commands. e.g. Rename, Move, SudoWrite...
+NeoBundle "tpope/vim-eunuch"
 
 NeoBundle 'Shougo/vimproc', {
       \   'build' : {
@@ -314,10 +316,8 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 " Use one tab page per project
 NeoBundle 'kana/vim-tabpagecd'
 NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'vim-scripts/sudo.vim'
 " Perl/Ruby style regexp notation for Vim
 NeoBundle 'othree/eregex.vim'
-NeoBundle 'vim-scripts/Rename'
 NeoBundle 'thinca/vim-qfreplace'
 NeoBundle 'sjl/gundo.vim'
 " 現在の検索位置を画面に表示するためのプラグイン
