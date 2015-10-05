@@ -2,7 +2,6 @@
 
 (define default-im-name 'skk)
 
-(define skk-dic-file-name (string-append (getenv "HOME") "/Library/Application Support/AquaSKK/SKK-JISYO.L"))
-
-(define skk-use-skkserv? #t)
 (define skk-use-with-vi? #t)
+
+(define skk-dic-file-name (string-append (getenv "HOME") "/Library/Application Support/AquaSKK/SKK-JISYO.L"))
