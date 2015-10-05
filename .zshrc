@@ -213,6 +213,8 @@ alias vim=$VIM_E
 # :)
 alias ggit="open -a SourceTree"
 
+alias tmux="uim-tmux"
+
 alias_for_etc_on_tmux() {
   add-zsh-hook precmd update-window-title-precmd
   add-zsh-hook preexec update-window-title-preexec
