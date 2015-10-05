@@ -175,7 +175,7 @@ nnoremap <S-Tab> gT
 
 autocmd MyAutoCmds FileType    *               call s:softTab(4)
 autocmd MyAutoCmds FileType    gitconfig       call s:hardTab(8)
-autocmd MyAutoCmds FileType    go              call s:hardTab(8) 
+autocmd MyAutoCmds FileType    go              call s:hardTab(8)
 autocmd MyAutoCmds FileType    zsh             call s:softTab(2)
 autocmd MyAutoCmds FileType    vim             call s:softTab(2)
 autocmd MyAutoCmds FileType    ruby            call s:softTab(2)
@@ -357,7 +357,7 @@ endif " }}}
 
 if neobundle#tap("neosnippet") " {{{
   imap <C-k> <Plug>(neosnippet_expand_or_jump)
-  smap <C-k> <Plug>(neosnippet_expand_or_jump) 
+  smap <C-k> <Plug>(neosnippet_expand_or_jump)
 endif " }}}
 
 if neobundle#tap("sonictemplate-vim") " {{{
@@ -481,7 +481,7 @@ if neobundle#tap('vim-altercmd') " {{{
     AlterCommand q GQ
     AlterCommand GQ q
     AlterCommand wq GWQ
-    AlterCommand GWQ wq   
+    AlterCommand GWQ wq
   endif
 endif " }}}
 
