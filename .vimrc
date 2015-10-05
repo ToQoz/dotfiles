@@ -69,7 +69,6 @@ set visualbell
 set showtabline=2
 " do not insert space on joining japanese lines
 set formatoptions& formatoptions+=mM
-set formatoptions-=ro " Disable automatically inserting comment on newline
 set cursorline
 set laststatus=2
 set lazyredraw
@@ -174,6 +173,8 @@ nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 " }}}
 
+" Disable automatically inserting comment on newline
+autocmd MyAutoCmds FileType    *               setl formatoptions-=ro
 autocmd MyAutoCmds FileType    *               call s:softTab(4)
 autocmd MyAutoCmds FileType    gitconfig       call s:hardTab(8)
 autocmd MyAutoCmds FileType    go              call s:hardTab(8)
