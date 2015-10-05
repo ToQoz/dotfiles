@@ -507,7 +507,7 @@ endif " }}}
 
 if neobundle#tap('vim-fugitive') " {{{
   function! s:Grep(word)
-    execute ':sp | Ggrep ' . a:word . ' | copen'
+    execute ':sp | Ggrep --untracked ' . a:word . ' | copen'
   endfunction
   command! -nargs=1 Grep silent call s:Grep(<f-args>)
 endif " }}}
