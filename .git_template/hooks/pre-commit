@@ -10,6 +10,16 @@
 #
 # This script does not handle file names that contain spaces.
 
+if [ -z "`git config --local user.name`" ]; then
+    echo "fatal: user.name is not set locally"
+    exit 1
+fi
+
+if [ -z "`git config --local user.email`" ]; then
+    echo "fatal: user.email is not set locally"
+    exit 1
+fi
+
 gofiles=$(git diff --cached --name-only --diff-filter=ACM | grep '.go$')
 [ -z "$gofiles" ] && exit 0
 
