@@ -414,4 +414,11 @@ $RBENV_EXIST && eval "$(rbenv init - zsh --no-rehash)"
 
 test -e $PRIVATE_D/.zshrc && source $PRIVATE_D/.zshrc
 
+export DOCKER_TLS_VERIFY=1
+export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_CERT_PATH=/Users/toqoz/.boot2docker/certs/boot2docker-vm
+alias fig="docker-compose"
+
+[ -z "$TMUX" ] && tmux
+
 # vim:set ft=zsh et foldmethod=marker:
