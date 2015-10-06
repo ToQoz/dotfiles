@@ -174,8 +174,6 @@ nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 " }}}
 
-" Disable automatically inserting comment on newline
-autocmd MyAutoCmds FileType    *               setl formatoptions-=ro
 autocmd MyAutoCmds FileType    *               call s:softTab(4)
 autocmd MyAutoCmds FileType    gitconfig       call s:hardTab(8)
 autocmd MyAutoCmds FileType    go              call s:hardTab(8)
