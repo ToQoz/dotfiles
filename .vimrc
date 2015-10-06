@@ -188,7 +188,6 @@ autocmd MyAutoCmds FileType    toml            call s:softTab(2)
 autocmd MyAutoCmds FileType    haml            call s:softTab(2)
 
 autocmd MyAutoCmds FileType    help nnoremap <buffer> q <C-w>c " quit help by `q`
-autocmd MyAutoCmds BufWritePre *    call s:autoMkdir(expand('<afile>:p:h'), v:cmdbang)
 autocmd MyAutoCmds CmdwinEnter *    call s:cmdwinEnter()
 autocmd MyAutoCmds FileType    ruby nnoremap <leader>r :execute '!spring rspec ' . @% . ':' . line('.')<CR>
 autocmd MyAutoCmds FileType    go   call s:hiErr()
@@ -205,13 +204,6 @@ function! s:hiCommit()
   " http://yuroyoro.hatenablog.com/entry/2014/08/12/144157
   highlight commit cterm=bold ctermfg=214
   match commit /^commit .*\nAuthor: .*\nDate: .*/
-endfunction
-
-function! s:autoMkdir(dir, force)
-  if !isdirectory(a:dir) && (a:force ||
-        \ input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
-    call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
-  endif
 endfunction
 
 " http://vim-users.jp/2010/07/hack161/
@@ -247,6 +239,8 @@ endfunction
 NeoBundle "justinmk/vim-dirvish"
 " Wrappers for UNIX commands. e.g. Rename, Move, SudoWrite...
 NeoBundle "tpope/vim-eunuch"
+" Makes directory if it is not exists.
+NeoBundle 'mopp/autodirmake.vim'
 
 " Async procedure
 NeoBundle 'Shougo/vimproc', {
