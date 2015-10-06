@@ -187,7 +187,6 @@ autocmd MyAutoCmds FileType    haml            call s:softTab(2)
 
 autocmd MyAutoCmds FileType    help nnoremap <buffer> q <C-w>c " quit help by `q`
 autocmd MyAutoCmds CmdwinEnter *    call s:cmdwinEnter()
-autocmd MyAutoCmds FileType    ruby nnoremap <leader>r :execute '!spring rspec ' . @% . ':' . line('.')<CR>
 autocmd MyAutoCmds FileType    go   call s:hiErr()
 autocmd MyAutoCmds FileType    git  call s:hiCommit()
 
