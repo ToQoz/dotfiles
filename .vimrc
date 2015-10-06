@@ -189,6 +189,7 @@ autocmd MyAutoCmds FileType    help nnoremap <buffer> q <C-w>c " quit help by `q
 autocmd MyAutoCmds CmdwinEnter *    call s:cmdwinEnter()
 autocmd MyAutoCmds FileType    go   call s:hiErr()
 autocmd MyAutoCmds FileType    git  call s:hiCommit()
+autocmd MyAutoCmds FileType    json setl conceallevel=0
 
 function! s:hiErr()
   " http://yuroyoro.hatenablog.com/entry/2014/08/12/144157
