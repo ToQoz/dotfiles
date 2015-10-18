@@ -125,8 +125,6 @@ install ghq
 install peco
 install tig
 install irssi
-install slack
-install hipchat
 install toqoz/toqoz/uim
 install wireshark
 install nkf
@@ -218,6 +216,10 @@ cask install fitbit-connect
 cask install caffeine
 cask install tomighty
 # }}}
+# Chat {{{
+cask install slack
+cask install hipchat
+}}}
 # OMG {{{
 cask install openoffice
 cask install libreoffice
