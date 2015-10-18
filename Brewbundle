@@ -127,7 +127,7 @@ install tig
 install irssi
 install slack
 install hipchat
-./brew_uim
+install toqoz/toqoz/uim
 install wireshark
 install nkf
 install wget
