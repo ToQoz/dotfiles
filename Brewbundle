@@ -189,7 +189,7 @@ cask install r
 cask install rstudio
 # }}}
 # Visual {{{
-cask install couleursapp
+cask install couleurs
 cask install sketch
 cask install sketch-tool
 cask install texturepacker
