@@ -31,6 +31,7 @@
 	rank       = shortlog -s -n --no-merges
 	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
 	ls-modified = "!git status -s | grep '^ M ' | awk '{print $2}'"
+	gr  = grep --untracked
 	s   = status -sb
 	ft  = fetch
 	ftp = fetch --prune
