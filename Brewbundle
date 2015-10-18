@@ -87,7 +87,7 @@ install leiningen
 install clozure-cl
 # }}}
 
-# Ruby related {{{
+# Ruby related(deps/tools) {{{
 install refe
 install rsense
 install openssl
