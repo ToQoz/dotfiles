@@ -162,12 +162,18 @@ install qcachegrind
 install uncrustify
 install xctool
 install xmlto
+install openssh
+install curl-ca-bundle
+install unar # CLI version of The Unarchiver
+install wrk # HTTP benchmark tool
 
 cask install xquartz
 cask install aquaskk
 cask install google-chrome
 cask install virtualbox
 cask install vagrant
+cask install docker
+cask install docker-compose
 # KeyRemap4MacBook {{{
 cask install karabiner
 cask install seil
@@ -175,18 +181,27 @@ cask install seil
 # IDE/GUI manager {{{
 cask install sourcetree
 cask install mysqlworkbench
+cask install sequel-pro
 cask install unity
 cask install xamarin-studio
 cask install android-studio
 cask install darteditor
+cask install visual-studio-code
+cask install jd-gui
+cask install r
+cask install rstudio
 # }}}
 # Visual {{{
+cask install couleursapp
 cask install sketch
 cask install sketch-tool
+cask install texturepacker
 cask install lisanet-gimp # X11 free version
 cask install inkscape
+cask install firealpaca
 cask install blender
 cask install tiled
+cask install gyazo
 # }}}
 # Fun {{{
 cask install soundcleod
@@ -196,10 +211,13 @@ cask install cooviewer
 cask install steam
 # }}}
 # Utils {{{
+cask install night-owl
 cask install dropbox
 cask install appcleaner
 cask install slate
 cask install fitbit-connect
+cask install caffeine
+cask install tomighty
 # }}}
 # OMG {{{
 cask install openoffice
