@@ -4,4 +4,14 @@ alias ssx screenSizeX
 alias ssy screenSizeY
 
 alias full move ${sox};${soy} ${ssx};${ssy}
+
+alias left-half move ${sox};${soy} ${ssx}/2+1;${ssy}
+alias right-half move ${sox}+${ssx}/2;${soy} ${ssx}/2;${ssy}
+alias top-half move ${sox};${soy} ${ssx};${ssy}/2
+alias bot-half move ${sox};${soy}+${ssy}/2 ${ssx};${ssy}/2
+
 bind f:cmd,ctrl ${full}
+bind h:cmd,ctrl ${left-half}
+bind l:cmd,ctrl ${right-half}
+bind j:cmd,ctrl ${bot-half}
+bind k:cmd,ctrl ${top-half}
