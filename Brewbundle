@@ -80,7 +80,7 @@ install rbenv
 install python
 install python3
 install node
-install ghc
+install haskell-stack
 install gauche
 install dmd
 install leiningen
