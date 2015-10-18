@@ -16,6 +16,8 @@
 	default = simple
 [rebase]
 	autosquash = true
+[grep]
+	lineNumber = true
 [diff]
 	algorithm = histogram
 [merge]
