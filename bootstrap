@@ -16,20 +16,85 @@ export GOROOT=$(go env GOROOT)
 ./osx/seil/config.sh
 # }}}
 
-# Set defaults {{{
+# Set dock's defaults {{{
+# Hide dock automatically
 defaults write com.apple.dock autohide -bool true
+# Don't delay on autohide
 defaults write com.apple.dock autohide-delay -float 0
+# Animate quickly on expose
 defaults write com.apple.dock expose-animation-duration -float 0.1
+# Don't allow bouncing
+defaults write com.apple.dock no-bouncing -bool true
+# Disable dashboard
+defaults write com.apple.dashboard mcx-disabled -boolean true
+# }}}
 
+# Set finder's defaults {{{
+# Search in current dir
 defaults write com.apple.finder FXDefaultSearchScope -string 'SCcf'
+# Show list view
 defaults write com.apple.finder FXPreferredViewStyle -string "Nslv"
+# Don't confirm changing file ext
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+# Show fielpath in Title
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+# }}}
 
+# Set safari's defaults {{{
+# Don't omit URL in AddressBar
+defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+# Don't open downloaded safe file automatically
+defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
+# Set 'about:blank' as HomePage
+defaults write com.apple.Safari HomePage -string "about:blank"
+# Show DeelopMenu in ManuBar
+defaults write com.apple.Safari IncludeDevelopMenu -bool true
+# Show InternalDebugMenu in DebugMenu
+defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+# }}}
+
+# Set TextEdit's defaults {{{
+defaults write com.apple.TextEdit AddExtensionToNewPlainTextFiles -bool false
+defaults write com.apple.TextEdit CheckSpellingWhileTyping -bool false
+defaults write com.apple.TextEdit CorrectSpellingAutomatically -bool false
+# Disable RichText
+defaults write com.apple.TextEdit RichText -bool false
+# Use UTF-8 for read
+defaults write com.apple.TextEdit PlainTextEncoding -int 4
+# Use UTF-8 for write
+defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
+defaults write com.apple.TextEdit SmartDashes -bool false
+defaults write com.apple.TextEdit TextReplacement -bool false
+defaults write com.apple.TextEdit RichText -bool false
+defaults write com.apple.TextEdit ShowRuler -bool false
+defaults write com.apple.TextEdit SmartCopyPaste -bool false
+defaults write com.apple.TextEdit SmartDashes -bool false
+defaults write com.apple.TextEdit SmartQuotes -bool false
+defaults write com.apple.TextEdit TextReplacement -bool false
+# }}}
+
+# Set YoruFukurou's defaults {{{
+defaults write com.YoruFukurouProject.YoruFukurou DisplayApplicationQuitWarning -bool false
+# }}}
+
+# Set SourceTree's defaults {{{
+defaults write com.torusknot.SourceTreeNotMAS agreedToUpdateConfig -bool false
+}}}
+
+# Set global's defaults {{{
+# Don't check spell
 defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
+# Don't resume
 defaults write -g NSQuitAlwaysKeepsWindows -bool false
+# Don't save to iCloud
 defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
+
+defaults write -g NSScrollAnimationEnabled -bool NO
+# }}}
 
 killall Finder
 killall Dock
+killall Safari
 killall SystemUIServer
 # }}}
 
