@@ -163,7 +163,6 @@ install uncrustify
 install xctool
 install xmlto
 install openssh
-install curl-ca-bundle
 install unar # CLI version of The Unarchiver
 install wrk # HTTP benchmark tool
 

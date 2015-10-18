@@ -63,10 +63,6 @@ export RLWRAP_HOME=$HOME/.rlwrap
 # GNU
 export GNULIB_SRCDIR=$HOME/dev/coreutils/gnulib
 
-# SSL sert
-# http://qiita.com/hotchpotch/items/12457815d5cee3723b97
-export SSL_CERT_FILE=$BREW_HOME/opt/curl-ca-bundle/share/ca-bundle.crt
-
 # Docker
 export DOCKER_HOST="tcp://"
 
