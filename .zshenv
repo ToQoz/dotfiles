@@ -29,7 +29,6 @@ if [ -d $BREW_HOME ]; then
   export PKG_CONFIG_PATH="$BREW_HOME/opt/libxml2/lib/pkgconfig:$BREW_HOME/lib/pkgconfig:$PKG_CONFIG_PATH"
 fi
 
-
 # Editor {{{
 ## Vim
 if [ -e "$BREW_HOME/opt/macvim/MacVim.app" ]; then
@@ -45,109 +44,34 @@ fi
 export EDITOR=$VIM_E
 # }}}
 
-# PATH {{{
-typeset -Ua fpath
-fpath=(
-  $ZSH_D/site-functions(N-/)
-  $BREW_HOME/share/zsh-completions(N-/)
-  $BREW_HOME/share/zsh/site-functions(N-/)
-  $BREW_HOME/share/zsh/functions(N-/)
-  $fpath
-)
-
-typeset -Ua \
-  user_path \
-  brew_path \
-  rbenv_path \
-  cabal_path \
-  sudo_path \
-  system_path
-user_path=(
-  $HOME/bin(N-/)
-  $HOME/bin/private
-  $HOME/scripts(N-/)
-  $HOME/local/bin
-  $HOME/opt/*/(s|)bin(N-/)
-)
-brew_path=(
-  $BREW_HOME/opt/coreutils/libexec/gnubin(N-/)
-  $BREW_HOME/opt/gnu-tar/libexec/gnubin(N-/)
-  $BREW_HOME/(s|)bin(N-/)
-  $BREW_HOME/share/npm/bin(N-/)
-  $BREW_HOME/opt/gettext/bin
-#  $BREW_HOME/share/python(N-/)
-)
-rbenv_path=(
-  $RBENV_HOME/bin(N-/)
-  $RBENV_HOME/shims(N-/)
-)
-cabal_path=(
-  $HOME/.cabal/bin
-)
-system_path=(
-  /usr/local/bin(N-/)
-  /usr/bin(N-/)
-  /opt/*/(s|)bin(N-/)
-  /bin(N-/)
-)
-sudo_path=(
-  /usr/local/sbin(N-/)
-  /usr/sbin(N-/)
-  /sbin(N-/)
-)
-
-typeset -U path
-path=(
-  $user_path
-  $rbenv_path
-  $brew_path
-  $cabal_path
-  $system_path
-  $sudo_path
-)
-
-typeset -U manpath
-manpath=(
-  $HOME/local/share/man(N-/)
-  $BREW_HOME/opt/coreutils/libexec/gnuman(N-/)
-  $BREW_HOME/share/man(N-/)
-  /usr/local/share/man(N-/)
-  /usr/share/man(N-/)
-)
-
-typeset -Ua perl5lib
-perl5lib=(
-  $BREW_HOME/opt/irssi/lib/perl5/site_perl/darwin-thread-multi-2level(N-/)
-)
-# }}}
-
 # Golang
 if /usr/bin/which -s nproc; then
   export GOMAXPROCS=$(nproc)
 fi
-if /usr/bin/which -s go; then
-  export GOROOT=$(go env GOROOT)
-  export PATH=$GOROOT/bin:$PATH
+go_prefix="$($BREW_HOME/bin/brew --prefix go)"
+if [ -n "$go_prefix" ]; then
+  export GOROOT=$($go_prefix/bin/go env GOROOT)
 fi
 export GOPATH=$HOME/_go
-export PATH=$GOPATH/bin:$PATH
-# export GOENVTARGET=$HOME/.goenvtarget
 
+# AWK
 export AWKPATH=$HOME/.awk.d/site-progfiles
 
 # REPL
 export RLWRAP_HOME=$HOME/.rlwrap
 
+# GNU
 export GNULIB_SRCDIR=$HOME/dev/coreutils/gnulib
+
+# SSL sert
 # http://qiita.com/hotchpotch/items/12457815d5cee3723b97
 export SSL_CERT_FILE=$BREW_HOME/opt/curl-ca-bundle/share/ca-bundle.crt
 
+# Docker
 export DOCKER_HOST="tcp://"
 
+# Android
 export ANDROID_SDK_ROOT="$HOME/opt/android-sdk"
-# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
-# export COCOS_CONSOLE_ROOT=~/opt/cocos2d-x-3.1/tools/cocos2d-console/bin
-# export PATH=$COCOS_CONSOLE_ROOT:$PATH
 
 source $PRIVATE_D/.zshenv
 
