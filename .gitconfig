@@ -42,6 +42,7 @@
 	wc  = whatchanged
 	lp  = log --decorate --stat --patch
 	dw  = diff --color-words
+	toqoz = "!git config --add user.name 'Takatoshi Matsumoto' && git config --add user.email 'toqoz403@gmail.com'"
 [sendemail]
 	smtpserver = msmtp
 	smtpencryption = tls
