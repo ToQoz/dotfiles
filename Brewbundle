@@ -90,7 +90,7 @@ install clozure-cl
 # Ruby related {{{
 install refe
 install rsense
-install openssh
+install openssl
 install libyaml
 install readline
 install yajl
