@@ -2,6 +2,9 @@
 
 xcode-select --install
 
+sudo mkdir -p /usr/local/bin
+sudo chown -R $(whoami) /usr/local/bin
+
 # Install brew & brewed packages {{{
 mkdir ~/brew && curl -L https://github.com/Homebrew/homebrew/tarball/master | tar xz --strip 1 -C ~/brew
 export PATH=$HOME/brew/bin:$PATH
