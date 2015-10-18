@@ -163,14 +163,14 @@ install xmlto
 install openssh
 install unar # CLI version of The Unarchiver
 install wrk # HTTP benchmark tool
+install docker
+install docker-compose
 
 cask install xquartz
 cask install aquaskk
 cask install google-chrome
 cask install virtualbox
 cask install vagrant
-cask install docker
-cask install docker-compose
 # KeyRemap4MacBook {{{
 cask install karabiner
 cask install seil
