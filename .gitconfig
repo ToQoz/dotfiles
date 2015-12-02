@@ -57,6 +57,11 @@
 	pushInsteadOf = "https://github.com/"
 [url "git@github.com:"]
 	insteadOf     = "https://github.com/"
+[url "git@bitbucket.org:"]
+	pushInsteadOf = "git://bitbucket.org/"
+	pushInsteadOf = "https://bitbucket.org/"
+[url "git@bitbucket.org:"]
+	insteadOf = "https://bitbucket.org/"
 [include]
 	path = ~/private/.gitconfig
 [ghq]
