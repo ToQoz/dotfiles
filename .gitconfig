@@ -25,14 +25,17 @@
 [alias]
 	ls-aliases = "!sh -c 'git config -l | grep ^alias'"
 	bootstrap  = "!sh -c 'git init && git commit --allow-empty'"
-	unstage    = "reset HEAD"
+	unstage    = "reset HEAD --"
+	# http://qiita.com/uasi/items/f19a120e012c0c75d856
+	uncommit   = reset HEAD^
+	recommit   = commit -c ORIG_HEAD
 	cancel     = "!git commit -a -m 'Temporary commit for cancel' && git reset --hard HEAD~" # http://d.hatena.ne.jp/thinca/20120924/1348491052
 	yesterday  = "!f() { git log $1@{yesterday}..$1; }; f"
 	rank       = shortlog -s -n --no-merges
 	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
 	ls-modified = "!git status -s | grep '^ M ' | awk '{print $2}'"
 	gr  = grep --untracked
-	s   = status -sb
+	s   = !"git stash list && git status -sb"
 	ft  = fetch
 	ftp = fetch --prune
 	fto = fetch origin
