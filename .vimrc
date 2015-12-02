@@ -184,6 +184,8 @@ autocmd MyAutoCmds FileType    eruby           call s:softTab(2)
 autocmd MyAutoCmds FileType    yaml            call s:softTab(2)
 autocmd MyAutoCmds FileType    toml            call s:softTab(2)
 autocmd MyAutoCmds FileType    haml            call s:softTab(2)
+autocmd MyAutoCmds FileType    javascript      call s:softTab(2)
+autocmd MyAutoCmds FileType    json            call s:softTab(2)
 
 autocmd MyAutoCmds FileType    help nnoremap <buffer> q <C-w>c " quit help by `q`
 autocmd MyAutoCmds CmdwinEnter *    call s:cmdwinEnter()
