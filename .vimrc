@@ -281,6 +281,7 @@ NeoBundle 'kana/vim-textobj-user'
 
 " Frontend (JS/HTML/CSS...)
 NeoBundle "pangloss/vim-javascript"
+NeoBundle 'mephux/vim-jsfmt'
 NeoBundle 'tikhomirov/vim-glsl'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'digitaltoad/vim-jade'
