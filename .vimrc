@@ -184,6 +184,7 @@ autocmd MyAutoCmds FileType    eruby           call s:softTab(2)
 autocmd MyAutoCmds FileType    yaml            call s:softTab(2)
 autocmd MyAutoCmds FileType    toml            call s:softTab(2)
 autocmd MyAutoCmds FileType    haml            call s:softTab(2)
+autocmd MyAutoCmds FileType    jade            call s:softTab(2)
 autocmd MyAutoCmds FileType    javascript      call s:softTab(2)
 autocmd MyAutoCmds FileType    json            call s:softTab(2)
 
@@ -282,6 +283,7 @@ NeoBundle 'kana/vim-textobj-user'
 NeoBundle "pangloss/vim-javascript"
 NeoBundle 'tikhomirov/vim-glsl'
 NeoBundle 'tpope/vim-haml'
+NeoBundle 'digitaltoad/vim-jade'
 
 " Ruby
 NeoBundle 'ruby.vim'
