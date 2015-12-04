@@ -223,6 +223,12 @@ find-and-open-file() {
   echo "$selected" | awk -F : '{print "-c " $2 " " $1}' | xargs -o vim 
 }
 alias fof=find-and-open-file
+vim-bench() {
+  f=$(mktemp)
+  vim --startuptime $f +:q
+  cat $f
+  rm $f
+}
 
 # :)
 alias ggit="open -a SourceTree"
