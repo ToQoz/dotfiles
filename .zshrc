@@ -210,6 +210,19 @@ pushbullet() {
 
 # Useful Vim
 alias vim=$VIM_E
+# NAME
+#   find-and-open-file
+# DESCRIPTION
+#   1. find filename/linenumber from lines like a /$FILE:$LINE_NUMBER.*/
+#   2. open it by vim
+# USAGE
+#   git grep 'def .*api' | fof
+find-and-open-file() {
+  input=$(cat)
+  selected=$(echo $input | grep '.\+:[0-9]\+:.*' | peco)
+  echo "$selected" | awk -F : '{print "-c " $2 " " $1}' | xargs -o vim 
+}
+alias fof=find-and-open-file
 
 # :)
 alias ggit="open -a SourceTree"
