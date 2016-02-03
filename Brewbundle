@@ -52,6 +52,7 @@ install pcre
 
 # VCS {{{
 install git
+install git-secrets
 install mercurial
 # }}}
 
