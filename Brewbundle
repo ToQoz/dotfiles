@@ -206,6 +206,7 @@ cask install appcleaner
 cask install slate
 cask install fitbit-connect
 # }}}
+cask install focus
 # Chat {{{
 cask install slack
 cask install hipchat
