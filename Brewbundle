@@ -157,6 +157,11 @@ install xmlto
 install openssh
 install unar # CLI version of The Unarchiver
 install wrk # HTTP benchmark tool
+# AWS {{{
+install aws-elasticbeanstalk
+install awscli
+install dynamodb-local
+# }}}
 install docker
 install docker-compose
 
