@@ -53,7 +53,6 @@ install pcre
 # VCS {{{
 install git
 install mercurial
-install bazaar
 # }}}
 
 # GUI {{{
