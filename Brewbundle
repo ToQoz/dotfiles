@@ -138,6 +138,7 @@ install nmap
 install rsync
 install dnsmasq
 install rlwrap
+install mitmproxy
 install imagemagick
 install ffmpeg
 install graphviz
