@@ -149,7 +149,6 @@ install selenium-server-standalone
 install asciidoc
 install cgdb
 install md5sha1sum
-install mpg123
 install qcachegrind
 install uncrustify
 install xctool
