@@ -48,6 +48,7 @@ update
 
 install brew-cask
 
+install pkg-config
 install pcre
 
 # VCS {{{
