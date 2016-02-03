@@ -205,8 +205,6 @@ cask install dropbox
 cask install appcleaner
 cask install slate
 cask install fitbit-connect
-cask install caffeine
-cask install tomighty
 # }}}
 # Chat {{{
 cask install slack
