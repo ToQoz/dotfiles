@@ -130,7 +130,6 @@ install wireshark
 install nkf
 install wget
 install toqoz/toqoz/tmux
-install reattach-to-user-namespace --wrap-launchctl --wrap-pbcopy-and-pbpaste
 install the_silver_searcher
 install make
 install jq

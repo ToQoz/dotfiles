@@ -13,11 +13,6 @@ if [ -d $BREW_HOME/opt/binutils ]; then
   BINUTILS_EXIST=true
 fi
 
-export REATTACH_TO_USER_NAMESPACE_EXIST=false
-if /usr/bin/which -s reattach-to-user-namespace; then
-  REATTACH_TO_USER_NAMESPACE_EXIST=true
-fi
-
 export RBENV_EXIST=false
 if /usr/bin/which -s rbenv; then
   RBENV_EXIST=true
