@@ -99,7 +99,6 @@ install mysql
 # Zsh {{{
 install zsh
 install zsh-completions
-install z
 # }}}
 
 # GNU tools {{{
