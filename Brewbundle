@@ -50,12 +50,6 @@ install brew-cask
 
 install pcre
 
-# GCC {{{
-install gcc
-install gcc47
-install apple-gcc42
-# }}}
-
 # VCS {{{
 install git
 install mercurial
