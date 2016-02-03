@@ -159,6 +159,7 @@ install docker
 install docker-compose
 
 cask install xquartz
+cask install coconutbattery
 cask install aquaskk
 cask install google-chrome
 cask install virtualbox
