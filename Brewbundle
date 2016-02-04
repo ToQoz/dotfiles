@@ -35,6 +35,7 @@ update() {
     brew update
 }
 
+tap caskroom/cask
 tap homebrew/dupes
 tap homebrew/versions
 tap railwaycat/emacsmacport
@@ -45,8 +46,6 @@ tap sanemat/font
 tap toqoz/toqoz
 
 update
-
-install brew-cask
 
 install pkg-config
 install pcre
