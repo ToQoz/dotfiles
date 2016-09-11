@@ -1,10 +1,22 @@
+set main-view = id date author commit-title:graph=yes,refs=yes
+set diff-options = -m --first-parent
+set line-graphics = ascii
+
 # open commit at github
 bind main o !hub browse -- commit/%(commit)
 bind diff o !hub browse -- commit/%(commit)
 bind log  o !hub browse -- commit/%(commit)
 
+# vim like g/G
 bind generic g move-first-line
 bind generic G none # unbind(generic) !git gc
 bind generic G move-last-line
 bind main    G none # unbind(main) set commit-title-graph = no
 bind main    G move-last-line
+
+# copy hash
+bind generic C !@sh -c '/bin/echo -n %(commit) | pbcopy'
+bind main    C !@sh -c '/bin/echo -n %(commit) | pbcopy'
+bind diff    C !@sh -c '/bin/echo -n %(commit) | pbcopy'
+
+bind diff r !git rebase --interactive %(commit)~1

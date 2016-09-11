@@ -1,0 +1,27 @@
+{
+  "name": basename.replace(/^node-/, ''),
+  "description": prompt(),
+  "version": "0.0.0",
+  "main": prompt('entry point', 'index.js'),
+  "scripts": {
+    "test": "tape test/*.js",
+    "version": "node -e 'console.log(require(\"./package.json\").version)'",
+    "release:bump": "conventional-recommended-bump -p angular",
+    "release:build-changelog": "conventional-changelog -p angular -i CHANGELOG.md -w",
+    "release:github": "conventional-github-releaser -p angular"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "conventional-changelog": "^0.5.3",
+    "conventional-github-releaser": "^0.5.3",
+    "conventional-recommended-bump": "0.0.3",
+    "tap": "~4.4.1"
+  },
+  "homepage": "https://github.com/ToQoz/" + basename,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ToQoz/" + basename + ".git"
+  },
+  "author": "Takatoshi Matsumoto",
+  "license": "MIT"
+}

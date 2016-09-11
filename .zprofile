@@ -12,6 +12,7 @@ typeset -Ua \
   brew_path \
   golang_path \
   rbenv_path \
+  perl5_path \
   cabal_path \
   sudo_path \
   system_path
@@ -38,6 +39,9 @@ rbenv_path=(
   $RBENV_HOME/bin(N-/)
   $RBENV_HOME/shims(N-/)
 )
+perl5_path=(
+  $HOME/perl5/bin(N-/)
+)
 cabal_path=(
   $HOME/.cabal/bin
 )
@@ -58,6 +62,7 @@ path=(
   $user_path
   $golang_path
   $rbenv_path
+  $perl5_path
   $brew_path
   $cabal_path
   $system_path

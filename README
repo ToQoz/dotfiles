@@ -1,1 +1,4 @@
-my dotfiles
+personal dotfiles
+
+Notes
+  Use single docker machine that is named `dev`

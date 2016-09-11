@@ -1,3 +1,15 @@
+# :)
+alias tmux="uim-tmux"
+
+if [ -z "$TMUX" -a -z $SSH_CONNECTION ]; then
+  danglings=$(tmux list-sessions 2> /dev/null | grep -v 'attached' | wc -l)
+  if [ $danglings != 0 ]; then
+    tmux attach-session
+  else
+    tmux
+  fi
+fi
+
 export COREUTILS_EXIST=false
 if [ -d $BREW_HOME/opt/coreutils ]; then
   COREUTILS_EXIST=true
@@ -18,34 +30,39 @@ if /usr/bin/which -s rbenv; then
   RBENV_EXIST=true
 fi
 
-export Z_EXIST=false
-if [ -e $BREW_HOME/etc/profile.d/z.sh ]; then
-  Z_EXIST=true
-fi
-
 [ -d $RSENSE_HOME ] || echo "Rsense not found"
 
 # Use git completion in zsh not git's own one.
 # http://qiita.com/items/5be55843ee615f56ebf6
 test -e $BREW_HOME/share/zsh/site-functions/_git && rm $BREW_HOME/share/zsh/site-functions/_git
 
-# http://toqoz.hateblo.jp/entry/2013/11/26/115824
-test $(ssh-add -l | grep "$HOME/.ssh/id_rsa" | wc -l) = 0 && ssh-add
+# Cache & use npm completion
+#   $ time (npm completion > /dev/null)
+#   ( npm completion > /dev/null; )  0.42s user 0.09s system 90% cpu 0.565 total
+#
+#   $ time (source ~/.zsh/tmp/npm_completion)
+#   ( source ~/.zsh/tmp/npm_completion; )  0.00s user 0.00s system 82% cpu 0.003 total
+if [ ! -f ~/.zsh/tmp/npm_completion ]; then
+  mkdir -p ~/.zsh/tmp
+  npm completion > ~/.zsh/tmp/npm_completion
+fi
+source ~/.zsh/tmp/npm_completion
+
+if [ -n "$SSH_AUTH_SOCK" ]; then
+  # http://toqoz.hateblo.jp/entry/2013/11/26/115824
+
+  find ~/.ssh -maxdepth 1 -type f |
+    grep -v "\.pub$" |
+    egrep ".*/id_[a-z_\-\.]*$" |
+    xargs -I{} sh -c 'test $(ssh-add -l | grep "{}" | wc -l) = 0 && ssh-add {} < /dev/tty'
+fi
 
 bindkey -e
 
-export GIT_PS1_SHOWDIRTYSTATE=true
-
 autoload -Uz zmv
-autoload -Uz ssh
-autoload -Uz gem
 autoload -Uz pcolor
-autoload -Uz rezeus
-autoload -Uz brew
-autoload -Uz easytether
-autoload -Uz i
-autoload -Uz isim
 autoload -Uz git_info
+autoload -Uz brew
 
 alias zmv="noglob zmv -W"
 
@@ -126,7 +143,7 @@ alias -g G='| grep'
 alias -g S='| sed'
 alias -g A='| awk'
 alias -g W='| wc'
-alias -g P='| percol'
+alias -g P='| peco'
 
 extract() {
   case $1 in
@@ -215,7 +232,7 @@ alias vim=$VIM_E
 find-and-open-file() {
   input=$(cat)
   selected=$(echo $input | grep '.\+:[0-9]\+:.*' | peco)
-  echo "$selected" | awk -F : '{print "-c " $2 " " $1}' | xargs -o vim 
+  echo "$selected" | awk -F : '{print "-c " $2 " " $1}' | xargs -o vim
 }
 alias fof=find-and-open-file
 vim-bench() {
@@ -225,18 +242,14 @@ vim-bench() {
   rm $f
 }
 
-# :)
-alias ggit="open -a SourceTree"
-
-alias tmux="uim-tmux"
-
 alias_for_etc_on_tmux() {
   add-zsh-hook precmd update-window-title-precmd
   add-zsh-hook preexec update-window-title-preexec
 
   alias pbcopy="ssh 127.0.0.1 pbcopy"
-  alias pbpaste='ssh 0.0.0.0 pbpaste'
+  alias pbpaste='ssh 127.0.0.1 pbpaste'
   alias launchctl="ssh 127.0.0.1 launchctl"
+  alias mas="ssh 127.0.0.1 /usr/local/bin/mas"
 }
 [ -z "$TMUX" ] || alias_for_etc_on_tmux
 
@@ -267,8 +280,12 @@ gocover() {
   unlink $cov
 }
 
+goprimarypath() {
+  echo $GOPATH | tr ":" "\n" | head -n 1
+}
+
 gohome() {
-  echo $GOPATH/src/github.com/$(ghuser)
+  echo $(goprimarypath)/src/github.com/$(ghuser)
 }
 
 gocdm() {
@@ -295,13 +312,38 @@ goinit() {
 }
 
 # ghq+peco {{{
-cdany() {
-  cd $(ghq list -p | peco)
-  zle reset-prompt
+cd-anywhere() {
+  local d
+  d=$(ghq list -p | peco)
+  if [ $? = 0 ]; then
+    cd $d
+    zle reset-prompt
+  fi
 }
-zle -N cdany
-bindkey "^xg" cdany
+zle -N cd-anywhere
+bindkey "^xg" cd-anywhere
 # }}}
+
+
+proxy() {
+  /bin/echo -n "proxy self? "
+  read self
+
+  if [ "$self" = "y" ]; then
+    networksetup -setwebproxy Wi-Fi 127.0.0.1 8080
+    networksetup -setwebsecureproxy Wi-Fi 127.0.0.1 8080
+  else
+    addr="$(ifconfig en0 | grep 'inet ' | awk -F ' ' '{print $2}'):8080"
+    echo $addr | pbcopy
+  fi
+
+  mitmproxy
+
+  if [ "$self" = "y" ]; then
+    networksetup -setwebproxystate Wi-Fi off
+    networksetup -setwebsecureproxystate Wi-Fi off
+  fi
+}
 
 # Redo(Undo is C-/)
 bindkey "^[r" redo
@@ -316,6 +358,9 @@ insert-last-command-output() {
 }
 zle -N insert-last-command-output
 bindkey "^[l" insert-last-command-output
+
+# Don't logout by ^d
+setopt IGNORE_EOF
 
 #  Window title {{{
 set-window-title() {
@@ -360,8 +405,18 @@ update_prompt() {
 
   # skip GOROOT, if you want to see, exec `go env`.
   goinfo="(GOPATH:$(echo $GOPATH | sed -e "s,$HOME,~,g"))"
-  ruby_version=$(rbenv version-name)
-  current_working_directory="%~"
+  if [ $RBENV_EXIST ]; then
+    ruby_version=$(rbenv version-name)
+  else
+    ruby_version="system"
+  fi
+  current_working_directory=$(
+    echo $PWD |
+    sed -e "s,$HOME,~," |
+    sed -e 's,~/_go/src/,~go/,' |
+    sed -e 's,~/_dev/,~dev/,' |
+    sed -e 's/github\.com/github/; s/bitbucket.org/bitbucket/'
+  )
   current_branch=$(git_info)
   newline=$'\n'
 
@@ -372,8 +427,10 @@ update_prompt() {
   # Right prompt. -> Output.
   RPROMPT="%{$fg[red]%}(ruby:$ruby_version)%{$reset_color%}"
   RPROMPT="$RPROMPT %{$fg[blue]%}$goinfo %{$reset_color%}"
+
 }
 add-zsh-hook precmd update_prompt
+add-zsh-hook chpwd update_prompt
 # }}}
 
 # Setup plugins {{{
@@ -400,40 +457,21 @@ $FINDUTILS_EXIST && alias_to_cmd_to_findutils
 alias_to_cmd_to_binutils() {
   alias size='gsize'
 }
-$BINUTILS_EXIST  || echo 'binutils is not installed'
+$BINUTILS_EXIST || echo 'binutils is not installed'
 $BINUTILS_EXIST && alias_to_cmd_to_binutils
 
-# z.sh
-setup_z() {
-  _Z_CMD=j
-  source $BREW_HOME/etc/profile.d/z.sh
-  precmd () {
-    _z --add "$(pwd -P)"
-  }
-}
-$Z_EXIST && setup_z
-
-# reattach-to-user-namespace
-setup_reattach-to-user-namespace() {
-  $REATTACH_TO_USER_NAMESPACE_EXIST || echo 'reattach-to-user-namespace is not installed'
-
-  $REATTACH_TO_USER_NAMESPACE_EXIST && alias vim="reattach-to-user-namespace -l $VIM_E"
-  $REATTACH_TO_USER_NAMESPACE_EXIST && alias vimr="reattach-to-user-namespace -l $VIM_E  -c ':Unite file_mru'"
-  $REATTACH_TO_USER_NAMESPACE_EXIST && alias gvim="reattach-to-user-namespace -l gvim"
-}
-[ -z "$TMUX" ] && setup_reattach-to-user-namespace
-
 # rbenv
-$RBENV_EXIST && eval "$(rbenv init - zsh --no-rehash)"
+$RBENV_EXIST && eval "$(rbenv init - zsh)"
 # }}}
 
-test -e $PRIVATE_D/.zshrc && source $PRIVATE_D/.zshrc
-
-export DOCKER_TLS_VERIFY=1
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/toqoz/.boot2docker/certs/boot2docker-vm
+# docker
+# eval "$(docker-machine env dev)"
 alias fig="docker-compose"
 
-[ -z "$TMUX" ] && tmux
+# Use aws completion
+[ -f $BREW_HOME/share/zsh/site-functions/_aws ] && source $BREW_HOME/share/zsh/site-functions/_aws
+
+# Source private zshrc
+test -f $PRIVATE_D/.zshrc && source $PRIVATE_D/.zshrc
 
 # vim:set ft=zsh et foldmethod=marker:

@@ -13,3 +13,4 @@ go get github.com/ToQoz/gomain
 go get github.com/ToQoz/godeps
 go get github.com/ToQoz/go-unitypackage
 go get github.com/ToQoz/git-ls-untracked-files
+go get github.com/motemen/qiita-dl

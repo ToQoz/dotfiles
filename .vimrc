@@ -115,22 +115,15 @@ if &term =~ '256color'
   let s:colorscheme = 'hybrid'
 endif
 
-" Special Keys
-" show invisible character
-highlight SpecialKey term=underline ctermfg=darkgray guifg=#666666
+" Show indivisual characters {{{
 set ambiwidth=double
 set list
-set listchars=tab:>.,precedes:<,extends:>,eol:↵
-" highlight space at eof before save
-highlight WhitespaceEOL ctermbg=red guibg=red
-match WhitespaceEOL /\s\+$/
-" highlight zenkaku space
-highlight ZenkakuSpace cterm=underline ctermbg=red guibg=red
-match ZenkakuSpace /　/
+set listchars=tab:>.,precedes:<,extends:>,trail:_,eol:$
+autocmd MyAutoCmds VimEnter,WinEnter,ColorScheme * highlight NonText ctermfg=Red
+autocmd MyAutoCmds VimEnter,WinEnter,ColorScheme * highlight SpecialKey ctermfg=Red
+" }}}
 
 " Mappings {{{
-" let mapleader=","
-
 " clear search highlight
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
@@ -174,25 +167,23 @@ nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 " }}}
 
-autocmd MyAutoCmds FileType    *               call s:softTab(4)
+autocmd MyAutoCmds FileType    *               call s:softTab(2)
 autocmd MyAutoCmds FileType    gitconfig       call s:hardTab(8)
 autocmd MyAutoCmds FileType    go              call s:hardTab(8)
-autocmd MyAutoCmds FileType    zsh             call s:softTab(2)
-autocmd MyAutoCmds FileType    vim             call s:softTab(2)
-autocmd MyAutoCmds FileType    ruby            call s:softTab(2)
-autocmd MyAutoCmds FileType    eruby           call s:softTab(2)
-autocmd MyAutoCmds FileType    yaml            call s:softTab(2)
-autocmd MyAutoCmds FileType    toml            call s:softTab(2)
-autocmd MyAutoCmds FileType    haml            call s:softTab(2)
-autocmd MyAutoCmds FileType    jade            call s:softTab(2)
-autocmd MyAutoCmds FileType    javascript      call s:softTab(2)
-autocmd MyAutoCmds FileType    json            call s:softTab(2)
 
 autocmd MyAutoCmds FileType    help nnoremap <buffer> q <C-w>c " quit help by `q`
 autocmd MyAutoCmds CmdwinEnter *    call s:cmdwinEnter()
 autocmd MyAutoCmds FileType    go   call s:hiErr()
 autocmd MyAutoCmds FileType    git  call s:hiCommit()
 autocmd MyAutoCmds FileType    json setl conceallevel=0
+
+" Binary {{{
+autocmd MyAutoCmds BufReadPre   *.bin let &binary =1
+
+autocmd MyAutoCmds BufReadPost  * if &binary | silent execute "%!xxd -g 1" | set ft=xxd | endif
+autocmd MyAutoCmds BufWritePre  * if &binary | execute "%!xxd -r"                       | endif
+autocmd MyAutoCmds BufWritePost * if &binary | silent execute "%!xxd -g 1" | set nomod  | endif
+" }}}
 
 function! s:hiErr()
   " http://yuroyoro.hatenablog.com/entry/2014/08/12/144157
@@ -249,6 +240,8 @@ NeoBundle 'Shougo/vimproc', {
       \     'unix': 'make -f make_unix.mak'
       \   },
       \ }
+NeoBundle "thinca/vim-quickrun"
+let g:quickrun_config = {}
 
 " Completion
 NeoBundle 'Shougo/neocomplete.vim'
@@ -285,6 +278,10 @@ NeoBundle 'mephux/vim-jsfmt'
 NeoBundle 'tikhomirov/vim-glsl'
 NeoBundle 'tpope/vim-haml'
 NeoBundle 'digitaltoad/vim-jade'
+NeoBundle 'othree/html5.vim'
+NeoBundle 'mattn/emmet-vim'
+
+NeoBundle 'google/vim-jsonnet'
 
 " Ruby
 NeoBundle 'ruby.vim'
@@ -315,7 +312,16 @@ NeoBundle 'thinca/vim-poslist'
 NeoBundle "mkitt/tabline.vim"
 
 " Error check tool
-NeoBundle 'scrooloose/syntastic'
+" * Need to install commands for following filetypes
+"   - json         ... jsonlint
+"   - javascript   ... jshint|eslint
+if exists("#QuitPre")
+  NeoBundle "osyo-manga/vim-watchdogs"
+endif
+" Highlight quickfix errors
+NeoBundle "jceb/vim-hier"
+NeoBundle "osyo-manga/shabadou.vim"
+
 " Use one tab page per project
 NeoBundle 'kana/vim-tabpagecd'
 " Comment out depending on filetype
@@ -473,23 +479,39 @@ if neobundle#tap('clever-f.vim') " {{{
   let g:clever_f_fix_key_direction = 1
 endif " }}}
 
-if neobundle#tap('syntastic') " {{{
-  let g:syntastic_check_on_open            = 1
-  let g:syntastic_enable_signs             = 1
-  let g:syntastic_always_populate_loc_list = 1
-  let g:syntastic_mode_map                 = {
-        \   'mode': 'active',
-        \   'active_filetypes': [],
-        \   'passive_filetypes': ['html']
-        \ }
-  let g:syntastic_enable_highlighting = 1
-  let g:syntastic_ruby_exec           = expand('~/.rbenv/shims/ruby')
+" if neobundle#tap('syntastic') " {{{
+"   let g:syntastic_check_on_open            = 1
+"   let g:syntastic_enable_signs             = 1
+"   let g:syntastic_always_populate_loc_list = 1
+"   let g:syntastic_mode_map                 = {
+"         \   'mode': 'active',
+"         \   'active_filetypes': [],
+"         \   'passive_filetypes': ['html']
+"         \ }
+"   let g:syntastic_enable_highlighting = 1
+"   let g:syntastic_ruby_exec           = expand('~/.rbenv/shims/ruby')
+"
+"   " https://github.com/thoughtbot/dotfiles/commit/6a034a7d659ef332345d17d55aaf47994aa9f96b
+"   let g:syntastic_eruby_ruby_quiet_messages =
+"       \ {'regex': 'possibly useless use of a variable in void context'}
+"   " let g:syntastic_go_checkers         = ['go', 'golint', 'govet']
+"   let g:syntastic_go_checkers         = ['go', 'golint']
+" endif " }}}
 
-  " https://github.com/thoughtbot/dotfiles/commit/6a034a7d659ef332345d17d55aaf47994aa9f96b
-  let g:syntastic_eruby_ruby_quiet_messages =
-      \ {'regex': 'possibly useless use of a variable in void context'}
-  " let g:syntastic_go_checkers         = ['go', 'golint', 'govet']
-  let g:syntastic_go_checkers         = ['go', 'golint']
+if neobundle#tap('vim-watchdogs') " {{{
+  function! neobundle#tapped.hooks.on_source(bundle) " {{{
+    let g:watchdogs_check_BufWritePost_enable = 1
+
+    let g:quickrun_config['javascript/watchdogs_checker'] = {
+          \     "type" : "watchdogs_checker/eslint"
+          \ }
+    let g:quickrun_config['watchdogs_checker/_'] = {
+          \   'hook/hier_update/enable_exit' : 1,
+          \   'runner/vimproc/updatetime' : 40,
+          \ }
+    call watchdogs#setup(g:quickrun_config)
+  endfunction " }}}
+  call neobundle#untap()
 endif " }}}
 
 if neobundle#tap('vim-indent-guides') " {{{
@@ -515,7 +537,7 @@ if neobundle#tap('vim-altercmd') " {{{
 endif " }}}
 
 if neobundle#tap('vim-go-extra') " {{{
-  let g:gofmt_command = "goimps fmt"
+  let g:gofmt_command = "goimports"
   nnoremap <leader>f  :Import fmt<CR>
   nnoremap <leader>F  :Drop fmt<CR>
 endif " }}}
@@ -525,6 +547,10 @@ if neobundle#tap('vim-fugitive') " {{{
     execute ':sp | Ggrep --untracked ' . a:word . ' | copen'
   endfunction
   command! -nargs=1 Grep silent call s:Grep(<f-args>)
+endif " }}}
+
+if neobundle#tap('vim-jsfmt') " {{{
+  autocmd MyAutoCmds FileType javascript command! Fmt JSFmt
 endif " }}}
 
 execute 'colorscheme ' . s:colorscheme

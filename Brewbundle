@@ -49,22 +49,77 @@ update
 
 install pkg-config
 install pcre
+install openssl
+install readline
 
 # VCS {{{
 install git
+install git-lfs
+install tig
 install git-secrets
 install mercurial
 # }}}
 
-# GUI {{{
-install qt
-install gtk+
+# Zsh {{{
+install zsh
+install zsh-completions
 # }}}
 
 # Editor {{{
-install vim
-install macvim
-install emacs-mac
+install vim --with-luajit
+install macvim --with-luajit
+if [ -n "$I_HAVE_TIME" ]; then
+  install railwaycat/emacsmacport/emacs-mac
+fi
+# }}}
+
+# Shims {{{
+install homebrew/dupes/openssh
+install md5sha1sum
+install htop-osx
+install pstree
+install pidof
+install wget
+install make
+install tree
+install nkf
+install expect
+install homebrew/dupes/rsync
+# }}}
+
+# Benri {{{
+install tmux
+install ghq
+install peco
+install the_silver_searcher
+install jq
+install xmlto
+install lastpass-cli --with-pinentry --with-doc
+# }}}
+
+# Chat {{{
+install irssi
+# }}}
+
+# GUI/TUI {{{
+install qt
+if [ -n "$I_HAVE_TIME" ]; then
+  install qcachegrind
+  install gtk+
+fi
+install homebrew/dupes/ncurses
+# }}}
+
+# Ruby deps {{{
+# (openssl and readline will be installed before reaching here)
+install libyaml
+install yajl
+# }}}
+
+# {{{ Nokogiri deps
+install libxml2
+install libxslt
+install libiconv
 # }}}
 
 # Lauguage {{{
@@ -74,30 +129,21 @@ install rbenv
 install python
 install python3
 install node
-install haskell-stack
-install gauche
-install dmd
-install leiningen
-install clozure-cl
-# }}}
 
-# Ruby related(deps/tools) {{{
-install refe
-install rsense
-install openssl
-install libyaml
-install readline
-install yajl
+if [ -n "$I_HAVE_TIME" ]; then
+  install dmd
+  install gauche
+  install clozure-cl
+  install leiningen
+  install haskell-stack
+fi
 # }}}
 
 # Database {{{
 install redis
-install mysql
-# }}}
-
-# Zsh {{{
-install zsh
-install zsh-completions
+brew services start redis
+install homebrew/versions/mysql56
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql56.plist
 # }}}
 
 # GNU tools {{{
@@ -114,64 +160,109 @@ install binutils
 install ricty
 # }}}
 
-install ghq
-install peco
-install tig
-install irssi
+# IME {{{
 install toqoz/toqoz/uim
-install wireshark
-install nkf
-install wget
-install toqoz/toqoz/tmux
-install the_silver_searcher
-install make
-install jq
-install tree
-install pstree
-install pidof
-install htop-osx
-install expect
+install toqoz/toqoz/uim-tmux
+# }}}
+
+# Documentation {{{
+install asciidoc
+install graphviz
+# }}}
+
+# Profiler/Benchmarker/Debugger {{{
+install valgrind
+# HTTP benchmarker
+install wrk
+# curses debugger
+install cgdb
+# }}}
+
+# Network {{{
+install dnsmasq
 install ngrep
 install nmap
-install rsync
-install dnsmasq
+install homebrew/binary/ngrok2
 install mitmproxy
+# install wireshark --with-qt is too slow
+cask install wireshark
+# }}}
+
+# Media {{{
 install imagemagick
 install ffmpeg
-install graphviz
-install valgrind
+# }}}
+
+# iOS devtools {{{
 install class-dump
-install intltool
 install ios-webkit-debug-proxy
-install selenium-server-standalone
-install asciidoc
-install cgdb
-install md5sha1sum
-install qcachegrind
-install uncrustify
 install xctool
-install xmlto
-install openssh
-install unar # CLI version of The Unarchiver
-install wrk # HTTP benchmark tool
+install uncrustify
+# }}}
+
+# Ruby devtools {{{
+install refe
+install rsense
+# }}}
+
+# Shell devtools {{{
+install checkbashisms
+# }}}
+
+# Headless browsers {{{
+install selenium-server-standalone
+# }}}
+
 # AWS {{{
 install aws-elasticbeanstalk
 install awscli
 install dynamodb-local
 # }}}
-install docker
-install docker-compose
 
+# Docker {{{
+cask install docker
+# }}}
+
+# CLI for GUI app {{{
+install chrome-cli
+# Unarchiver
+install unar
+# }}}
+
+# i18n {{{
+install gettext
+install intltool
+# }}}
+
+# for OSX specific situation {{{
 cask install xquartz
 cask install coconutbattery
+cask install appcleaner
+# }}}
+
+# Sync {{{
+cask install dropbox
+# }}}
+
+# IME {{{
 cask install aquaskk
+# }}}
+
+# Browser {{{
 cask install google-chrome
+cask install firefox
+# }}}
+
+# Virtualisation {{{
 cask install virtualbox
 cask install vagrant
-# KeyRemap4MacBook {{{
+# }}}
+
+# Key remap {{{
 cask install karabiner
 cask install seil
 # }}}
+
 # IDE/GUI manager {{{
 cask install sourcetree
 cask install mysqlworkbench
@@ -185,18 +276,21 @@ cask install jd-gui
 cask install r
 cask install rstudio
 # }}}
-# Visual {{{
+
+# Visual design {{{
 cask install couleurs
 cask install sketch
 cask install sketch-tool
 cask install texturepacker
-cask install lisanet-gimp # X11 free version
+# X11 free version GMIP
+cask install lisanet-gimp
 cask install inkscape
 cask install firealpaca
 cask install blender
 cask install tiled
 cask install gyazo
 # }}}
+
 # Fun {{{
 cask install soundcleod
 cask install radiant-player
@@ -204,19 +298,35 @@ cask install vlc
 cask install cooviewer
 cask install steam
 # }}}
-# Utils {{{
-cask install night-owl
-cask install dropbox
-cask install appcleaner
+
+# WM {{{
 cask install slate
-cask install fitbit-connect
 # }}}
+
+# Life {{{
+cask install fitbit-connect
 cask install focus
+# }}}
+
 # Chat {{{
 cask install slack
 cask install hipchat
-}}}
+# }}}
+
+# Mac App Store {{{
+install argon/mas/mas
+mas install 1063031541 # TweetMan
+mas install 539883307 # LINE
+# mas install Chemrtron
+# }}}
+
 # OMG {{{
 cask install openoffice
 cask install libreoffice
 # }}}
+
+cask install yubikey-personalization-gui
+cask install yubikey-neo-manager
+cask install yubico-authenticator
+
+# vim:set ft=sh et foldmethod=marker:

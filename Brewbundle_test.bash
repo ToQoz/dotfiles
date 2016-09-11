@@ -4,7 +4,13 @@ set -e
 
 export brew_home=$(brew --prefix)
 lsformula() {
-    ls $brew_home/Library/Formula/$1.rb 2> /dev/null 1>&2 || (echo "$1 not found in fomula" && return 1)
+    # fix
+    ls $brew_home/Library/Formula/$1.rb 2> /dev/null 1>&2 ||
+        ls $brew_home/Library/Taps/*/*/$(basename $1).rb 2> /dev/null 1>&2 ||
+        ls $brew_home/Library/Taps/*/*/Formula/$1.rb 2> /dev/null 1>&2 ||
+        ls $brew_home/Library/Taps/$(dirname $1)/$(basename $1).rb 2> /dev/null 1>&2 ||
+        ls $brew_home/Library/Taps/$(dirname $1)/Formula/$(basename $1).rb 2> /dev/null 1>&2 ||
+        (echo "$1 not found in fomula" && return 1)
 }
 export -f lsformula
 

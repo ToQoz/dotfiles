@@ -14,6 +14,11 @@ export GOPATH=$HOME/_go
 export GOROOT=$(go env GOROOT)
 # }}}
 
+# Configure colors {{{
+curl 'https://gist.githubusercontent.com/w0ng/3278077/raw/073a61b47ccfea8a7ea30b5aabde3f3acc09ca03/.Xresources-hybrid' > ~/.Xresources
+curl 'https://raw.githubusercontent.com/chriskempson/tomorrow-theme/master/OS%20X%20Terminal/Tomorrow%20Night.terminal'
+# }}}
+
 # Configure karabiner/seil {{{
 ./osx/karabiner/config.sh
 ./osx/seil/config.sh
@@ -118,6 +123,9 @@ rbenv rehash
 # Install go packages(cmd) {{{
 sh ./Gobundle
 # }}}
+
+mkdir -p ~/bin
+qiita-dl -x -d ~/bin http://qiita.com/uasi/items/57da2e4268d348b371fb
 
 # Fetch projects {{{
 osascript -e 'tell application "Dropbox" to run'
