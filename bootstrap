@@ -127,19 +127,21 @@ sh ./Gobundle
 mkdir -p ~/bin
 qiita-dl -x -d ~/bin http://qiita.com/uasi/items/57da2e4268d348b371fb
 
-# Fetch projects {{{
-osascript -e 'tell application "Dropbox" to run'
+if [ -z "$NO_DROPBOX" ]; then
+    # Fetch projects {{{
+    osascript -e 'tell application "Dropbox" to run'
 
-# wait for sync ~/Dropbox/ghq-list.txt and ~/Dropbox/go-list.txt
-while [ : ]
-do
-    ls ~/Dropbox/ghq-list.txt && ls ~/Dropbox/go-list.txt && break
-    sleep 3
-done
+    # wait for sync ~/Dropbox/ghq-list.txt and ~/Dropbox/go-list.txt
+    while [ : ]
+    do
+        ls ~/Dropbox/ghq-list.txt && ls ~/Dropbox/go-list.txt && break
+        sleep 3
+    done
 
-ghq import < ~/Dropbox/ghq-list.txt
-# インストールしたいわけじゃなくて、リポジトリあつめてきたいだけなのでgo get -d
-go get -d $(cat ~/Dropbox/go-list.txt)
+    ghq import < ~/Dropbox/ghq-list.txt
+    # インストールしたいわけじゃなくて、リポジトリあつめてきたいだけなのでgo get -d
+    go get -d $(cat ~/Dropbox/go-list.txt)
+fi
 # }}}
 
 # vim:set ft=sh et foldmethod=marker:
