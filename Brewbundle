@@ -129,6 +129,8 @@ install rbenv
 install python
 install python3
 install node
+cask install java
+install scala
 
 if [ -n "$I_HAVE_TIME" ]; then
   install dmd
