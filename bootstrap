@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# https://github.com/why-jay/osx-init/blob/master/install.sh#L25-L33
+touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
+PROD=$(softwareupdate -l |
+  grep "\*.*Command Line" |
+  head -n 1 | awk -F"*" '{print $2}' |
+  sed -e 's/^ *//' |
+  tr -d '\n')
+softwareupdate -i "$PROD" -v;
+
+mkdir -p ~/_dev/github.com/ToQoz
+git clone git@github.com:ToQoz/dotfiles.git ~/_dev/github.com/ToQoz/dotfiles
+cd ~/_dev/github.com/ToQoz/dotfiles
+./setup

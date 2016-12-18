@@ -1,5 +1,5 @@
 # personal dotfiles
 
 ```
-curl -sf -L https://gist.githubusercontent.com/ToQoz/ea3c5fed506fb02378ad1ea42e22597b/raw/boostrap.sh | sh
+curl -sf -L https://raw.githubusercontent.com/ToQoz/dotfiles/master/bootstrap | sh
 ```
