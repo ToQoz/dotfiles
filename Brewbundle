@@ -315,13 +315,6 @@ cask install slack
 install slackcat
 # }}}
 
-# Mac App Store {{{
-install argon/mas/mas
-mas install 1063031541 # TweetMan
-mas install 539883307 # LINE
-# mas install Chemrtron
-# }}}
-
 # OMG {{{
 cask install libreoffice
 # }}}
