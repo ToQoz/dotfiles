@@ -2,25 +2,33 @@
 
 set -e
 
+export PATH=$HOME/.rbenv/shims:/usr/local/bin:$PATH
+
 # Install brew & brewed packages {{{
-sudo mkdir -p /usr/local/bin
-sudo chown -R $(whoami) /usr/local
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-export PATH=/usr/local/bin:$PATH
+if ! /usr/bin/which -s brew; then
+  sudo mkdir -p /usr/local/bin
+  sudo chown -R $(whoami) /usr/local
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
 sh ./Brewbundle
-export PATH=$HOME/.rbenv/shims:$PATH
-export GOPATH=$HOME/_go
-export GOROOT=$(go env GOROOT)
 # }}}
 
+export GOPATH=$HOME/_go
+export GOROOT=$(go env GOROOT)
+
 # install $HOME/bin {{{
-git clone https://github.com/ToQoz/bin.git ~/_dev/github.com/ToQoz/bin
-ln -sf ~/_dev/github.com/ToQoz/bin ~/bin
+if [ ! -d ~/bin ]; then
+  git clone https://github.com/ToQoz/bin.git ~/_dev/github.com/ToQoz/bin
+  ln -sf ~/_dev/github.com/ToQoz/bin ~/bin
+fi
 # }}}
 
 # Configure colors {{{
-curl 'https://gist.githubusercontent.com/w0ng/3278077/raw/073a61b47ccfea8a7ea30b5aabde3f3acc09ca03/.Xresources-hybrid' > ~/.Xresources
-curl 'https://raw.githubusercontent.com/chriskempson/tomorrow-theme/master/OS%20X%20Terminal/Tomorrow%20Night.terminal'
+if [ ! -f ~/.Xresources ]; then
+  curl 'https://gist.githubusercontent.com/w0ng/3278077/raw/073a61b47ccfea8a7ea30b5aabde3f3acc09ca03/.Xresources-hybrid' > ~/.Xresources
+  curl 'https://raw.githubusercontent.com/chriskempson/tomorrow-theme/master/OS%20X%20Terminal/Tomorrow%20Night.terminal'
+fi
 # }}}
 
 # Configure karabiner/seil {{{
@@ -109,27 +117,18 @@ killall Dock
 killall Safari
 killall SystemUIServer
 
-for remotedir in ("Desktop" "Documents" "Downloads"); do
-  if [ ! $(/usr/bin/readlink $remotedir) ]; then
-    test -f $HOME/$remotedir/.localized && rm $HOME/$remotedir/.localized
-    test -d $HOME/$remotedir && sudo rmdir $HOME/$remotedir
-
-    test -d $HOME/Dropbox/$remotedir || mkdir $HOME/Dropbox/$remotedir
-    ln -sf  $HOME/Dropbox/$remotedir $HOME/$remotedir
-  fi
-done
-
 # Install dotfiles {{{
 go run installer/install.go
 # }}}
 
 # Install ruby & gems(cmd) {{{
-rbenv install 2.3.1
-rbenv global 2.3.1
-
+ if [ $(rbenv versions | grep 2.3.1 | wc -l) = 0 ];
+  rbenv install 2.3.1
+  rbenv global 2.3.1
+fi
 sh ./Gembundle
-
 rbenv rehash
+
 # }}}
 
 # Install go packages(cmd) {{{
@@ -139,21 +138,34 @@ sh ./Gobundle
 mkdir -p ~/bin
 qiita-dl -x -d ~/bin http://qiita.com/uasi/items/57da2e4268d348b371fb
 
-if [ -z "$NO_DROPBOX" ]; then
-    # Fetch projects {{{
-    osascript -e 'tell application "Dropbox" to run'
+# dropbox sync {{{
+if [ -n "$DROPBOX" ]; then
+  remotes=("Desktop" "Documents" "Downloads")
+  for remotedir in "${files[@]}"; do
+    if [ ! $(/usr/bin/readlink $remotedir) ]; then
+      test -f $HOME/$remotedir/.localized && rm $HOME/$remotedir/.localized
+      test -d $HOME/$remotedir && sudo rmdir $HOME/$remotedir
 
-    # wait for sync ~/Dropbox/ghq-list.txt and ~/Dropbox/go-list.txt
-    while [ : ]
-    do
-        ls ~/Dropbox/ghq-list.txt && ls ~/Dropbox/go-list.txt && break
-        sleep 3
-    done
+      test -d $HOME/Dropbox/$remotedir || mkdir $HOME/Dropbox/$remotedir
+      ln -sf  $HOME/Dropbox/$remotedir $HOME/$remotedir
+    fi
+  done
 
-    ghq import < ~/Dropbox/ghq-list.txt
-    # インストールしたいわけじゃなくて、リポジトリあつめてきたいだけなのでgo get -d
-    go get -d $(cat ~/Dropbox/go-list.txt)
-    # }}}
+  # Fetch projects {{{
+  osascript -e 'tell application "Dropbox" to run'
+
+  # wait for sync ~/Dropbox/ghq-list.txt and ~/Dropbox/go-list.txt
+  while [ : ]
+  do
+    ls ~/Dropbox/ghq-list.txt && ls ~/Dropbox/go-list.txt && break
+    sleep 3
+  done
+
+  ghq import < ~/Dropbox/ghq-list.txt
+  # インストールしたいわけじゃなくて、リポジトリあつめてきたいだけなのでgo get -d
+  go get -d $(cat ~/Dropbox/go-list.txt)
+  # }}}
 fi
+# }}}
 
 # vim:set ft=sh et foldmethod=marker:
