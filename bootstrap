@@ -10,6 +10,6 @@ PROD=$(softwareupdate -l |
 softwareupdate -i "$PROD" -v;
 
 mkdir -p ~/_dev/github.com/ToQoz
-git clone git@github.com:ToQoz/dotfiles.git ~/_dev/github.com/ToQoz/dotfiles
+git clone https://github.com/ToQoz/dotfiles.git ~/_dev/github.com/ToQoz/dotfiles
 cd ~/_dev/github.com/ToQoz/dotfiles
 ./setup
