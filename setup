@@ -14,7 +14,7 @@ export GOROOT=$(go env GOROOT)
 # }}}
 
 # install $HOME/bin {{{
-git clone git@github.com:ToQoz/bin.git ~/_dev/github.com/ToQoz/bin
+git clone https://github.com/ToQoz/bin.git ~/_dev/github.com/ToQoz/bin
 ln -sf ~/_dev/github.com/ToQoz/bin ~/bin
 # }}}
 
