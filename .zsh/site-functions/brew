@@ -5,7 +5,7 @@ brew() {
     =brew $*
     rehash
   elif [ "$1" = "services" ]; then
-    ssh 127.0.0.1 =brew services $*
+    ssh 127.0.0.1 =brew $*
   else
     =brew $*
   fi

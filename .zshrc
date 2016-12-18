@@ -67,7 +67,7 @@ autoload -Uz brew
 alias zmv="noglob zmv -W"
 
 autoload colors; colors
-autoload -Uz compinit; compinit
+autoload -Uz compinit; compinit -u
 autoload -Uz add-zsh-hook
 autoload -Uz vcs_info
 autoload -Uz VCS_INFO_get_data_git; VCS_INFO_get_data_git 2>/dev/null

@@ -65,6 +65,32 @@
 [url "git@bitbucket.org:"]
 	insteadOf = "https://bitbucket.org/"
 [include]
+# <<<switch github account>>>
+#
+# <~/.ssh/config>:
+#
+# Host github.com.team
+#   HostName github.com
+#   User git
+#   Port 22
+#   IdentityFile ~/.ssh/id_rsa.team
+#   TCPKeepAlive yes
+#   IdentitiesOnly yes
+#
+# <~/private/.gitconfig>:
+#
+# # https://github.com/team/repo ---> git@github.com.team:team/repo
+# # github.com.team/repo         ---> github.com:team/repo
+#
+# [alias]
+# 	team = "!git config --add user.name 'team person' && git config --add user.email 'person@team.example.com'"
+# [url "github.com:team/"]
+# 	insteadof     = github.com.team/team/
+# 	pushInsteadof = github.com.team/team/
+# [url "git@github.com.team:team/"]
+# 	insteadOf     = "https://github.com/team/"
+# 	pushInsteadOf = "https://github.com/team/"
+
 	path = ~/private/.gitconfig
 [ghq]
 	root = ~/_dev

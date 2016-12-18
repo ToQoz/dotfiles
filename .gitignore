@@ -1,8 +1,8 @@
 /*.DS_Store
 
-/.vim/bundle
-/.vim/swp
-/.vim/undo
+/.vim/bundle/*
+/.vim/swp/*
+/.vim/undo/*
 /.vim/.eskk
 /.vim/.netrwhist
 /.vim/.unite
@@ -13,3 +13,5 @@
 /.emacs.d/el-get
 
 /installer/installer
+
+!.gitkeep

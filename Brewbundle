@@ -145,7 +145,7 @@ fi
 install redis
 brew services start redis
 install homebrew/versions/mysql56
-launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql56.plist
+brew services start homebrew/versions/mysql56
 # }}}
 
 # GNU tools {{{
@@ -184,7 +184,8 @@ install cgdb
 install dnsmasq
 install ngrep
 install nmap
-install homebrew/binary/ngrok2
+# FIXME: sha256 missmatch
+# install homebrew/binary/ngrok2
 install mitmproxy
 # install wireshark --with-qt is too slow
 cask install wireshark
@@ -196,14 +197,14 @@ install ffmpeg
 # }}}
 
 # iOS devtools {{{
-install class-dump
+install homebrew/boneyard/class-dump
 install ios-webkit-debug-proxy
 install xctool
 install uncrustify
 # }}}
 
 # Ruby devtools {{{
-install refe
+# install refe
 install rsense
 # }}}
 
@@ -270,12 +271,12 @@ cask install sourcetree
 cask install mysqlworkbench
 cask install sequel-pro
 cask install unity
+cask install mono-mdk
 cask install xamarin-studio
 cask install android-studio
-cask install darteditor
 cask install visual-studio-code
 cask install jd-gui
-cask install r
+install r
 cask install rstudio
 # }}}
 
@@ -312,7 +313,7 @@ cask install focus
 
 # Chat {{{
 cask install slack
-cask install hipchat
+install slackcat
 # }}}
 
 # Mac App Store {{{
@@ -323,7 +324,6 @@ mas install 539883307 # LINE
 # }}}
 
 # OMG {{{
-cask install openoffice
 cask install libreoffice
 # }}}
 

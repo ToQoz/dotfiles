@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	ignore   = flag.String("i", "^.git|.DS_Store$", "pattern for ignore dotfiles")
+	ignore   = flag.String("i", "^(\.git|\.DS_Store)$", "pattern for ignore dotfiles")
 	exitCode = 0
 )
 

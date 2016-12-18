@@ -1,4 +1,5 @@
-personal dotfiles
+# personal dotfiles
 
-Notes
-  Use single docker machine that is named `dev`
+```
+curl -sf -L https://gist.githubusercontent.com/ToQoz/ea3c5fed506fb02378ad1ea42e22597b/raw/boostrap.sh | sh
+```

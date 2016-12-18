@@ -1,12 +1,8 @@
 set nocompatible
-filetype off
 
 if has('vim_starting')
   execute 'set runtimepath+=' . expand('~/.vim/bundle/neobundle.vim')
-  syntax enable
 endif
-
-call neobundle#rc(expand('~/.vim/bundle'))
 
 let g:gopath = $GOPATH
 if g:gopath == ''
@@ -226,6 +222,8 @@ function! s:tabWidth(width)
   execute 'setl softtabstop=' . a:width
 endfunction
 
+call neobundle#begin(expand('~/.vim/bundle'))
+
 " Lightweight filer
 NeoBundle "justinmk/vim-dirvish"
 " Wrappers for UNIX commands. e.g. Rename, Move, SudoWrite...
@@ -245,7 +243,8 @@ let g:quickrun_config = {}
 
 " Completion
 NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'supermomonga/neocomplete-rsense.vim'
+" NeoBundle 'supermomonga/neocomplete-rsense.vim'
+NeoBundle 'osyo-manga/vim-monster'
 
 " Snippet
 NeoBundle 'Shougo/neosnippet'
@@ -294,9 +293,12 @@ NeoBundle 'dgryski/vim-godef'
 NeoBundle 'Blackrush/vim-gocode'
 NeoBundle 'google/vim-ft-go'
 NeoBundle 'vim-jp/vim-go-extra'
-execute 'set rtp+=' . g:gopath . '/src/github.com/golang/lint/misc/vim'
-execute 'set rtp+=' . g:gopath . '/src/github.com/ToQoz/goimps/misc/vim'
+" execute 'set rtp+=' . g:gopath . '/src/github.com/golang/lint/misc/vim'
+" execute 'set rtp+=' . g:gopath . '/src/github.com/ToQoz/goimps/misc/vim'
 NeoBundle 'ToQoz/vim-go-drop-unused-imports'
+
+NeoBundle 'nicklasos/vim-jsx-riot'
+au BufNewFile,BufRead *.tag setlocal ft=javascript
 
 " Moving
 " <leader> w/f (interface like selecting link on vimp)
@@ -315,9 +317,7 @@ NeoBundle "mkitt/tabline.vim"
 " * Need to install commands for following filetypes
 "   - json         ... jsonlint
 "   - javascript   ... jshint|eslint
-if exists("#QuitPre")
-  NeoBundle "osyo-manga/vim-watchdogs"
-endif
+NeoBundle "osyo-manga/vim-watchdogs"
 " Highlight quickfix errors
 NeoBundle "jceb/vim-hier"
 NeoBundle "osyo-manga/shabadou.vim"
@@ -359,12 +359,22 @@ NeoBundle 'takahirojin/gbr.vim'
 NeoBundle 'tpope/vim-fugitive'
 
 " OSX Dictionary interface
-NeoBundle 'modsound/macdict-vim.git', {
-      \   'build': {
-      \     'mac': 'cd autoload && make'
-      \    },
-      \ }
+" NeoBundle 'modsound/macdict-vim.git', {
+"       \   'build': {
+"       \     'mac': 'cd autoload && make'
+"       \    },
+"       \ }
 NeoBundle 'vim-jp/vimdoc-ja'
+
+call neobundle#end()
+
+filetype plugin indent on
+syntax on
+NeoBundleCheck
+
+if neobundle#tap("vim-monster") " {{{
+  let g:monster#completion#rcodetools#backend = "async_rct_complete"
+endif " }}}
 
 if neobundle#tap("neocomplete.vim") " {{{
   let g:acp_enableAtStartup                           = 0
@@ -372,16 +382,23 @@ if neobundle#tap("neocomplete.vim") " {{{
   let g:neocomplete#enable_ignore_case                = 0
   let g:neocomplete#enable_smart_case                 = 1
   let g:neocomplete#sources#syntax#min_keyword_length = 3
-  let g:neocomplete#enable_camel_case_completion      = 1
-  let g:neocomplete#enable_underbar_completion        = 1
+  "let g:neocomplete#enable_camel_case_completion      = 1
+  "let g:neocomplete#enable_underbar_completion        = 1
   let g:neocomplete#manual_completion_start_length    = 0
-  let g:neocomplete#keyword_patterns                  = {}
+  if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns                  = {}
+  endif
   let g:neocomplete#keyword_patterns.default          = '\h\w*'
-  let g:neocomplete#delimiter_patterns                = {}
-  let g:neocomplete#delimiter_patterns.vim            = ['#']
-  let g:neocomplete#delimiter_patterns.ruby           = ['::']
+  "let g:neocomplete#delimiter_patterns                = {}
+  "let g:neocomplete#delimiter_patterns.vim            = ['#']
+  "let g:neocomplete#delimiter_patterns.ruby           = ['::']
   let g:neocomplete#force_overwrite_completefunc      = 1
+  let g:neocomplete#lock_buffer_name_pattern = '\.log\|\.log\.\|.*quickrun.*\|.jax'
   let g:neocomplete#sources#buffer#disabled_pattern   = '\.log\|\.log\.\|\.jax\|Log.txt'
+  if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+  endif
+  let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
 endif " }}}
 
 if neobundle#tap("neosnippet") " {{{
@@ -400,14 +417,14 @@ if neobundle#tap("unite.vim") " {{{
   let g:unite_source_rec_max_cache_files = 5000
   let g:unite_force_overwrite_statusline = 0
 
-  if !executable($GOPATH.'/bin/pt')
-    let cmd = "go get -v github.com/monochromegane/the_platinum_searcher/cmd/pt"
-    echo "start: " . cmd
-    let out = system(cmd)
-    if v:shell_error
-      echoerr "failed: " . cmd . ": " . out
-    endif
-  endif
+  " if !executable($GOPATH.'/bin/pt')
+  "   let cmd = "go get -v github.com/monochromegane/the_platinum_searcher/cmd/pt"
+  "   echo "start: " . cmd
+  "   let out = system(cmd)
+  "   if v:shell_error
+  "     echoerr "failed: " . cmd . ": " . out
+  "   endif
+  " endif
   let g:unite_source_grep_command = 'pt'
   let g:unite_source_grep_default_opts = '--nogroup --nocolor'
   let g:unite_source_grep_recursive_opt = ''
@@ -499,19 +516,21 @@ endif " }}}
 " endif " }}}
 
 if neobundle#tap('vim-watchdogs') " {{{
-  function! neobundle#tapped.hooks.on_source(bundle) " {{{
-    let g:watchdogs_check_BufWritePost_enable = 1
+  let g:watchdogs_check_BufWritePost_enables = {
+        \ "go" : 1
+        \}
 
-    let g:quickrun_config['javascript/watchdogs_checker'] = {
-          \     "type" : "watchdogs_checker/eslint"
-          \ }
-    let g:quickrun_config['watchdogs_checker/_'] = {
-          \   'hook/hier_update/enable_exit' : 1,
-          \   'runner/vimproc/updatetime' : 40,
-          \ }
-    call watchdogs#setup(g:quickrun_config)
-  endfunction " }}}
-  call neobundle#untap()
+  let g:quickrun_config['javascript/watchdogs_checker'] = {
+        \     "type" : "watchdogs_checker/eslint"
+        \ }
+  let g:quickrun_config['go/watchdogs_checker'] = {
+        \     "type" : "watchdogs_checker/golint"
+        \ }
+  let g:quickrun_config['watchdogs_checker/_'] = {
+        \   'hook/hier_update/enable_exit' : 1,
+        \   'runner/vimproc/updatetime' : 40,
+        \ }
+  call watchdogs#setup(g:quickrun_config)
 endif " }}}
 
 if neobundle#tap('vim-indent-guides') " {{{
@@ -558,9 +577,5 @@ execute 'colorscheme ' . s:colorscheme
 if filereadable(expand('~/private/.vimrc'))
   source expand('~/private/.vimrc')
 endif
-
-filetype plugin indent on
-syntax on
-NeoBundleCheck
 
 " vim:set ft=vim et foldmethod=marker:

@@ -4,8 +4,6 @@ set scrolloff=5
 noremap <leader>s :source<Space>~/.vimrc<CR>:source<Space>~/.gvimrc<CR>
 highlight SpecialKey term=underline ctermfg=darkgray guifg=#666666
 
-set noantialias
-
 let g:hybrid_use_Xresources = 1
 colorscheme hybrid
 
@@ -14,4 +12,4 @@ colorscheme hybrid
 "" c: use console dialog instead of popup dialog for simple selection
 set guioptions=c
 " Font
-set guifont=Ricty\ Discord:h16
+set guifont=Ricty:h16

@@ -1,9 +1,10 @@
 typeset -Ua fpath
 fpath=(
   $ZSH_D/site-functions(N-/)
-  $BREW_HOME/share/zsh-completions(N-/)
-  $BREW_HOME/share/zsh/site-functions(N-/)
-  $BREW_HOME/share/zsh/functions(N-/)
+  /usr/local/share/zsh-completions(N-/)
+  /usr/local/share/zsh/site-functions(N-/)
+  /usr/local/share/zsh/functions(N-/)
+  $ZSH_D/completions/*/(N-/)
   $fpath
 )
 
@@ -24,12 +25,13 @@ user_path=(
   $HOME/opt/*/(s|)bin(N-/)
 )
 brew_path=(
-  $BREW_HOME/opt/coreutils/libexec/gnubin(N-/)
-  $BREW_HOME/opt/gnu-tar/libexec/gnubin(N-/)
-  $BREW_HOME/(s|)bin(N-/)
-  $BREW_HOME/share/npm/bin(N-/)
-  $BREW_HOME/opt/gettext/bin
-#  $BREW_HOME/share/python(N-/)
+  /usr/local/bin
+  /usr/local/opt/coreutils/libexec/gnubin(N-/)
+  /usr/local/opt/gnu-tar/libexec/gnubin(N-/)
+  /usr/local/(s|)bin(N-/)
+  /usr/local/share/npm/bin(N-/)
+  /usr/local/opt/gettext/bin
+  /Library/Frameworks/Mono.framework/Versions/Current/Commands(N-/)
 )
 golang_path=(
   $GOPATH/bin(N-/)
