@@ -2,11 +2,6 @@
 
 set -e
 
-# Install private dotfiles {{{
-git clone git@github.com:ToQoz/private.git ~/_dev/github.com/ToQoz/private
-ln -sf ~/_dev/github.com/ToQoz/private ~/private
-# }}}
-
 # Install brew & brewed packages {{{
 sudo mkdir -p /usr/local/bin
 sudo chown -R $(whoami) /usr/local
