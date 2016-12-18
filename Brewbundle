@@ -307,7 +307,6 @@ cask install slate
 # }}}
 
 # Life {{{
-cask install fitbit-connect
 cask install focus
 # }}}
 
