@@ -35,6 +35,16 @@ update() {
     brew update
 }
 
+I_HAVE_TIME=
+while true; do
+  read -p "Do you have time? [y/n]" yn
+  case $yn in
+    [Yy]* ) I_HAVE_TIME=1; break;;
+    [Nn]* ) break;;
+    * ) echo "Please answer y or n.";;
+  esac
+done
+
 tap caskroom/cask
 tap homebrew/dupes
 tap homebrew/versions
