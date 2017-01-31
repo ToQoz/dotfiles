@@ -19,6 +19,7 @@ typeset -Ua \
   system_path
 user_path=(
   $HOME/bin(N-/)
+  $HOME/private/bin(N-/)
   $HOME/bin/private
   $HOME/scripts(N-/)
   $HOME/local/bin
