@@ -58,6 +58,8 @@ defaults write com.apple.finder FXPreferredViewStyle -string "Nslv"
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 # Show fielpath in Title
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+# Don't show icons on Desktop
+defaults write com.apple.finder CreateDesktop -bool false
 # }}}
 
 # Set safari's defaults {{{
