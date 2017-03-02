@@ -306,6 +306,10 @@ NeoBundle 'vim-jp/vim-go-extra'
 " execute 'set rtp+=' . g:gopath . '/src/github.com/ToQoz/goimps/misc/vim'
 NeoBundle 'ToQoz/vim-go-drop-unused-imports'
 
+NeoBundle 'nicklasos/vim-jsx-riot'
+au BufNewFile,BufRead *.tag setlocal ft=javascript
+au BufNewFile,BufRead *.sbt setlocal ft=scala
+
 " Moving
 " <leader> w/f (interface like selecting link on vimp)
 NeoBundle 'easymotion/vim-easymotion'
