@@ -2,9 +2,9 @@
 alias tmux="uim-tmux"
 
 if [ -z "$TMUX" -a -z $SSH_CONNECTION ]; then
-  danglings=$(tmux list-sessions 2> /dev/null | grep -v 'attached' | wc -l)
-  if [ $danglings != 0 ]; then
-    tmux attach-session
+  dangling="$(tmux list-sessions 2> /dev/null | grep -v 'attached' | awk -F':' '{print $1}')"
+  if [ -n "$dangling" ]; then
+    tmux attach-session -t $dangling
   else
     tmux
   fi
