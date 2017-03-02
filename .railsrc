@@ -1,1 +1,3 @@
 --skip-bundle
+--database=mysql
+--skip-turbolinks
