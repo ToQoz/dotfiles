@@ -295,7 +295,11 @@ NeoBundle 'ruby-matchit'
 NeoBundle 'tpope/vim-endwise' " Expand if<CR> to if [condition] end
 NeoBundle 'tpope/vim-rails'
 
+" Swift
 NeoBundle 'keith/swift.vim'
+
+" Scala
+NeoBundle 'derekwyatt/vim-scala'
 
 " Golang
 NeoBundle 'dgryski/vim-godef'
@@ -308,7 +312,6 @@ NeoBundle 'ToQoz/vim-go-drop-unused-imports'
 
 NeoBundle 'nicklasos/vim-jsx-riot'
 au BufNewFile,BufRead *.tag setlocal ft=javascript
-au BufNewFile,BufRead *.sbt setlocal ft=scala
 
 " Moving
 " <leader> w/f (interface like selecting link on vimp)
