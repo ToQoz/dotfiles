@@ -246,8 +246,8 @@ alias_for_etc_on_tmux() {
   add-zsh-hook precmd update-window-title-precmd
   add-zsh-hook preexec update-window-title-preexec
 
-  alias pbcopy="ssh 127.0.0.1 pbcopy"
-  alias pbpaste='ssh 127.0.0.1 pbpaste'
+  alias pbcopy="reattach-to-user-namespace pbcopy"
+  alias pbpaste='reattach-to-user-namespace pbpaste'
   alias launchctl="ssh 127.0.0.1 launchctl"
   alias mas="ssh 127.0.0.1 /usr/local/bin/mas"
 }
