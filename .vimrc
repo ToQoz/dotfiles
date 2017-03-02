@@ -166,12 +166,17 @@ nnoremap <S-Tab> gT
 autocmd MyAutoCmds FileType    *               call s:softTab(2)
 autocmd MyAutoCmds FileType    gitconfig       call s:hardTab(8)
 autocmd MyAutoCmds FileType    go              call s:hardTab(8)
+autocmd MyAutoCmds FileType    swift           call s:softTab(4)
 
 autocmd MyAutoCmds FileType    help nnoremap <buffer> q <C-w>c " quit help by `q`
 autocmd MyAutoCmds CmdwinEnter *    call s:cmdwinEnter()
 autocmd MyAutoCmds FileType    go   call s:hiErr()
 autocmd MyAutoCmds FileType    git  call s:hiCommit()
 autocmd MyAutoCmds FileType    json setl conceallevel=0
+
+" Json {{{
+autocmd MyAutoCmds BufReadPre   .babelrc set ft=json
+" }}}
 
 " Binary {{{
 autocmd MyAutoCmds BufReadPre   *.bin let &binary =1
@@ -273,6 +278,8 @@ NeoBundle 'kana/vim-textobj-user'
 
 " Frontend (JS/HTML/CSS...)
 NeoBundle "pangloss/vim-javascript"
+NeoBundle "mxw/vim-jsx.git"
+let g:jsx_ext_required = 0
 NeoBundle 'mephux/vim-jsfmt'
 NeoBundle 'tikhomirov/vim-glsl'
 NeoBundle 'tpope/vim-haml'
@@ -288,6 +295,8 @@ NeoBundle 'ruby-matchit'
 NeoBundle 'tpope/vim-endwise' " Expand if<CR> to if [condition] end
 NeoBundle 'tpope/vim-rails'
 
+NeoBundle 'keith/swift.vim'
+
 " Golang
 NeoBundle 'dgryski/vim-godef'
 NeoBundle 'Blackrush/vim-gocode'
@@ -296,9 +305,6 @@ NeoBundle 'vim-jp/vim-go-extra'
 " execute 'set rtp+=' . g:gopath . '/src/github.com/golang/lint/misc/vim'
 " execute 'set rtp+=' . g:gopath . '/src/github.com/ToQoz/goimps/misc/vim'
 NeoBundle 'ToQoz/vim-go-drop-unused-imports'
-
-NeoBundle 'nicklasos/vim-jsx-riot'
-au BufNewFile,BufRead *.tag setlocal ft=javascript
 
 " Moving
 " <leader> w/f (interface like selecting link on vimp)
@@ -317,7 +323,9 @@ NeoBundle "mkitt/tabline.vim"
 " * Need to install commands for following filetypes
 "   - json         ... jsonlint
 "   - javascript   ... jshint|eslint
-NeoBundle "osyo-manga/vim-watchdogs"
+" NeoBundle "osyo-manga/vim-watchdogs"
+NeoBundle "w0rp/ale"
+
 " Highlight quickfix errors
 NeoBundle "jceb/vim-hier"
 NeoBundle "osyo-manga/shabadou.vim"
