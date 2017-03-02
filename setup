@@ -116,15 +116,15 @@ defaults write -g NSScrollAnimationEnabled -bool NO
 
 killall Finder
 killall Dock
-killall Safari
-killall SystemUIServer
+#killall Safari
+#killall SystemUIServer
 
 # Install dotfiles {{{
 go run installer/install.go
 # }}}
 
 # Install ruby & gems(cmd) {{{
- if [ $(rbenv versions | grep 2.3.1 | wc -l) = 0 ];
+if [ $(rbenv versions | grep 2.3.1 | wc -l) = 0 ]; then
   rbenv install 2.3.1
   rbenv global 2.3.1
 fi
