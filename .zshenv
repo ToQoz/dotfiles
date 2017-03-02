@@ -45,6 +45,10 @@ elif /usr/bin/which -s vi; then
   export VIM_E=vi
 fi
 
+if [ -n "$TMUX" ]; then
+  export VIM_E="reattach-to-user-namespace $VIM_E"
+fi
+
 export EDITOR=$VIM_E
 # }}}
 
