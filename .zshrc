@@ -1,6 +1,9 @@
 # :)
 alias tmux="uim-tmux"
 
+export PATH=~/.awsenv:$PATH
+eval "$(awsenv hook zsh)"
+
 if [ -z "$TMUX" -a -z $SSH_CONNECTION ]; then
   dangling="$(tmux list-sessions 2> /dev/null | grep -v 'attached' | awk -F':' '{print $1}')"
   if [ -n "$dangling" ]; then
@@ -420,14 +423,17 @@ update_prompt() {
   current_branch=$(git_info)
   newline=$'\n'
 
+  aws_info=$AWS_PROFILE
+
   # Left prompt. -> Output
   PROMPT="[${current_working_directory}] $current_branch ${branch_pos}"
   PROMPT="$PROMPT "$newline"$USER> %(!.#.$) %{$reset_color%}"
 
   # Right prompt. -> Output.
-  RPROMPT="%{$fg[red]%}(ruby:$ruby_version)%{$reset_color%}"
-  RPROMPT="$RPROMPT %{$fg[blue]%}$goinfo %{$reset_color%}"
-
+  RPROMPT=""
+  RPROMPT="$RPROMPT %{$fg[yellow]%}(aws:${aws_info:=default})%{$reset_color%}"
+  RPROMPT="$RPROMPT %{$fg[red]%}(ruby:$ruby_version)%{$reset_color%}"
+  RPROMPT="$RPROMPT %{$fg[blue]%}$goinfo%{$reset_color%}"
 }
 add-zsh-hook precmd update_prompt
 add-zsh-hook chpwd update_prompt

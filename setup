@@ -24,6 +24,15 @@ if [ ! -d ~/bin ]; then
 fi
 # }}}
 
+# install ToQoz/awsenv {{{
+if [ ! -d ~/.awsenv ]; then
+  if [ ! -d ~/_dev/github.com/ToQoz/awsenv ]; then
+    git clone https://github.com/ToQoz/awsenv.git ~/_dev/github.com/ToQoz/awsenv
+  fi
+  ln -sf ~/_dev/github.com/ToQoz/awsenv ~/.awsenv
+fi
+# }}}
+
 # Configure colors {{{
 if [ ! -f ~/.Xresources ]; then
   curl 'https://gist.githubusercontent.com/w0ng/3278077/raw/073a61b47ccfea8a7ea30b5aabde3f3acc09ca03/.Xresources-hybrid' > ~/.Xresources
