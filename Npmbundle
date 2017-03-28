@@ -4,6 +4,7 @@ npm install -g jsfmt
 npm install -g eslint
 npm install -g babel-eslint
 npm install -g jsonlint
+npm install -g tern
 
 npm install -g readme
 npm install -g tldr
