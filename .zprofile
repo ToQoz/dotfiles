@@ -18,6 +18,7 @@ typeset -Ua \
   sudo_path \
   system_path
 user_path=(
+  $HOME/.awsenv
   $HOME/bin(N-/)
   $HOME/private/bin(N-/)
   $HOME/bin/private

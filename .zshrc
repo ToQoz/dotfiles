@@ -1,7 +1,6 @@
 # :)
 alias tmux="uim-tmux"
 
-export PATH=~/.awsenv:$PATH
 eval "$(awsenv hook zsh)"
 
 if [ -z "$TMUX" -a -z $SSH_CONNECTION ]; then
