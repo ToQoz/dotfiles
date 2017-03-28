@@ -106,6 +106,7 @@ install the_silver_searcher
 install jq
 install xmlto
 install lastpass-cli --with-pinentry --with-doc
+install terraform
 # }}}
 
 # Chat {{{
