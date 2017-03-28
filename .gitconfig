@@ -54,6 +54,9 @@
 	smtpserver     = smtp.gmail.com
 	smtpuser       = toqoz403@gmail.com
 	smtpserverport = 587
+[url "git@github.com:"]
+	insteadOf     = "https://github.com/"
+	pushInsteadOf = "https://github.com/"
 [url "git@bitbucket.org:"]
 	pushInsteadOf = "git://bitbucket.org/"
 	pushInsteadOf = "https://bitbucket.org/"
