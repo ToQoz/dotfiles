@@ -135,7 +135,7 @@ install libiconv
 # }}}
 
 # Lauguage {{{
-install go --with-cc-all
+install go
 install ruby-build
 install rbenv
 install python
