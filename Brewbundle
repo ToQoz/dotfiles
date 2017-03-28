@@ -78,9 +78,9 @@ install zsh-completions
 # Editor {{{
 install vim --with-luajit
 install macvim --with-luajit
-if [ -n "$I_HAVE_TIME" ]; then
-  install railwaycat/emacsmacport/emacs-mac
-fi
+install emacs-mac --with-spacemacs-icon # railwaycat/emacsmacport
+git clone --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
+osascript -e 'tell application "Finder" to make alias file to POSIX file "/usr/local/opt/emacs-mac/Emacs.app" at POSIX file "/Applications"'
 # }}}
 
 # Shims {{{
