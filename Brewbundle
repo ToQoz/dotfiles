@@ -99,6 +99,7 @@ install homebrew/dupes/rsync
 
 # Benri {{{
 install tmux
+install reattach-to-user-namespace
 install ghq
 install peco
 install the_silver_searcher
