@@ -1,3 +1,5 @@
+;; title
+(setq frame-title-format "Spacemacs")
 ;; C-h
 (global-set-key (kbd "\C-h") 'delete-backward-char)
 (define-key global-map "\C-h" 'delete-backward-char)
