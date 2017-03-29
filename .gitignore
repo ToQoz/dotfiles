@@ -11,4 +11,6 @@
 
 /installer/installer
 
+/.spacemacs.d/custom-file.el
+
 !.gitkeep
