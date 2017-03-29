@@ -286,36 +286,46 @@ fi
 cask install sourcetree
 cask install mysqlworkbench
 cask install sequel-pro
-cask install unity
-cask install mono-mdk
-cask install xamarin-studio
-cask install android-studio
 cask install visual-studio-code
-cask install jd-gui
-install r
-cask install rstudio
+if [ -n "$ANALYSIS" ]; then
+  install r
+  cask install rstudio
+fi
+if [ -n "$UNITY" ]; then
+  cask install unity
+  cask install mono-mdk
+  cask install xamarin-studio
+fi
+if [ -n "$ANDROID" ]; then
+  cask install android-studio
+  cask install jd-gui
+fi
 # }}}
 
 # Visual design {{{
-cask install couleurs
-cask install sketch
-cask install sketch-tool
-cask install texturepacker
-# X11 free version GMIP
-cask install lisanet-gimp
-cask install inkscape
-cask install firealpaca
-cask install blender
-cask install tiled
-cask install gyazo
+if [ -n "$DESIGN" ]; then
+  cask install couleurs
+  cask install sketch
+  cask install sketch-tool
+  cask install texturepacker
+  # X11 free version GMIP
+  cask install lisanet-gimp
+  cask install inkscape
+  cask install firealpaca
+  cask install blender
+  cask install tiled
+  cask install gyazo
+fi
 # }}}
 
 # Fun {{{
-cask install soundcleod
-cask install radiant-player
-cask install vlc
-cask install cooviewer
-cask install steam
+if [ -n "$FUN" ]; then
+  cask install soundcleod
+  cask install radiant-player
+  cask install vlc
+  cask install cooviewer
+  cask install steam
+if
 # }}}
 
 # WM {{{
@@ -331,12 +341,12 @@ cask install slack
 install slackcat
 # }}}
 
-# OMG {{{
-cask install libreoffice
+# Auth {{{
+if [ -n "$YUBIKEY" ]; then
+  cask install yubikey-personalization-gui
+  cask install yubikey-neo-manager
+  cask install yubico-authenticator
+fi
 # }}}
-
-cask install yubikey-personalization-gui
-cask install yubikey-neo-manager
-cask install yubico-authenticator
 
 # vim:set ft=sh et foldmethod=marker:
