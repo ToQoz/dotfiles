@@ -32,6 +32,7 @@ values."
    dotspacemacs-configuration-layers
    '(
      html
+     swift
      scala
      go
      javascript
@@ -295,7 +296,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup 'changed
    ))
 
 (defun dotspacemacs/user-init ()
@@ -305,14 +306,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (push '("melpa-stable" . "stable.melpa.org/packages/") configuration-layer--elpa-archives)
-  (push '("ensime" . "melpa-stable") package-pinned-packages)
-  (setq exec-path-from-shell-check-startup-files nil)
-  (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-  (setq exec-path (append exec-path '("/usr/local/bin")))
-  ; custom.el
-  (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
-  (load custom-file 'no-error 'no-message)
+  (load-file (expand-file-name "user-init.el" dotspacemacs-directory))
   )
 
 (defun dotspacemacs/user-config ()
@@ -322,19 +316,5 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;; C-h
-  (global-set-key (kbd "\C-h") 'delete-backward-char)
-  (define-key global-map "\C-h" 'delete-backward-char)
-  ;; ddskk
-  (when (require 'skk nil t)
-    (global-set-key (kbd "\C-j") 'skk-auto-fill-mode)
-    (define-key global-map "\C-j" 'skk-auto-fill-mode)
-    (setq default-input-method "japanese-skk")
-    (require 'skk-study)
-    ;; use skkserve
-    (setq skk-server-host "localhost")
-    (setq skk-server-portnum 1178)
-    )
-  ;; fullscreen
-  (set-frame-parameter nil 'fullscreen 'maximized)
+  (load-file (expand-file-name "user-config.el" dotspacemacs-directory))
   )
