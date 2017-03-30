@@ -3,14 +3,14 @@ alias tmux="uim-tmux"
 
 eval "$(awsenv hook zsh)"
 
-if [ -z "$TMUX" -a -z $SSH_CONNECTION ]; then
-  dangling="$(tmux list-sessions 2> /dev/null | grep -v 'attached' | awk -F':' '{print $1}')"
-  if [ -n "$dangling" ]; then
-    tmux attach-session -t $dangling
-  else
-    tmux
-  fi
-fi
+# if [ -z "$TMUX" -a -z $SSH_CONNECTION ]; then
+#   dangling="$(tmux list-sessions 2> /dev/null | grep -v 'attached' | awk -F':' '{print $1}')"
+#   if [ -n "$dangling" ]; then
+#     tmux attach-session -t $dangling
+#   else
+#     tmux
+#   fi
+# fi
 
 export COREUTILS_EXIST=false
 if [ -d $BREW_HOME/opt/coreutils ]; then
