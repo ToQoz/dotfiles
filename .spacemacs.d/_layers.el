@@ -41,6 +41,7 @@
     git
     markdown
     org
+    yaml
     (auto-completion :variables
                     ;; use tab to complete
                     ;; return key enters new line
