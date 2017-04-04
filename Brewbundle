@@ -48,7 +48,7 @@ done
 tap caskroom/cask
 tap homebrew/dupes
 tap homebrew/versions
-tap railwaycat/emacsmacport
+tap d12frosted/emacs-plus
 tap aereal/aereal
 tap aereal/aereal_casks
 tap motemen/ghq
@@ -78,9 +78,9 @@ install zsh-completions
 # Editor {{{
 install vim --with-luajit
 install macvim --with-luajit
-install emacs-mac --with-spacemacs-icon # railwaycat/emacsmacport
+install emacs-plus # d12frosted/emacs-plus
 git clone --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
-osascript -e 'tell application "Finder" to make alias file to POSIX file "/usr/local/opt/emacs-mac/Emacs.app" at POSIX file "/Applications"'
+osascript -e 'tell application "Finder" to make alias file to POSIX file "/usr/local/opt/emacs-plus/Emacs.app" at POSIX file "/Applications"'
 # }}}
 
 # Shims {{{
