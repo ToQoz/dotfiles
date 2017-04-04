@@ -22,3 +22,9 @@
 (setq company-idle-delay .3)                         ; decrease delay before autocompletion popup shows
 (setq company-echo-delay 0)                          ; remove annoying blinking
 (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
+;; ensime
+(setq ensime-startup-snapshot-notification nil)
+;; helm-ghq
+(global-set-key (kbd "\C-x g") 'helm-ghq)
+;; helm-git-ls-files
+(global-set-key (kbd "\C-x f") 'helm-ls-git-ls)
