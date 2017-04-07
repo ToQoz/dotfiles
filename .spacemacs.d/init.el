@@ -11,5 +11,5 @@
 (defun dotspacemacs/user-config ()
   (load-file (expand-file-name "user-config.el" dotspacemacs-directory)))
 
-(defun dotspacemacs/emacs-custom-settings ()
+(when (file-exists-p custom-file)
   (load-file custom-file))
