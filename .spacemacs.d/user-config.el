@@ -51,3 +51,22 @@
                    global-eslint)))
     (setq-local flycheck-javascript-eslint-executable eslint)))
 (add-hook 'js2-mode-hook 'my/prefer-local-eslint)
+
+; prefer local eslint than global eslint
+; https://github.com/codesuki/eslint-fix/blob/master/eslint-fix.el
+(defun eslint-fix ()
+  (interactive)
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (global-eslint (executable-find "eslint"))
+         (local-eslint (expand-file-name "node_modules/.bin/eslint"
+                                         root))
+         (eslint (if (file-executable-p local-eslint)
+                     local-eslint
+                   global-eslint))
+         )
+  (progn (call-process eslint nil "*ESLint Errors*" nil "--fix" buffer-file-name)
+        (revert-buffer t t t))))
+
+(provide 'eslint-fix)
