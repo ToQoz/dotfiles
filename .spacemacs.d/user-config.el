@@ -34,3 +34,20 @@
   (let ((comint-buffer-maximum-size 0))
     (comint-truncate-buffer)))
 (add-hook 'shell-mode-hook '(lambda () (local-set-key "\C-l" 'my/shell-clear)))
+;; js2-mode (eslint, flycheck)
+(setq-default js2-strict-missing-semi-warning nil
+              js2-basic-offset 2
+              js-indent-level 2)
+; https://github.com/syl20bnr/spacemacs/blob/master/layers/%2Bframeworks/react/funcs.el#L30
+(defun my/prefer-local-eslint ()
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (global-eslint (executable-find "eslint"))
+         (local-eslint (expand-file-name "node_modules/.bin/eslint"
+                                         root))
+         (eslint (if (file-executable-p local-eslint)
+                     local-eslint
+                   global-eslint)))
+    (setq-local flycheck-javascript-eslint-executable eslint)))
+(add-hook 'js2-mode-hook 'my/prefer-local-eslint)
