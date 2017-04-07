@@ -28,3 +28,9 @@
 (global-set-key (kbd "\C-x g") 'helm-ghq)
 ;; helm-git-ls-files
 (global-set-key (kbd "\C-x f") 'helm-ls-git-ls)
+;; shell-mode
+(defun my/shell-clear ()
+  (interactive)
+  (let ((comint-buffer-maximum-size 0))
+    (comint-truncate-buffer)))
+(add-hook 'shell-mode-hook '(lambda () (local-set-key "\C-l" 'my/shell-clear)))
