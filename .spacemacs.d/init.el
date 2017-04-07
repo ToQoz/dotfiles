@@ -12,4 +12,4 @@
   (load-file (expand-file-name "user-config.el" dotspacemacs-directory)))
 
 (defun dotspacemacs/emacs-custom-settings ()
-  (load-file (expand-file-name "custom-file.el" dotspacemacs-directory)))
+  (load-file custom-file))
