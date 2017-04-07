@@ -88,7 +88,10 @@
   dotspacemacs-remap-Y-to-y$ nil
   ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
   ;; there. (default t)
-  dotspacemacs-retain-visual-state-on-shift t
+  ;; NOTE: workarround for dot-repeats indents(>) in visual mode
+  ;; https://github.com/syl20bnr/spacemacs/issues/5273
+  ;; https://github.com/Stebalien/spacemacs/commit/4a9ea8fca9533028396677e7e68d9c02f283e019
+  dotspacemacs-retain-visual-state-on-shift nil
   ;; If non-nil, J and K move lines up and down when in visual mode.
   ;; (default nil)
   dotspacemacs-visual-line-move-text nil
