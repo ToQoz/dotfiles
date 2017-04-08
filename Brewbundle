@@ -52,6 +52,7 @@ tap d12frosted/emacs-plus
 tap aereal/aereal
 tap aereal/aereal_casks
 tap motemen/ghq
+tap caskroom/fonts 
 tap sanemat/font
 tap toqoz/toqoz
 
@@ -173,6 +174,7 @@ install binutils
 
 # Font {{{
 install ricty
+install font-source-code-pro
 # }}}
 
 # IME {{{
