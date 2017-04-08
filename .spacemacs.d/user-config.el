@@ -42,11 +42,12 @@
   (let ((comint-buffer-maximum-size 0))
     (comint-truncate-buffer)))
 (add-hook 'shell-mode-hook '(lambda () (local-set-key "\C-l" 'my/shell-clear)))
+
 ;; js2-mode (eslint, flycheck)
+;; js2-mode options
 (setq-default js2-strict-missing-semi-warning nil
               js2-basic-offset 2
               js-indent-level 2)
-
 (defun my/npm-command(command)
   (let* ((root (locate-dominating-file
                 (or (buffer-file-name) default-directory)
