@@ -12,4 +12,5 @@ softwareupdate -i "$PROD" --verbose
 mkdir -p ~/_dev/github.com/ToQoz
 git clone https://github.com/ToQoz/dotfiles.git ~/_dev/github.com/ToQoz/dotfiles
 cd ~/_dev/github.com/ToQoz/dotfiles
+git submodule update --init --recursive
 ./setup
