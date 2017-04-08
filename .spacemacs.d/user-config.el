@@ -56,19 +56,24 @@
          (local-command (expand-file-name (concat "node_modules/.bin/" command) root)))
 
   (cond ((file-executable-p local-command) local-command)
-        (else global-command))))
-
-; https://github.com/syl20bnr/spacemacs/blob/master/layers/%2Bframeworks/react/funcs.el#L30
-(defun my/prefer-local-eslint ()
+        (t (or global-command "eslint")))))
+; prefer local eslint
+; eslint: https://github.com/syl20bnr/spacemacs/blob/master/layers/%2Bframeworks/react/funcs.el#L30
+; eslint --fix: https://github.com/codesuki/eslint-fix/blob/master/eslint-fix.el
+(defun my/eslint ()
   (let ((eslint (my/npm-command "eslint")))
-  (setq-local flycheck-javascript-eslint-executable eslint)))
-(add-hook 'js2-mode-hook 'my/prefer-local-eslint)
-
-; prefer local eslint than global eslint
-; https://github.com/codesuki/eslint-fix/blob/master/eslint-fix.el
+    (setq-local flycheck-javascript-eslint-executable eslint)))
+(add-hook 'js2-mode-hook 'my/eslint)
+; eslint --fix
 (defun eslint-fix ()
   (interactive)
   (let ((eslint (my/npm-command "eslint")))
-  (progn (call-process eslint nil "*ESLint Errors*" nil "--fix" buffer-file-name)
-        (revert-buffer t t t))))
-(provide 'eslint-fix)
+    (if (file-executable-p eslint)
+        (progn (call-process eslint nil "*eslint errors*" nil "--fix" buffer-file-name)
+               (revert-buffer t t t))
+      (message "eslint is not found"))))
+
+
+(add-to-list 'load-path
+             (expand-file-name "swagger-mode" dotspacemacs-directory))
+(require 'swagger-mode)
