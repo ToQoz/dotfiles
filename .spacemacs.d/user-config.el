@@ -29,9 +29,13 @@
 ;; (default: SPC f r)
 
 ;; helm-ghq
-(global-set-key (kbd "\C-x g") 'helm-ghq)
+;; (custom: SPC f g)
+(spacemacs/set-leader-keys "fg" 'helm-ghq)
+
 ;; helm-git-ls-files
-(global-set-key (kbd "\C-x f") 'helm-ls-git-ls)
+;; (custom: SPC f l)
+(spacemacs/set-leader-keys "fl" 'helm-ls-git-ls)
+
 ;; shell-mode
 (defun my/shell-clear ()
   (interactive)
