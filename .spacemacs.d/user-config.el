@@ -24,6 +24,10 @@
 (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
 ;; ensime
 (setq ensime-startup-snapshot-notification nil)
+
+;; helm-recentf
+;; (default: SPC f r)
+
 ;; helm-ghq
 (global-set-key (kbd "\C-x g") 'helm-ghq)
 ;; helm-git-ls-files
