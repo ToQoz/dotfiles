@@ -148,6 +148,7 @@ install swiftlint
 install scalastyle
 install swagger-codegen
 install sourcekitten
+install ShellCheck
 
 if [ -n "$I_HAVE_TIME" ]; then
   install dmd
