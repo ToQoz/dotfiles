@@ -327,7 +327,7 @@ if [ -n "$FUN" ]; then
   cask install vlc
   cask install cooviewer
   cask install steam
-if
+fi
 # }}}
 
 # WM {{{
