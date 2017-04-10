@@ -351,4 +351,7 @@ if [ -n "$YUBIKEY" ]; then
 fi
 # }}}
 
+tap OJFord/formulae
+install loginitems
+
 # vim:set ft=sh et foldmethod=marker:
