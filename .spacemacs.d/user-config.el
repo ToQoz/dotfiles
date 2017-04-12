@@ -23,7 +23,9 @@
 (setq company-echo-delay 0)                          ; remove annoying blinking
 (setq company-begin-commands '(self-insert-command)) ; start autocompletion only after typing
 ;; ensime
+(setq ensime-startup-notification nil)
 (setq ensime-startup-snapshot-notification nil)
+(add-hook 'scala-mode-hook '(lambda () (ensime)))
 
 ;; helm-recentf
 ;; (default: SPC f r)
