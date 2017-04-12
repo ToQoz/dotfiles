@@ -25,7 +25,7 @@
 ;; ensime
 (setq ensime-startup-notification nil)
 (setq ensime-startup-snapshot-notification nil)
-(add-hook 'scala-mode-hook '(lambda () (ensime)))
+(add-hook 'scala-mode-hook 'ensime)
 
 ;; helm-recentf
 ;; (default: SPC f r)
