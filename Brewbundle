@@ -145,6 +145,7 @@ install node
 cask install java
 install scala
 install swiftlint
+install scalastyle
 
 if [ -n "$I_HAVE_TIME" ]; then
   install dmd
