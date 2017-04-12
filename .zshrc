@@ -322,7 +322,7 @@ goinit() {
 cd-anywhere() {
   local d
   d=$(ghq list -p | peco)
-  if [ $? = 0 ]; then
+  if [ $? = 0 -a -n "$d" ]; then
     cd $d
     zle reset-prompt
   fi
