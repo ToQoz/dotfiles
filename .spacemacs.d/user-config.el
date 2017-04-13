@@ -27,7 +27,7 @@
 (setq ensime-startup-snapshot-notification nil)
 (add-hook 'scala-mode-hook 'ensime)
 ;; scalastyle
-(setq-default flycheck-scalastylerc "/usr/local/etc/scalastyle_config.xml")
+(setq-default flycheck-scalastylerc "scalastyle_config.xml")
 
 ;; helm-recentf
 ;; (default: SPC f r)
