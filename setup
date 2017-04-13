@@ -110,6 +110,10 @@ defaults write com.apple.TextEdit SmartQuotes -bool false
 defaults write com.apple.TextEdit TextReplacement -bool false
 # }}}
 
+# Set Archive Utility's defaults {{{
+defaults write com.apple.archiveutility dearchive-move-after -string '~/.Trash'
+# }}}
+
 # Set YoruFukurou's defaults {{{
 defaults write com.YoruFukurouProject.YoruFukurou DisplayApplicationQuitWarning -bool false
 # }}}
