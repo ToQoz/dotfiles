@@ -343,6 +343,7 @@ cask install slate
 
 # Life {{{
 cask install focus
+cask install fantastical
 # }}}
 
 # Chat {{{
