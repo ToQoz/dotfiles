@@ -1,34 +1,36 @@
+#!/bin/bash
+
 casks=$(brew cask list)
 cask() {
     case "$1" in
     install)
-        if [ $(echo "$casks" | grep "^$1$" | wc -l) -gt 0 ]; then
-            echo "[skip] brew cask $@" >> /dev/stderr
+        if [ "$(echo "$casks" | grep -c "^$1$")" -gt 0 ]; then
+            echo "[skip] brew cask $*" >> /dev/stderr
             return 0 # this is not error
         fi
         ;;
     esac
-    brew cask $@
+    brew cask "$@"
 }
 
 list=$(brew list)
 install () {
-    if [ $(echo "$list" | grep "^$1$" | wc -l) -gt 0 ]; then
-        echo "[skip] brew install $@" >> /dev/stderr
+    if [ "$(echo "$list" | grep -c "^$1$")" -gt 0 ]; then
+        echo "[skip] brew install $*" >> /dev/stderr
         return 0 # this is not error
     fi
 
-    HOMEBREW_NO_AUTO_UPDATE=1 brew install $@
+    HOMEBREW_NO_AUTO_UPDATE=1 brew install "$@"
 }
 
 taps=$(brew tap)
 tap() {
-    if [ $(echo "$taps" | grep "^$1$" | wc -l) -gt 0 ]; then
-        echo "[skip] brew tap $@" >> /dev/stderr
+    if [ "$(echo "$taps" | grep -c "^$1$")" -gt 0 ]; then
+        echo "[skip] brew tap $*" >> /dev/stderr
         return 0 # this is not error
     fi
 
-    brew tap $@
+    brew tap "$@"
 }
 
 update() {
@@ -37,7 +39,8 @@ update() {
 
 I_HAVE_TIME=
 while true; do
-  read -p "Do you have time? [y/n]" yn
+  # -r: https://github.com/koalaman/shellcheck/wiki/SC2162
+  read -r -p "Do you have time? [y/n]" yn
   case $yn in
     [Yy]* ) I_HAVE_TIME=1; break;;
     [Nn]* ) break;;
