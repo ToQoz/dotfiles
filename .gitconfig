@@ -36,6 +36,7 @@
 	rank       = shortlog -s -n --no-merges
 	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
 	ls-modified = "!git status -s | grep '^ M ' | awk '{print $2}'"
+	set-upstream = "!c=$(git rev-parse --abbrev-ref HEAD) && git branch --set-upstream-to=origin/$c $c"
 	gr  = grep --untracked
 	s   = !"git stash list && git status -sb"
 	ft  = fetch
