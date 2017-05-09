@@ -152,13 +152,13 @@ install scalastyle
 install swagger-codegen
 install sourcekitten
 install ShellCheck
+install haskell-stack
 
 if [ -n "$I_HAVE_TIME" ]; then
   install dmd
   install gauche
   install clozure-cl
   install leiningen
-  install haskell-stack
 fi
 # }}}
 
