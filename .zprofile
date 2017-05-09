@@ -20,6 +20,7 @@ typeset -Ua \
 user_path=(
   $HOME/.awsenv
   $HOME/bin(N-/)
+  $HOME/.local/bin(N-/)
   $HOME/private/bin(N-/)
   $HOME/bin/private
   $HOME/scripts(N-/)
