@@ -1,3 +1,7 @@
+;; linum-mode performance hack: http://d.hatena.ne.jp/daimatz/20120215/1329248780
+(setq linum-delay t)
+(defadvice linum-schedule (around my-linum-schedule () activate)
+  (run-with-idle-timer 0.2 nil #'linum-update-current))
 ;; title
 (setq frame-title-format "Spacemacs")
 ;; C-h
