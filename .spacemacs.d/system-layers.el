@@ -29,6 +29,7 @@
     scala
     go
     javascript
+    react
     vimscript
     helm
     better-defaults
