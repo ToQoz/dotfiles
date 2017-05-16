@@ -9,6 +9,7 @@
 ; exec-path
 (setq exec-path-from-shell-check-startup-files nil)
 (let* ((path '(
+               "/usr/bin"
                "/usr/local/bin"
                "/usr/local/opt/coreutils/libexec/gnubin"
                "/usr/local/opt/gnu-tar/libexec/gnubin"
