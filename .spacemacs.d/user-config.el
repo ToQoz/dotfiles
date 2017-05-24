@@ -55,6 +55,7 @@
 ;; js2-mode options
 (setq-default js2-strict-missing-semi-warning nil
               js2-basic-offset 2
+              js-switch-indent-offset 2
               js-indent-level 2)
 (defun my/npm-command(command)
   (let* ((root (locate-dominating-file
