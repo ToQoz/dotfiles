@@ -38,6 +38,10 @@
 ;; scalastyle
 (setq-default flycheck-scalastylerc "scalastyle_config.xml")
 
+; tread _ as a word character (vim way)
+; https://github.com/emacs-evil/evil/blob/bc3db5cf16506d94049e4611b1873c7d76e4e070/README.md#underscore-_-is-not-a-word-character
+(modify-syntax-entry ?_ "w")
+
 ;; helm-recentf
 ;; (default: SPC f r)
 
