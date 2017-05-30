@@ -10,6 +10,11 @@
 ;; fullscreen
 (set-frame-parameter nil 'fullscreen 'maximized)
 
+;; persisted undo tree
+(require 'undo-tree)
+(setq undo-tree-auto-save-history t)
+(global-undo-tree-mode)
+
 ;; ddskk
 (when (require 'skk nil t)
   (global-set-key (kbd "\C-j") 'skk-auto-fill-mode)
