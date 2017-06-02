@@ -1,0 +1,40 @@
+set titlestring="テキストラッパー T-babuchan"
+map <C-r> :restart<CR>
+
+set complete=sl
+
+" Hide address bar
+set gui=nonavigation
+
+" Easy hints
+set hintchars=;asdfghjkl
+
+" Don't focus on page load
+set focuscontent
+
+" Beep
+set visualbell
+hi Bell display: none;
+
+" Select undo target from list
+noremap U :undo<Space>
+
+" Improve j/k moving
+noremap j 5<C-e>
+noremap k 5<C-y>
+
+" Tab
+map H gT
+map L gt
+map <Left> gT
+map <Right> gt
+noremap <C-h> <A-Left>
+noremap <C-l> <A-Right>
+
+" Fast search shortcut
+nnoremap ,os :open<Space>google<Space>
+nnoremap ,ts :tabopen<Space>google<Space>
+nnoremap ,og :open<Space>google<Space>github.com<Space>
+nnoremap ,tg :tabopen<Space>google<Space>github.com<Space>
+
+echo "テキストラッパー T-babuchan is loaded"
