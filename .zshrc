@@ -239,7 +239,7 @@ alias vim=$VIM_E
 find-and-open-file() {
   input=$(cat)
   selected=$(echo $input | grep '.\+:[0-9]\+:.*' | peco)
-  echo "$selected" | awk -F : '{print "-c " $2 " " $1}' | xargs -o vim
+  echo "$selected" | awk -F : '{print "-c " $2 " " $1}' | /usr/bin/xargs -o vim
 }
 alias fof=find-and-open-file
 vim-bench() {
@@ -252,11 +252,6 @@ vim-bench() {
 alias_for_etc_on_tmux() {
   add-zsh-hook precmd update-window-title-precmd
   add-zsh-hook preexec update-window-title-preexec
-
-  alias pbcopy="reattach-to-user-namespace pbcopy"
-  alias pbpaste='reattach-to-user-namespace pbpaste'
-  alias launchctl="ssh 127.0.0.1 launchctl"
-  alias mas="ssh 127.0.0.1 /usr/local/bin/mas"
 }
 [ -z "$TMUX" ] || alias_for_etc_on_tmux
 
