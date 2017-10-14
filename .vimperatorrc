@@ -31,10 +31,18 @@ map <Right> gt
 noremap <C-h> <A-Left>
 noremap <C-l> <A-Right>
 
+" SKK workaround
+cmap <C-j> <Nop>
+
 " Fast search shortcut
 nnoremap ,os :open<Space>google<Space>
 nnoremap ,ts :tabopen<Space>google<Space>
 nnoremap ,og :open<Space>google<Space>github.com<Space>
 nnoremap ,tg :tabopen<Space>google<Space>github.com<Space>
+
+" Hatena
+set gui+=nohatehaBookmarks
+set complete+=H
+javascript if (typeof hBookmark != 'undefined') liberator.loadScript('chrome://hatenabookmark/content/vimperator/plugin/hatenabookmark.js', {__proto__: this});
 
 echo "テキストラッパー T-babuchan is loaded"
