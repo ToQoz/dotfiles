@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # https://github.com/why-jay/osx-init/blob/master/install.sh#L25-L33
 touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
 PROD=$(softwareupdate -l |
