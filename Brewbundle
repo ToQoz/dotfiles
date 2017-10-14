@@ -134,6 +134,7 @@ install rbenv
 install python
 install python3
 install node
+install yarn
 cask install java
 install scala
 install swiftlint
