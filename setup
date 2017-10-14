@@ -116,6 +116,10 @@ defaults write com.apple.TextEdit SmartQuotes -bool false
 defaults write com.apple.TextEdit TextReplacement -bool false
 # }}}
 
+# Set iTerm2 defaults {{{
+defaults write com.googlecode.iterm2 TabStyle 1
+# }}}
+
 # Set Archive Utility's defaults {{{
 defaults write com.apple.archiveutility dearchive-move-after -string '~/.Trash'
 # }}}
