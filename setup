@@ -161,9 +161,6 @@ rbenv rehash
 sh ./Gobundle
 # }}}
 
-mkdir -p ~/bin
-qiita-dl -x -d ~/bin http://qiita.com/uasi/items/57da2e4268d348b371fb
-
 # dropbox sync {{{
 if [ -n "$DROPBOX" ]; then
   remotes=("Desktop" "Documents" "Downloads")
