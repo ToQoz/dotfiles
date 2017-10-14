@@ -254,10 +254,6 @@ cask install coconutbattery
 cask install appcleaner
 # }}}
 
-# Sync {{{
-cask install dropbox
-# }}}
-
 # IME {{{
 cask install aquaskk
 # }}}
