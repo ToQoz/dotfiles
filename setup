@@ -171,4 +171,10 @@ if [ ! -d ~/private ]; then
   ln -sf ~/_dev/github.com/ToQoz/private ~/private
 fi
 
+(
+  cd /tmp
+  wget https://raw.githubusercontent.com/arcticicestudio/nord-iterm2/develop/src/xml/Nord.itermcolors
+  open Nord.intermcolors
+)
+
 # vim:set ft=sh et foldmethod=marker:

@@ -105,11 +105,7 @@ if &t_Co == 8 && $TERM !~# '^linux'
   set t_Co=16
 endif
 
-if &term =~ '256color'
-  set t_Co=256
-  let g:hybrid_use_Xresources = 1
-  let s:colorscheme = 'hybrid'
-endif
+let s:colorscheme = 'nord'
 
 " Show indivisual characters {{{
 set ambiwidth=double
@@ -368,6 +364,7 @@ NeoBundle 'sickill/vim-monokai'
 NeoBundle 'molokai'
 NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'arcticicestudio/nord-vim'
 
 " Git frontends
 NeoBundle 'takahirojin/gbr.vim'
