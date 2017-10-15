@@ -430,7 +430,7 @@ update_prompt() {
 
   # Right prompt. -> Output.
   RPROMPT=""
-  RPROMPT="$RPROMPT %{$fg[yellow]%}(aws:${aws_info:=default})%{$reset_color%}"
+  RPROMPT="$RPROMPT %{$fg[yellow]%}(aws:${aws_info})%{$reset_color%}"
   RPROMPT="$RPROMPT %{$fg[red]%}(ruby:$ruby_version)%{$reset_color%}"
   RPROMPT="$RPROMPT %{$fg[blue]%}$goinfo%{$reset_color%}"
 }
