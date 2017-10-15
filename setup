@@ -7,13 +7,13 @@ export PATH=$HOME/.rbenv/shims:/usr/local/bin:$PATH
 # Install brew & brewed packages {{{
 if ! /usr/bin/which -s brew; then
   sudo mkdir -p /usr/local/bin
-  sudo chown -R $(whoami) /usr/local
+  sudo chown -R "$(whoami)" /usr/local
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 sh ./Brewbundle
 
-if [ -z "$(cat /etc/shells | grep /usr/local/bin/zsh)" ]; then
+if ! grep -q /usr/local/bin/zsh /etc/shells; then
   sudo sh -c "echo '/usr/local/bin/zsh' >> /etc/shells"
   chsh -s /usr/local/bin/zsh
 fi
@@ -121,6 +121,7 @@ defaults write com.googlecode.iterm2 TabStyle 1
 # }}}
 
 # Set Archive Utility's defaults {{{
+# shellcheck disable=SC2088
 defaults write com.apple.archiveutility dearchive-move-after -string '~/.Trash'
 # }}}
 
@@ -145,15 +146,15 @@ defaults write -g NSScrollAnimationEnabled -bool NO
 
 killall Finder
 killall Dock
-#killall Safari
-#killall SystemUIServer
+# killall Safari
+# killall SystemUIServer
 
 # Install dotfiles {{{
 go run installer/install.go
 # }}}
 
 # Install ruby & gems(cmd) {{{
-if [ $(rbenv versions | grep 2.3.1 | wc -l) = 0 ]; then
+if ! rbenv versions | grep -q 2.3.1; then
   rbenv install 2.3.1
   rbenv global 2.3.1
 fi
