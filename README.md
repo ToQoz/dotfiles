@@ -11,6 +11,7 @@ manual operations are remaining...
   - iTerm.app Preferences > Profiles > Default
     - General > Color Presets... > Nord
     - Text > Change Font > 14pt Source Code Pro
+    - Keys > {Left, Right} Option Key > Esc+
 - Preferences.app
   - General > Use dark menu bar and Dock
   - Sharing > Computer Name
