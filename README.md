@@ -6,7 +6,6 @@ manual operations are remaining...
   - `$ ssh-keygen -t rsa -b 4096 -C "toqoz403@gmail.com"`
   - add `~/.ssh/id_rsa.pub` to https://github.com/settings/keys
 - `$ curl -sf -L https://raw.githubusercontent.com/ToQoz/dotfiles/master/bootstrap | sh`
-- Install SandS.app
 - Configure iTerm.app profile
   - iTerm.app Preferences > Profiles > Default
     - General > Color Presets... > Nord
