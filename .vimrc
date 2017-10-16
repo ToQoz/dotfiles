@@ -589,5 +589,3 @@ execute 'colorscheme ' . s:colorscheme
 if filereadable(expand('~/private/.vimrc'))
   source expand('~/private/.vimrc')
 endif
-
-" vim:set ft=vim et foldmethod=marker:
