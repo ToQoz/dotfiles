@@ -298,13 +298,7 @@ NeoBundle 'keith/swift.vim'
 NeoBundle 'derekwyatt/vim-scala'
 
 " Golang
-NeoBundle 'dgryski/vim-godef'
-NeoBundle 'Blackrush/vim-gocode'
-NeoBundle 'google/vim-ft-go'
-NeoBundle 'vim-jp/vim-go-extra'
-" execute 'set rtp+=' . g:gopath . '/src/github.com/golang/lint/misc/vim'
-" execute 'set rtp+=' . g:gopath . '/src/github.com/ToQoz/goimps/misc/vim'
-NeoBundle 'ToQoz/vim-go-drop-unused-imports'
+NeoBundle 'fatih/vim-go'
 
 NeoBundle 'nicklasos/vim-jsx-riot'
 au BufNewFile,BufRead *.tag setlocal ft=javascript
@@ -323,10 +317,6 @@ NeoBundle 'thinca/vim-poslist'
 NeoBundle "mkitt/tabline.vim"
 
 " Error check tool
-" * Need to install commands for following filetypes
-"   - json         ... jsonlint
-"   - javascript   ... jshint|eslint
-" NeoBundle "osyo-manga/vim-watchdogs"
 NeoBundle "w0rp/ale"
 
 " Highlight quickfix errors
@@ -508,41 +498,21 @@ if neobundle#tap('clever-f.vim') " {{{
   let g:clever_f_fix_key_direction = 1
 endif " }}}
 
-" if neobundle#tap('syntastic') " {{{
-"   let g:syntastic_check_on_open            = 1
-"   let g:syntastic_enable_signs             = 1
-"   let g:syntastic_always_populate_loc_list = 1
-"   let g:syntastic_mode_map                 = {
-"         \   'mode': 'active',
-"         \   'active_filetypes': [],
-"         \   'passive_filetypes': ['html']
-"         \ }
-"   let g:syntastic_enable_highlighting = 1
-"   let g:syntastic_ruby_exec           = expand('~/.rbenv/shims/ruby')
-"
-"   " https://github.com/thoughtbot/dotfiles/commit/6a034a7d659ef332345d17d55aaf47994aa9f96b
-"   let g:syntastic_eruby_ruby_quiet_messages =
-"       \ {'regex': 'possibly useless use of a variable in void context'}
-"   " let g:syntastic_go_checkers         = ['go', 'golint', 'govet']
-"   let g:syntastic_go_checkers         = ['go', 'golint']
-" endif " }}}
+if neobundle#tap('ale') " {{{
+  let g:ale_lint_on_text_changed = 'never'
+  let g:ale_lint_on_enter = 1
+  let g:ale_lint_on_save = 1
 
-if neobundle#tap('vim-watchdogs') " {{{
-  let g:watchdogs_check_BufWritePost_enables = {
-        \ "go" : 1
-        \}
+  let g:ale_set_loclist = 0
+  let g:ale_set_quickfix = 1
+  let g:ale_open_list = 1
 
-  let g:quickrun_config['javascript/watchdogs_checker'] = {
-        \     "type" : "watchdogs_checker/eslint"
+  let g:ale_linters = {
+        \   'javascript': ['eslint', 'flow'],
+        \   'go': ['go build', 'gometalinter']
         \ }
-  let g:quickrun_config['go/watchdogs_checker'] = {
-        \     "type" : "watchdogs_checker/golint"
-        \ }
-  let g:quickrun_config['watchdogs_checker/_'] = {
-        \   'hook/hier_update/enable_exit' : 1,
-        \   'runner/vimproc/updatetime' : 40,
-        \ }
-  call watchdogs#setup(g:quickrun_config)
+  " https://github.com/alecthomas/gometalinter#supported-linters
+  let g:ale_go_gometalinter_options = '--disable-all --enable=golint --enable=vet --enable=gotype --enable=errcheck --tests'
 endif " }}}
 
 if neobundle#tap('vim-indent-guides') " {{{
@@ -567,10 +537,10 @@ if neobundle#tap('vim-altercmd') " {{{
   endif
 endif " }}}
 
-if neobundle#tap('vim-go-extra') " {{{
-  let g:gofmt_command = "goimports"
-  nnoremap <leader>f  :Import fmt<CR>
-  nnoremap <leader>F  :Drop fmt<CR>
+if neobundle#tap('vim-go') " {{{
+  let g:go_fmt_command = "goimports"
+  nnoremap <leader>f  :GoImport fmt<CR>
+  nnoremap <leader>F  :GoDrop fmt<CR>
 endif " }}}
 
 if neobundle#tap('vim-fugitive') " {{{

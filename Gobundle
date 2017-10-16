@@ -5,6 +5,9 @@ go get golang.org/x/tools/cmd/benchcmp
 go get golang.org/x/tools/cmd/cover
 go get golang.org/x/tools/cmd/gorename
 
+go get -u github.com/alecthomas/gometalinter
+gometalinter --install
+
 go get github.com/ToQoz/godecls
 go get github.com/ToQoz/goimps
 go get github.com/ToQoz/gomain
