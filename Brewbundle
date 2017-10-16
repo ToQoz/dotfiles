@@ -41,10 +41,10 @@ tap caskroom/cask
 tap homebrew/dupes
 tap homebrew/versions
 tap d12frosted/emacs-plus
-tap aereal/aereal_casks
 tap caskroom/fonts
 tap sanemat/font
 tap toqoz/toqoz
+tap toqoz/toqoz_cask
 
 update
 
@@ -253,7 +253,7 @@ cask install appcleaner
 # }}}
 
 # IME {{{
-cask install aquaskk
+cask install toqoz/toqoz_cask/aquaskk
 # }}}
 
 # Browser {{{
@@ -273,6 +273,7 @@ if [ "$OSX_VERSION" -lt 101200 ]; then
   cask install seil
 else
   cask install hammerspoon
+  cask install toqoz/toqoz_cask/sands
 fi
 # }}}
 
