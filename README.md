@@ -19,10 +19,9 @@ $ bash ./bootstrap.bash
 ## Preferences.app
 
 1. General > Use dark menu bar and Dock
-2. Sharing > Computer Name
-3. Security & Privacy > Privacy > Accessibility **{Hammerspoon, Slate, SandS}**
-4.  Keyboard > Keyboard > Modifier Keys > **CapsLock -> Control**
-5.  Keyboard > Input Sources > **Add AquaSKK Sources** > **Logout from computer**
+2. Security & Privacy > Privacy > Accessibility **{Hammerspoon, Slate, SandS}**
+3. Keyboard > Keyboard > Modifier Keys > **CapsLock -> Control**
+4. Keyboard > Input Sources > **Add AquaSKK Sources** > **Logout from computer**
 
 ## Others
 
