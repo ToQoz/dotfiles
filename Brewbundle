@@ -168,8 +168,7 @@ install binutils
 # }}}
 
 # Font {{{
-install ricty
-install font-source-code-pro
+cask install font-source-code-pro
 # }}}
 
 # IME {{{
