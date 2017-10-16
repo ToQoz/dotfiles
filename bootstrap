@@ -3,16 +3,23 @@
 set -e
 
 # https://github.com/why-jay/osx-init/blob/master/install.sh#L25-L33
-touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
-PROD=$(softwareupdate -l |
-  grep "\*.*Command Line" |
-  head -n 1 | awk -F"*" '{print $2}' |
-  sed -e 's/^ *//' |
-  tr -d '\n')
-softwareupdate -i "$PROD" --verbose
+if [ ! -d /Library/Developer/CommandLineTools ]; then
+  touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
+  PROD=$(softwareupdate -l |
+    grep "\*.*Command Line" |
+    head -n 1 | awk -F"*" '{print $2}' |
+    sed -e 's/^ *//' |
+    tr -d '\n')
+  softwareupdate -i "$PROD" --verbose
+fi
 
-mkdir -p ~/_dev/github.com/ToQoz
-git clone https://github.com/ToQoz/dotfiles.git ~/_dev/github.com/ToQoz/dotfiles
-cd ~/_dev/github.com/ToQoz/dotfiles
-git submodule update --init --recursive
+if [ ! -d ~/_dev/github.com/ToQoz/dotfiles ]; then
+  mkdir -p ~/_dev/github.com/ToQoz
+  git clone https://github.com/ToQoz/dotfiles.git ~/_dev/github.com/ToQoz/dotfiles
+  cd ~/_dev/github.com/ToQoz/dotfiles
+  git submodule update --init --recursive
+else
+  cd ~/_dev/github.com/ToQoz/dotfiles
+fi
+
 ./setup
