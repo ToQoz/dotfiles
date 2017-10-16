@@ -6,8 +6,8 @@ manual operations are remaining...
 
 ```
 $ cd /tmp
-$ curl -sf -L https://raw.githubusercontent.com/ToQoz/dotfiles/master/bootstrap > install.bash
-$ ./install.bash
+$ curl -sf -L https://raw.githubusercontent.com/ToQoz/dotfiles/master/bootstrap.bash > bootstrap.bash
+$ bash ./bootstrap.bash
 ```
 
 ## Configure iTerm.app profile
