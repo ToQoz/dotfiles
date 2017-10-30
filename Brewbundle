@@ -153,8 +153,8 @@ fi
 # Database {{{
 install redis
 brew services start redis
-install homebrew/versions/mysql56
-brew services start homebrew/versions/mysql56
+install mysql
+brew services start mysql
 # }}}
 
 # GNU tools {{{
