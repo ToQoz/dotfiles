@@ -512,7 +512,7 @@ if neobundle#tap('ale') " {{{
         \   'go': ['go build', 'gometalinter']
         \ }
   " https://github.com/alecthomas/gometalinter#supported-linters
-  let g:ale_go_gometalinter_options = '--disable-all --enable=golint --enable=vet --enable=gotype --enable=errcheck --tests'
+  let g:ale_go_gometalinter_options = '--disable-all --enable=vet'
 endif " }}}
 
 if neobundle#tap('vim-indent-guides') " {{{
