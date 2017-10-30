@@ -141,6 +141,9 @@ defaults write com.YoruFukurouProject.YoruFukurou DisplayApplicationQuitWarning 
 defaults write com.torusknot.SourceTreeNotMAS agreedToUpdateConfig -bool false
 # }}}
 
+# Disable the "Are you sure you want to open this application?" dialog
+defaults write com.apple.LaunchServices LSQuarantine -bool false
+
 # Set global's defaults {{{
 # Don't check spell
 defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
@@ -148,8 +151,10 @@ defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
 defaults write -g NSQuitAlwaysKeepsWindows -bool false
 # Don't save to iCloud
 defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
-
 defaults write -g NSScrollAnimationEnabled -bool NO
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 # }}}
 
 killall Finder
