@@ -169,7 +169,9 @@ go run installer/install.go
 # }}}
 
 mkdir -p ~/Library/KeyBindings
-ln -sf "$(pwd)/osx/Keybindings/DefaultKeyBinding.dict" ~/Library/KeyBindings/DefaultKeyBinding.dict
+# TextEdit.app doesn't work with symlink...
+# c.f. https://apple.stackexchange.com/a/53110
+cp osx/Keybindings/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.dict
 
 # Install ruby & gems(cmd) {{{
 if ! rbenv versions | grep -q 2.3.1; then
