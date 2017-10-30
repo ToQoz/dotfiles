@@ -4,8 +4,6 @@ brew() {
   elif [ "$1" = "install" ] || [ "$1" = "uninstall" ]; then
     =brew $*
     rehash
-  elif [ "$1" = "services" ]; then
-    ssh 127.0.0.1 =brew $*
   else
     =brew $*
   fi
