@@ -89,6 +89,9 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 # Don't show icons on Desktop
 defaults write com.apple.finder CreateDesktop -bool false
+# Open ~
+defaults write com.apple.finder NewWindowTarget PfHm
+defaults write com.apple.finder NewWindowTargetPath file://$HOME
 # }}}
 
 # Set safari's defaults {{{
