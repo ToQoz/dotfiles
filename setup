@@ -75,7 +75,6 @@ defaults write com.apple.dashboard mcx-disabled -boolean true
 # Login items {{{
 loginitems -a SandS -p '/Applications/SandS.app'
 loginitems -a Slate -p '/Applications/Slate.app'
-loginitems -a Hammerspoon -p '/Applications/Hammerspoon.app'
 # }}}
 
 # Set finder's defaults {{{
@@ -91,7 +90,7 @@ defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 defaults write com.apple.finder CreateDesktop -bool false
 # Open ~
 defaults write com.apple.finder NewWindowTarget PfHm
-defaults write com.apple.finder NewWindowTargetPath file://$HOME
+defaults write com.apple.finder NewWindowTargetPath "file://$HOME"
 # }}}
 
 # Set safari's defaults {{{
@@ -168,6 +167,9 @@ killall Dock
 # Install dotfiles {{{
 go run installer/install.go
 # }}}
+
+mkdir -p ~/Library/KeyBindings
+ln -sf "$(pwd)/osx/Keybindings/DefaultKeyBinding.dict" ~/Library/KeyBindings/DefaultKeyBinding.dict
 
 # Install ruby & gems(cmd) {{{
 if ! rbenv versions | grep -q 2.3.1; then

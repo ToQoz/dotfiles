@@ -271,7 +271,6 @@ if [ "$OSX_VERSION" -lt 101200 ]; then
   cask install karabiner
   cask install seil
 else
-  cask install hammerspoon
   cask install toqoz/toqoz_cask/sands
 fi
 # }}}
