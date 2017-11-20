@@ -426,7 +426,7 @@ update_prompt() {
 
   # Left prompt. -> Output
   PROMPT="[${current_working_directory}] $current_branch ${branch_pos}"
-  PROMPT="$PROMPT "$newline"$USER> %(!.#.$) %{$reset_color%}"
+  PROMPT="$PROMPT "$newline"%(!.#.$) %{$reset_color%}"
 
   # Right prompt. -> Output.
   RPROMPT=""
