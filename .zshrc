@@ -278,7 +278,7 @@ ghuser() {
 
 gocover() {
   local cov="/tmp/gocover.$$.out"
-  go test -covermode=count -coverprofile=$cov $@ && go tool cover -html=$cov
+  GOPWT_OFF=1 go test -covermode=count -coverprofile=$cov $@ && go tool cover -html=$cov
   unlink $cov
 }
 
