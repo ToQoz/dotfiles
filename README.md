@@ -13,7 +13,7 @@ $ bash ./bootstrap.bash
 ## Configure iTerm.app profile
 
 1. General > Color Presets... > **Nord**
-2. Text > Change Font > **14pt Source Code Pro**
+2. Text > Change Font > **14pt Source Code Pro** and set line-height 120%
 3. Keys > {Left, Right} Option Key > **Esc+**
 
 ## Preferences.app
