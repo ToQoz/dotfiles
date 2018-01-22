@@ -469,9 +469,6 @@ $BINUTILS_EXIST && alias_to_cmd_to_binutils
 $RBENV_EXIST && eval "$(rbenv init - zsh)"
 # }}}
 
-# docker
-# eval "$(docker-machine env dev)"
-alias fig="docker-compose"
 
 # Use aws completion
 [ -f $BREW_HOME/share/zsh/site-functions/_aws ] && source $BREW_HOME/share/zsh/site-functions/_aws
