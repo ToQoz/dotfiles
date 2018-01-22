@@ -469,6 +469,12 @@ $BINUTILS_EXIST && alias_to_cmd_to_binutils
 $RBENV_EXIST && eval "$(rbenv init - zsh)"
 # }}}
 
+# https://qiita.com/yuku_t/items/4ffaa516914e7426419a
+function ssh() {
+    local window_name=$(tmux display -p '#{window_name}')
+    command ssh $@
+    tmux rename-window $window_name
+}
 
 # Use aws completion
 [ -f $BREW_HOME/share/zsh/site-functions/_aws ] && source $BREW_HOME/share/zsh/site-functions/_aws
