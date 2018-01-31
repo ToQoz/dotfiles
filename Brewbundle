@@ -131,7 +131,9 @@ install ruby-build
 install rbenv
 install python
 install python3
-install node
+# install Node v8.9.4 (LTS)
+install node@8
+brew link --overwrite --force node@8
 install yarn
 cask install java
 install scala
