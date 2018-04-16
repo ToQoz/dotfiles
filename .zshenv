@@ -79,4 +79,6 @@ if [ -f $PRIVATE_D/.zshenv ]; then
   source $PRIVATE_D/.zshenv
 fi
 
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+
 # vim:set ft=zsh et foldmethod=marker:
