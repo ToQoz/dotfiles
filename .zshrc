@@ -326,25 +326,11 @@ zle -N cd-anywhere
 bindkey "^xg" cd-anywhere
 # }}}
 
-
-proxy() {
-  /bin/echo -n "proxy self? "
-  read self
-
-  if [ "$self" = "y" ]; then
-    networksetup -setwebproxy Wi-Fi 127.0.0.1 8080
-    networksetup -setwebsecureproxy Wi-Fi 127.0.0.1 8080
-  else
-    addr="$(ifconfig en0 | grep 'inet ' | awk -F ' ' '{print $2}'):8080"
-    echo $addr | pbcopy
-  fi
-
-  mitmproxy
-
-  if [ "$self" = "y" ]; then
-    networksetup -setwebproxystate Wi-Fi off
-    networksetup -setwebsecureproxystate Wi-Fi off
-  fi
+ganache() {
+  open -a XQuartz.app
+  local ip=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
+  xhost +$ip
+  docker run -it --rm -e DISPLAY=$ip:0 -p 7545:7545 -v /tmp/.X11-unix:/tmp/.X11-unix toqoz/ganache
 }
 
 # Redo(Undo is C-/)
