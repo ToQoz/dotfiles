@@ -328,9 +328,9 @@ bindkey "^xg" cd-anywhere
 
 ganache() {
   open -a XQuartz.app
-  local ip=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
-  xhost +$ip
-  docker run -it --rm -e DISPLAY=$ip:0 -p 7545:7545 -v /tmp/.X11-unix:/tmp/.X11-unix toqoz/ganache
+  local addr=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
+  xhost +$addr
+  docker run -it -d --rm -e DISPLAY=$addr:0 -p 7545:7545 -v /tmp/.X11-unix:/tmp/.X11-unix toqoz/ganache
 }
 
 # Redo(Undo is C-/)
