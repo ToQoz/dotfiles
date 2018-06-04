@@ -1,22 +1,22 @@
-go get github.com/golang/lint/golint
-go get golang.org/x/tools/cmd/godoc
-go get golang.org/x/tools/cmd/goimports
-go get golang.org/x/tools/cmd/benchcmp
-go get golang.org/x/tools/cmd/cover
-go get golang.org/x/tools/cmd/gorename
+go get -u github.com/golang/lint/golint
+go get -u golang.org/x/tools/cmd/godoc
+go get -u golang.org/x/tools/cmd/goimports
+go get -u golang.org/x/tools/cmd/benchcmp
+go get -u golang.org/x/tools/cmd/cover
+go get -u golang.org/x/tools/cmd/gorename
 
 go get -u github.com/alecthomas/gometalinter
 gometalinter --install
 
-go get github.com/ToQoz/godecls
-go get github.com/ToQoz/goimps
-go get github.com/ToQoz/gomain
-go get github.com/ToQoz/godeps
-go get github.com/ToQoz/go-unitypackage
-go get github.com/ToQoz/git-ls-untracked-files
+go get -u github.com/ToQoz/godecls
+go get -u github.com/ToQoz/goimps
+go get -u github.com/ToQoz/gomain
+go get -u github.com/ToQoz/godeps
+go get -u github.com/ToQoz/go-unitypackage
+go get -u github.com/ToQoz/git-ls-untracked-files
 
-go get github.com/nsf/gocode
-go get github.com/mitchellh/gox
-go get github.com/motemen/ghq
+go get -u github.com/nsf/gocode
+go get -u github.com/mitchellh/gox
+go get -u github.com/motemen/ghq
 
-go get github.com/fujiwara/nssh
+go get -u github.com/fujiwara/nssh
