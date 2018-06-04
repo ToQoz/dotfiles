@@ -268,13 +268,8 @@ cask install vagrant
 # }}}
 
 # Key remap {{{
-OSX_VERSION=$(sw_vers -productVersion | awk -F. '{printf "%2d%02d%02d", $1,$2,$3}')
-if [ "$OSX_VERSION" -lt 101200 ]; then
-  cask install karabiner
-  cask install seil
-else
-  cask install toqoz/toqoz_cask/sands
-fi
+cask install karabiner-elements
+cask install toqoz/toqoz_cask/sands
 # }}}
 
 # IDE/GUI manager {{{

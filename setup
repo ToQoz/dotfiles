@@ -54,11 +54,6 @@ if [ ! -f ~/.Xresources ]; then
 fi
 # }}}
 
-# Configure karabiner/seil {{{
-./osx/karabiner/config.sh
-./osx/seil/config.sh
-# }}}
-
 # Set dock's defaults {{{
 # Hide dock automatically
 defaults write com.apple.dock autohide -bool true
