@@ -62,7 +62,7 @@ install mercurial
 # }}}
 
 # Zsh {{{
-install zsh
+install zsh --with-pcre
 install zsh-completions
 # }}}
 
