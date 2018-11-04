@@ -213,11 +213,6 @@ install xctool
 install uncrustify
 # }}}
 
-# Ruby devtools {{{
-# install refe
-install rsense
-# }}}
-
 # Shell devtools {{{
 install checkbashisms
 # }}}
