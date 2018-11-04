@@ -269,6 +269,7 @@ cask install mysqlworkbench
 cask install sequel-pro
 cask install bdash
 cask install visual-studio-code
+cask install atom
 if [ -n "$ANALYSIS" ]; then
   install r
   cask install rstudio
