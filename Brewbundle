@@ -217,10 +217,6 @@ install uncrustify
 install checkbashisms
 # }}}
 
-# Headless browsers {{{
-install selenium-server-standalone
-# }}}
-
 # AWS {{{
 install aws-elasticbeanstalk
 install awscli
