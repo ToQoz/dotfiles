@@ -152,13 +152,6 @@ if [ -n "$I_HAVE_TIME" ]; then
 fi
 # }}}
 
-# Database {{{
-install redis
-brew services start redis
-install mysql
-brew services start mysql
-# }}}
-
 # GNU tools {{{
 install coreutils
 install gnu-sed
