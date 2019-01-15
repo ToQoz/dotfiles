@@ -18,6 +18,7 @@ typeset -Ua \
   sudo_path \
   system_path
 user_path=(
+  /Applications/MySQLWorkbench.app/Contents/MacOS
   $HOME/.awsenv
   $HOME/bin(N-/)
   $HOME/.local/bin(N-/)
