@@ -48,6 +48,7 @@
 	wc  = whatchanged
 	lp  = log --decorate --stat --patch
 	dw  = diff --color-words
+	fixup = git add -A && git ci --fixup HEAD
 	toqoz = "!git config --add user.name 'Takatoshi Matsumoto' && git config --add user.email 'toqoz403@gmail.com'"
 [sendemail]
 	smtpserver = msmtp
