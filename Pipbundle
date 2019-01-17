@@ -2,3 +2,8 @@ pip3 install pep8
 pip3 install pyflakes
 pip3 install flake8
 pip3 install hacking
+
+# AWS {{{
+pip install --upgrade awscli
+pip install --upgrade awsebcli
+# }}}

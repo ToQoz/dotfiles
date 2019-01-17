@@ -211,8 +211,6 @@ install checkbashisms
 # }}}
 
 # AWS {{{
-install aws-elasticbeanstalk
-install awscli
 install dynamodb-local
 # }}}
 
