@@ -1,21 +1,6 @@
 # :)
 alias tmux="uim-tmux"
-
 eval "$(awsenv hook zsh)"
-
-# NOTE:
-# Emacs.app がフリーズする(uim-fep の CPU 使用率が100%になるようだが理由がよく分からん)
-# ので Terminal.app or iTerm.app の時だけ uim-tmux を実行するようにする。
-if [ "$TERM_PROGRAM" = "iTerm.app" -o "$TERM_PROGRAM" = "Apple_Terminal" ]; then
-  if [ -z "$TMUX" -a -z "$SSH_CONNECTION" ]; then
-    dangling="$(tmux list-sessions 2> /dev/null | grep -v 'attached' | awk -F':' '{print $1}')"
-    if [ -n "$dangling" ]; then
-      tmux attach-session -t $dangling
-    else
-      tmux
-    fi
-  fi
-fi
 
 export COREUTILS_EXIST=false
 if [ -d $BREW_HOME/opt/coreutils ]; then
