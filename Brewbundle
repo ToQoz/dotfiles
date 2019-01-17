@@ -235,6 +235,7 @@ install intltool
 cask install xquartz
 cask install coconutbattery
 cask install appcleaner
+cask install disk-inventory-x
 # }}}
 
 # IME {{{
