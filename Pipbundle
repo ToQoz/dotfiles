@@ -1,7 +1,7 @@
-pip3 install pep8
-pip3 install pyflakes
-pip3 install flake8
-pip3 install hacking
+pip3 install --upgrade pep8
+pip3 install --upgrade pyflakes
+pip3 install --upgrade flake8
+pip3 install --upgrade hacking
 
 # AWS {{{
 pip install --upgrade awscli
