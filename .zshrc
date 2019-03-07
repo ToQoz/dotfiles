@@ -317,6 +317,22 @@ ganache() {
   xhost +$addr
   docker run -it -d --rm -e DISPLAY=$addr:0 -p 7545:7545 -v /tmp/.X11-unix:/tmp/.X11-unix toqoz/ganache
 }
+# Alt bck-i-search
+alt-bck-i-search() {
+    # https://qiita.com/b4b4r07/items/e465efe0b020407bdd44
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+
+    BUFFER=$(history -n 1 | $tac | peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+zle -N alt-bck-i-search
+bindkey '^r' alt-bck-i-search
 
 # Redo(Undo is C-/)
 bindkey "^[r" redo
