@@ -1,0 +1,9 @@
+{
+  "files.insertFinalNewline": true,
+  "breadcrumbs.enabled": true
+  // JS/TS
+  "javascript.validate.enable": false,
+  "eslint.autoFixOnSave": true,
+  "tslint.autoFixOnSave": true,
+  "typescript.updateImportsOnFileMove.enabled": "always"
+}
